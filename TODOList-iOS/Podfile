@@ -1,0 +1,5 @@
+target 'TODOList-iOS' do
+  use_frameworks!
+  platform :ios, '14.1'
+  pod 'data', :path => '../shared/data'
+end

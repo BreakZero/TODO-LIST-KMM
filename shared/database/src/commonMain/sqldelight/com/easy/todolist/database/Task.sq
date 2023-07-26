@@ -1,0 +1,18 @@
+CREATE TABLE LocalTaskEntity(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    title TEXT NOT NULL,
+    description TEXT NOT NULL,
+    accentColor INTEGER NOT NULL,
+    deadline INTEGER NOT NULL,
+    attachment BLOB, -- only support image/*
+    createAt INTEGER NOT NULL
+);
+
+findAllTasks:
+SELECT * FROM LocalTaskEntity;
+
+findTaskById:
+SELECT * FROM LocalTaskEntity WHERE id = ?;
+
+insertTask:
+INSERT INTO LocalTaskEntity(title, description, accentColor, deadline, attachment, createAt) VALUES ?;
