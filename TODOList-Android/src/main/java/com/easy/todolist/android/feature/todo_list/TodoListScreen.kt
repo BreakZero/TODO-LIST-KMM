@@ -12,6 +12,9 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
+import androidx.compose.material3.Button
+import androidx.compose.material3.DatePicker
+import androidx.compose.material3.DatePickerDialog
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
@@ -20,12 +23,15 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.rememberDatePickerState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.easy.todolist.android.R
+import com.easy.todolist.android.common.ImagePicker
+import com.easy.todolist.android.common.toDate
 import com.easy.todolist.android.feature.todo_list.components.AddNewTaskSheet
 import com.easy.todolist.android.feature.todo_list.components.TaskCardView
 import com.easy.todolist.android.feature.todo_list.components.TaskFilterHeader
@@ -35,10 +41,13 @@ import com.easy.todolist.model.Task
 @Composable
 fun TodoListScreen(
     uiState: TodoListUIState,
-    isAddNewTaskOpen: Boolean,
     newTask: Task?,
-    onEvent: (TodoListEvent) -> Unit
+    onEvent: (TodoListEvent) -> Unit,
+    imagePicker: ImagePicker
 ) {
+    imagePicker.registerPicker(onImagePicked = {
+        onEvent(TodoListEvent.OnAttachmentChanged(it))
+    })
     Scaffold(
         modifier = Modifier.fillMaxSize(),
         topBar = {
@@ -71,7 +80,37 @@ fun TodoListScreen(
             }
         }
     ) {
-        if (isAddNewTaskOpen) {
+        if (uiState.tasks.isEmpty()) {
+            Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+                Text(text = "Empty View")
+            }
+        } else {
+            LazyColumn(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 16.dp)
+                    .padding(it),
+                verticalArrangement = Arrangement.spacedBy(8.dp)
+            ) {
+                item {
+                    TaskFilterHeader(
+                        modifier = Modifier
+                            .fillMaxWidth(),
+                        tint = MaterialTheme.colorScheme.primary,
+                        onResult = {}
+                    )
+                }
+                items(
+                    items = uiState.tasks, key = { it.id }
+                ) { task ->
+                    TaskCardView(task = task, onItemClick = {
+                        onEvent(TodoListEvent.OnItemClick(id = task.id))
+                    })
+                }
+                item { Spacer(modifier = Modifier.height(24.dp)) }
+            }
+        }
+        if (uiState.isAddNewTaskOpen) {
             AddNewTaskSheet(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -80,50 +119,33 @@ fun TodoListScreen(
                 onEvent = onEvent
             )
         }
-        when (uiState) {
-            is TodoListUIState.Loading -> {
-                Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-                    Text(text = "Loading...")
-                }
-            }
-
-            is TodoListUIState.Error -> {
-                Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-                    Text(text = "Oops, something went wrong!!!")
-                }
-            }
-
-            is TodoListUIState.Success -> {
-                if (uiState.tasks.isEmpty()) {
-                    Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-                        Text(text = "Empty View")
-                    }
-                } else {
-                    LazyColumn(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(horizontal = 16.dp)
-                            .padding(it),
-                        verticalArrangement = Arrangement.spacedBy(8.dp)
-                    ) {
-                        item {
-                            TaskFilterHeader(
-                                modifier = Modifier
-                                    .fillMaxWidth(),
-                                tint = MaterialTheme.colorScheme.primary,
-                                onResult = {}
+        val datePickerState = rememberDatePickerState()
+        if (uiState.isDatePickerOpen) {
+            DatePickerDialog(
+                onDismissRequest = {
+                    onEvent(TodoListEvent.CloseDeadlinePicker)
+                },
+                confirmButton = {
+                    Button(onClick = {
+                        println(datePickerState.selectedDateMillis?.toDate())
+                        onEvent(
+                            TodoListEvent.OnDeadlineChanged(
+                                datePickerState.selectedDateMillis ?: System.currentTimeMillis()
                             )
-                        }
-                        items(
-                            items = uiState.tasks, key = { it.id }
-                        ) { task ->
-                            TaskCardView(task = task, onItemClick = {
-                                onEvent(TodoListEvent.OnItemClick(id = task.id))
-                            })
-                        }
-                        item { Spacer(modifier = Modifier.height(24.dp)) }
+                        )
+                    }) {
+                        Text(text = "Confirm")
+                    }
+                },
+                dismissButton = {
+                    Button(onClick = {
+                        onEvent(TodoListEvent.CloseDeadlinePicker)
+                    }) {
+                        Text(text = "Dismiss")
                     }
                 }
+            ) {
+                DatePicker(state = datePickerState)
             }
         }
     }

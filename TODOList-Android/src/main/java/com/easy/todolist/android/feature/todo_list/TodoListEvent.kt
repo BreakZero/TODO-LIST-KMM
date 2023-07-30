@@ -12,6 +12,11 @@ sealed interface TodoListEvent {
 
     data class OnTitleChanged(val title: String): TodoListEvent
     data class OnDescriptionChanged(val description: String): TodoListEvent
-    data class OnDeadlineChanged(val deadline: String): TodoListEvent
+    data class OnDeadlineChanged(val deadline: Long): TodoListEvent
     data class OnAttachmentChanged(val attachment: ByteArray?): TodoListEvent
+
+    object ChooseDeadline: TodoListEvent
+    object CloseDeadlinePicker: TodoListEvent
+
+    object ChooseImage: TodoListEvent
 }

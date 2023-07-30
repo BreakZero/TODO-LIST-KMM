@@ -1,13 +1,14 @@
 package com.easy.todolist.android.feature.todo_list.components
 
-import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.aspectRatio
+import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.BrowseGallery
 import androidx.compose.material.icons.filled.EditCalendar
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -21,6 +22,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.easy.todolist.android.common.toDate
 import com.easy.todolist.android.feature.todo_list.TodoListEvent
 import com.easy.todolist.model.Task
 
@@ -34,8 +36,9 @@ fun AddNewTaskSheet(
     ModalBottomSheet(
         modifier = modifier,
         onDismissRequest = {
-        onEvent(TodoListEvent.CloseAddNewSheet)
-    }) {
+            onEvent(TodoListEvent.CloseAddNewSheet)
+        }
+    ) {
         Column(
             modifier = Modifier
                 .fillMaxWidth()
@@ -55,7 +58,7 @@ fun AddNewTaskSheet(
             OutlinedTextField(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .weight(1f),
+                    .defaultMinSize(minHeight = 88.dp),
                 value = task?.description.orEmpty(),
                 onValueChange = {
                     onEvent(TodoListEvent.OnDescriptionChanged(it))
@@ -67,41 +70,33 @@ fun AddNewTaskSheet(
             Spacer(modifier = Modifier.height(8.dp))
             OutlinedTextField(
                 modifier = Modifier.fillMaxWidth(),
-                value = task?.deadline.toString(),
-                onValueChange = {
-                    onEvent(TodoListEvent.OnDeadlineChanged(it))
-                },
+                value = task?.deadline?.toDate().orEmpty(),
+                onValueChange = {},
                 readOnly = true,
                 placeholder = {
                     Text(text = "Deadline (Optional)")
                 },
                 trailingIcon = {
                     IconButton(onClick = {
-
+                        onEvent(TodoListEvent.ChooseDeadline)
                     }) {
                         Icon(imageVector = Icons.Default.EditCalendar, contentDescription = null)
                     }
                 }
             )
-            Spacer(modifier = Modifier.height(8.dp))
-            OutlinedTextField(
-                modifier = Modifier.fillMaxWidth(),
-                value = task?.deadline.toString(),
-                onValueChange = {
-                    onEvent(TodoListEvent.OnAttachmentChanged(null))
-                },
-                readOnly = true,
-                placeholder = {
-                    Text(text = "Add Image (Optional)")
-                },
-                trailingIcon = {
-                    IconButton(onClick = {
 
-                    }) {
-                        Icon(imageVector = Icons.Default.BrowseGallery, contentDescription = null)
-                    }
-                }
-            )
+            task?.let {
+                Spacer(modifier = Modifier.height(8.dp))
+                AttachmentPhoto(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .aspectRatio(16 / 9f)
+                        .clickable {
+                            onEvent(TodoListEvent.ChooseImage)
+                        },
+                    task = it
+                )
+            }
             Spacer(modifier = Modifier.height(8.dp))
             Button(
                 modifier = Modifier.fillMaxWidth(),

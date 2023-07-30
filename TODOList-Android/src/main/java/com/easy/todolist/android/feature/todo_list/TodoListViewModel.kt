@@ -10,32 +10,30 @@ import com.easy.todolist.data.task.DefaultTaskRepository
 import com.easy.todolist.data.task.TaskValidator
 import com.easy.todolist.model.Task
 import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
-import kotlinx.coroutines.flow.catch
-import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.flow.onStart
+import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+
+private const val _2M = 2 * 1024 * 1024
 
 class TodoListViewModel(
     private val taskRepository: DefaultTaskRepository
 ) : ViewModel() {
 
-    val uiState =
-        taskRepository.loadTasks().map<List<Task>, TodoListUIState>(TodoListUIState::Success)
-            .onStart {
-                emit(TodoListUIState.Loading)
-            }.catch {
-                emit(TodoListUIState.Error(it.message ?: "Oops, something went wrong!!!"))
-            }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(2000), TodoListUIState.Loading)
+    private val _state = MutableStateFlow(TodoListUIState())
+
+    val uiState = combine(_state, taskRepository.loadTasks()) { state, tasks ->
+        state.copy(tasks = tasks)
+    }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), TodoListUIState())
 
     private val _eventChannel = Channel<TodoListEvent>()
     val eventChannel = _eventChannel.receiveAsFlow()
 
     var newTask: Task? by mutableStateOf(null)
-        private set
-    var isAddNewTaskOpen by mutableStateOf(false)
         private set
 
     fun onEvent(event: TodoListEvent) {
@@ -47,26 +45,37 @@ class TodoListViewModel(
                     description = "",
                     createAt = System.currentTimeMillis(),
                     accentColor = TaskCategory.values().random().color,
-                    deadline = System.currentTimeMillis() + 1 * 60 * 60 * 1000,
+                    deadline = System.currentTimeMillis(),
                     attachment = null
                 )
-                isAddNewTaskOpen = true
+                _state.update {
+                    it.copy(isAddNewTaskOpen = true)
+                }
             }
 
             is TodoListEvent.CloseAddNewSheet -> {
-                isAddNewTaskOpen = false
+                _state.update {
+                    it.copy(isAddNewTaskOpen = false)
+                }
             }
 
             is TodoListEvent.OnTitleChanged -> {
                 newTask = newTask?.copy(title = event.title)
             }
+
             is TodoListEvent.OnDescriptionChanged -> {
                 newTask = newTask?.copy(description = event.description)
             }
+
             is TodoListEvent.OnDeadlineChanged -> {
-                newTask = newTask?.copy(deadline = System.currentTimeMillis())
+                newTask = newTask?.copy(deadline = event.deadline)
+                _state.update {
+                    it.copy(isDatePickerOpen = false)
+                }
             }
+
             is TodoListEvent.OnAttachmentChanged -> {
+                if (event.attachment == null || event.attachment.size > _2M) return
                 newTask = newTask?.copy(attachment = event.attachment)
             }
 
@@ -80,11 +89,25 @@ class TodoListViewModel(
                     if (errors.isEmpty()) {
                         viewModelScope.launch {
                             taskRepository.insertTask(it)
-                            isAddNewTaskOpen = false
+                        }
+                        _state.update {
+                            it.copy(isAddNewTaskOpen = false)
                         }
                     } else {
                         println(errors.toString())
                     }
+                }
+            }
+
+            is TodoListEvent.ChooseDeadline -> {
+                _state.update {
+                    it.copy(isDatePickerOpen = true)
+                }
+            }
+
+            is TodoListEvent.CloseDeadlinePicker -> {
+                _state.update {
+                    it.copy(isDatePickerOpen = false)
                 }
             }
 
@@ -94,5 +117,10 @@ class TodoListViewModel(
                 }
             }
         }
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        println("view model cleared?")
     }
 }
