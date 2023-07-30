@@ -24,12 +24,18 @@ class SignInViewModel(
         when(signInEvent) {
             is SignInEvent.OnSignIn -> {
                 viewModelScope.launch {
-                    userRepository.insertUser(_state.value.email, _state.value.password)
+                    // TODO check user information
+                    val isExisted = userRepository.queryUserByEmail(_state.value.email) != null
+                    if (isExisted) {
+                        _eventChannel.send(signInEvent)
+                    } else {
+                        // TODO user not found
+                    }
                 }
             }
             is SignInEvent.OnPasswordChanged -> {
                 _state.update {
-                    it.copy(email = signInEvent.password)
+                    it.copy(password = signInEvent.password)
                 }
             }
             is SignInEvent.OnEmailChanged -> {
@@ -37,7 +43,7 @@ class SignInViewModel(
                     it.copy(email = signInEvent.email)
                 }
             }
-            is SignInEvent.OnSignupClick -> {
+            is SignInEvent.SignUpClicked -> {
                 viewModelScope.launch {
                     _eventChannel.send(signInEvent)
                 }

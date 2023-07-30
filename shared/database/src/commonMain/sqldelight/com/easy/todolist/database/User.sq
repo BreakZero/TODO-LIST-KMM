@@ -1,8 +1,7 @@
 CREATE TABLE LocalUserEntity(
-    uid INTEGER PRIMARY KEY NOT NULL,
+    uid TEXT PRIMARY KEY NOT NULL,
     fullName TEXT NOT NULL,
     email TEXT NOT NULL,
-    password TEXT NOT NULL,
     createAt INTEGER NOT NULL
 );
 
@@ -10,4 +9,7 @@ findUser:
 SELECT * FROM LocalUserEntity LIMIT 1;
 
 insertUser:
-INSERT INTO LocalUserEntity(uid, fullName, email, password, createAt) VALUES ?;
+INSERT INTO LocalUserEntity(uid, fullName, email, createAt) VALUES ?;
+
+findUserByEmail:
+SELECT * FROM LocalUserEntity WHERE email == ?;
