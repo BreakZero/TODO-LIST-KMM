@@ -1,43 +1,26 @@
 plugins {
-    kotlin("multiplatform")
-    kotlin("native.cocoapods")
-    id("com.android.library")
+    id("easy.multiplatform.library")
 }
 
-@OptIn(org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi::class)
 kotlin {
-    targetHierarchy.default()
-
-    android {
-        compilations.all {
-            kotlinOptions {
-                jvmTarget = "1.8"
-            }
-        }
+    jvmToolchain {
+        this.languageVersion.set(JavaLanguageVersion.of(17))
     }
-    iosX64()
-    iosArm64()
-    iosSimulatorArm64()
-
     cocoapods {
         summary = "Some description for the Shared Module"
         homepage = "Link to the Shared Module homepage"
         version = "1.0"
         ios.deploymentTarget = "14.1"
+        podfile = project.file("../../TODOList-iOS/Podfile")
         framework {
             baseName = "core"
+            isStatic = true
         }
     }
-    
     sourceSets {
-        val commonMain by getting {
+        getByName("androidMain") {
             dependencies {
-                //put your multiplatform dependencies here
-            }
-        }
-        val commonTest by getting {
-            dependencies {
-                implementation(kotlin("test"))
+                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.2")
             }
         }
     }
@@ -45,8 +28,4 @@ kotlin {
 
 android {
     namespace = "com.easy.todolist.core"
-    compileSdk = 33
-    defaultConfig {
-        minSdk = 24
-    }
 }

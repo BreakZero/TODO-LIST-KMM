@@ -18,8 +18,6 @@ import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
-private const val _2M = 2 * 1024 * 1024
-
 class TodoListViewModel(
     private val taskRepository: DefaultTaskRepository
 ) : ViewModel() {
@@ -75,7 +73,6 @@ class TodoListViewModel(
             }
 
             is TodoListEvent.OnAttachmentChanged -> {
-                if (event.attachment == null || event.attachment.size > _2M) return
                 newTask = newTask?.copy(attachment = event.attachment)
             }
 

@@ -25,6 +25,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.rememberDatePickerState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
@@ -48,6 +49,11 @@ fun TodoListScreen(
     imagePicker.registerPicker(onImagePicked = {
         onEvent(TodoListEvent.OnAttachmentChanged(it))
     })
+    DisposableEffect(key1 = null) {
+        onDispose {
+            println("have disposed")
+        }
+    }
     Scaffold(
         modifier = Modifier.fillMaxSize(),
         topBar = {
@@ -113,8 +119,7 @@ fun TodoListScreen(
         if (uiState.isAddNewTaskOpen) {
             AddNewTaskSheet(
                 modifier = Modifier
-                    .fillMaxWidth()
-                    .fillMaxHeight(0.8f),
+                    .fillMaxWidth(),
                 task = newTask,
                 onEvent = onEvent
             )
@@ -127,7 +132,6 @@ fun TodoListScreen(
                 },
                 confirmButton = {
                     Button(onClick = {
-                        println(datePickerState.selectedDateMillis?.toDate())
                         onEvent(
                             TodoListEvent.OnDeadlineChanged(
                                 datePickerState.selectedDateMillis ?: System.currentTimeMillis()

@@ -1,5 +1,3 @@
-import com.easy.configs.kotlinOptions
-
 plugins {
     id("easy.multiplatform.library")
 }
@@ -24,6 +22,7 @@ kotlin {
             dependencies {
                 implementation(project(":shared:model"))
                 implementation(project(":shared:database"))
+                implementation(project(":shared:core"))
             }
         }
     }

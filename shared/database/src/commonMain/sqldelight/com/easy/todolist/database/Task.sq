@@ -4,7 +4,7 @@ CREATE TABLE LocalTaskEntity(
     description TEXT NOT NULL,
     accentColor INTEGER NOT NULL,
     deadline INTEGER NOT NULL,
-    attachment BLOB, -- only support image/*
+    attachmentPath TEXT, -- only support image/*
     createAt INTEGER NOT NULL
 );
 
@@ -15,4 +15,13 @@ findTaskById:
 SELECT * FROM LocalTaskEntity WHERE id = ?;
 
 insertTask:
-INSERT INTO LocalTaskEntity(title, description, accentColor, deadline, attachment, createAt) VALUES ?;
+INSERT INTO
+LocalTaskEntity(
+    title,
+    description,
+    accentColor,
+    deadline,
+    attachmentPath,
+    createAt
+)
+VALUES (?,?,?,?,?,?);

@@ -29,7 +29,7 @@ fun NavGraphBuilder.bindTodoListGraph(
         val imagePicker = remember(activity) {
             ImagePicker(activity)
         }
-        LaunchedEffect(key1 = null) {
+        LaunchedEffect(key1 = viewModel) {
             viewModel.eventChannel.collect {
                 when (it) {
                     is TodoListEvent.SettingClick -> toSettings()
