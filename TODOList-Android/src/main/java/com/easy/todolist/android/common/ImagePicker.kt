@@ -1,14 +1,13 @@
 package com.easy.todolist.android.common
 
-import android.net.Uri
-import androidx.activity.ComponentActivity
+import android.app.Activity
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.runtime.Composable
 
 class ImagePicker(
-    private val activity: ComponentActivity
+    private val activity: Activity
 ) {
     private lateinit var getContent: ActivityResultLauncher<String>
 

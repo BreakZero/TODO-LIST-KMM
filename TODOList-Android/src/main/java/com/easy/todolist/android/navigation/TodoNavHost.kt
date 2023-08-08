@@ -5,6 +5,7 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navOptions
+import com.easy.todolist.android.common.ImagePicker
 import com.easy.todolist.android.feature.detail.bindTaskDetailGraph
 import com.easy.todolist.android.feature.detail.navigateToTaskDetail
 import com.easy.todolist.android.feature.settings.bindSettingsGraph

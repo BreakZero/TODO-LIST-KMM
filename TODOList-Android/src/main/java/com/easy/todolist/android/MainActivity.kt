@@ -6,7 +6,11 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -31,10 +35,12 @@ class MainActivity : ComponentActivity() {
                     color = MaterialTheme.colorScheme.surface
                 ) {
                     val mainUIState by mainViewModel.mainUIState.collectAsStateWithLifecycle()
-                    val startDestination =
-                        if (mainUIState is MainUIState.Success && (mainUIState as MainUIState.Success).user != null) TodoListRoute
-                        else SignInRoute
-                    TodoNavHost(startDestination = startDestination)
+                    val hasLoggedIn = (mainUIState is MainUIState.Success) && (mainUIState as MainUIState.Success).user != null
+                    if (hasLoggedIn) {
+                        TodoNavHost(startDestination = TodoListRoute)
+                    } else {
+                        TodoNavHost(startDestination = SignInRoute)
+                    }
                 }
             }
         }

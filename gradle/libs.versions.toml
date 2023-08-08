@@ -16,6 +16,7 @@ sqldelight = "2.0.0-rc02"
 coil = "2.4.0"
 navigation = "2.6.0"
 koin = "3.4.1"
+coroutine = "1.7.3"
 
 # Version for test
 junit4 = "4.13.2"
@@ -30,6 +31,7 @@ junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-test-ext-junit = { group = "androidx.test.ext", name = "junit", version.ref = "androidx-test-ext-junit" }
 espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espresso-core" }
 appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
+coroutine-core = {group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "coroutine"}
 
 # Dependencies of Compose
 androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "compose-bom" }

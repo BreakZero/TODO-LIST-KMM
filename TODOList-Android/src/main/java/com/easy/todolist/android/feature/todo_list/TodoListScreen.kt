@@ -3,7 +3,6 @@ package com.easy.todolist.android.feature.todo_list
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -25,14 +24,12 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.rememberDatePickerState
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.DisposableEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.easy.todolist.android.R
 import com.easy.todolist.android.common.ImagePicker
-import com.easy.todolist.android.common.toDate
 import com.easy.todolist.android.feature.todo_list.components.AddNewTaskSheet
 import com.easy.todolist.android.feature.todo_list.components.TaskCardView
 import com.easy.todolist.android.feature.todo_list.components.TaskFilterHeader
@@ -49,11 +46,7 @@ fun TodoListScreen(
     imagePicker.registerPicker(onImagePicked = {
         onEvent(TodoListEvent.OnAttachmentChanged(it))
     })
-    DisposableEffect(key1 = null) {
-        onDispose {
-            println("have disposed")
-        }
-    }
+
     Scaffold(
         modifier = Modifier.fillMaxSize(),
         topBar = {

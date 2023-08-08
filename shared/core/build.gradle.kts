@@ -11,16 +11,20 @@ kotlin {
         homepage = "Link to the Shared Module homepage"
         version = "1.0"
         ios.deploymentTarget = "14.1"
-        podfile = project.file("../../TODOList-iOS/Podfile")
         framework {
             baseName = "core"
-            isStatic = true
+            isStatic = false
         }
     }
     sourceSets {
-        getByName("androidMain") {
+//        getByName("androidMain") {
+//            dependencies {
+//                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.2")
+//            }
+//        }
+        getByName("commonMain") {
             dependencies {
-                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.2")
+                implementation(libs.coroutine.core)
             }
         }
     }

@@ -11,7 +11,9 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavOptions
 import androidx.navigation.compose.composable
 import com.easy.todolist.android.common.ImagePicker
+import org.koin.androidx.compose.get
 import org.koin.androidx.compose.koinViewModel
+import org.koin.core.parameter.parametersOf
 
 const val TodoListRoute = "todo_list"
 
@@ -26,8 +28,8 @@ fun NavGraphBuilder.bindTodoListGraph(
     composable(route = TodoListRoute) {
         val activity = LocalContext.current as ComponentActivity
         val viewModel: TodoListViewModel = koinViewModel()
-        val imagePicker = remember(activity) {
-            ImagePicker(activity)
+        val imagePicker = get<ImagePicker>() {
+            parametersOf(activity)
         }
         LaunchedEffect(key1 = viewModel) {
             viewModel.eventChannel.collect {

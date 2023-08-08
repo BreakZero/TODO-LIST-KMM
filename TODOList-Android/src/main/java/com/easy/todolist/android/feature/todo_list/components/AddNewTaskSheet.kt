@@ -100,7 +100,6 @@ fun AddNewTaskSheet(
             Spacer(modifier = Modifier.height(8.dp))
             Button(
                 modifier = Modifier.fillMaxWidth(),
-                colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.secondaryContainer),
                 onClick = { onEvent(TodoListEvent.OnSaveNewTask) }) {
                 Text(text = "ADD TODO")
             }
