@@ -6,16 +6,9 @@ struct ContentView: View {
 
 	var body: some View {
         if userManager.loggedUser != nil {
-            Text("has Logged User: \(userManager.loggedUser?.fullName ?? "")")
+            TodoListScreen()
         } else {
-            VStack {
-                Text("Not User")
-                Button(action: {
-                    userManager.insertUser(user: ModelUser(uid: "123", fullName: "Dougie008", email: "527916577@qq.com", createAt: 12))
-                }, label: {
-                    Text("Button")
-                })
-            }
+            SignUpScreen()
         }
 	}
 }

@@ -24,6 +24,7 @@ kotlin {
 //        }
         getByName("commonMain") {
             dependencies {
+                implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.4.0")
                 implementation(libs.coroutine.core)
             }
         }

@@ -25,7 +25,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import com.easy.todolist.android.common.toDate
+import com.easy.todolist.core.commom.getFormattedDateTime
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -103,7 +103,7 @@ fun TaskDetailScreen(
                 Text(
                     modifier = Modifier.fillMaxWidth(),
                     style = MaterialTheme.typography.bodySmall.copy(textAlign = TextAlign.Center),
-                    text = "Created at ${task.createAt.toDate()}"
+                    text = "Created at ${task.createAt.getFormattedDateTime()}"
                 )
             }
         }

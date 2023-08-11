@@ -11,9 +11,6 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
-import androidx.compose.material3.Button
-import androidx.compose.material3.DatePicker
-import androidx.compose.material3.DatePickerDialog
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
@@ -33,6 +30,7 @@ import com.easy.todolist.android.common.ImagePicker
 import com.easy.todolist.android.feature.todo_list.components.AddNewTaskSheet
 import com.easy.todolist.android.feature.todo_list.components.TaskCardView
 import com.easy.todolist.android.feature.todo_list.components.TaskFilterHeader
+import com.easy.todolist.android.feature.todo_list.components.TimeSheet
 import com.easy.todolist.model.Task
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -117,33 +115,8 @@ fun TodoListScreen(
                 onEvent = onEvent
             )
         }
-        val datePickerState = rememberDatePickerState()
         if (uiState.isDatePickerOpen) {
-            DatePickerDialog(
-                onDismissRequest = {
-                    onEvent(TodoListEvent.CloseDeadlinePicker)
-                },
-                confirmButton = {
-                    Button(onClick = {
-                        onEvent(
-                            TodoListEvent.OnDeadlineChanged(
-                                datePickerState.selectedDateMillis ?: System.currentTimeMillis()
-                            )
-                        )
-                    }) {
-                        Text(text = "Confirm")
-                    }
-                },
-                dismissButton = {
-                    Button(onClick = {
-                        onEvent(TodoListEvent.CloseDeadlinePicker)
-                    }) {
-                        Text(text = "Dismiss")
-                    }
-                }
-            ) {
-                DatePicker(state = datePickerState)
-            }
+            TimeSheet(modifier = Modifier.fillMaxWidth(), onEvent = onEvent)
         }
     }
 }

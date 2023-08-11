@@ -22,8 +22,8 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.easy.todolist.android.common.toDate
 import com.easy.todolist.android.feature.todo_list.TodoListEvent
+import com.easy.todolist.core.commom.getFormattedDateTime
 import com.easy.todolist.model.Task
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -70,7 +70,7 @@ fun AddNewTaskSheet(
             Spacer(modifier = Modifier.height(8.dp))
             OutlinedTextField(
                 modifier = Modifier.fillMaxWidth(),
-                value = task?.deadline?.toDate().orEmpty(),
+                value = task?.deadline.getFormattedDateTime(),
                 onValueChange = {},
                 readOnly = true,
                 placeholder = {

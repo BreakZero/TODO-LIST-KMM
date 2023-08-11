@@ -4,6 +4,7 @@ import com.easy.todolist.core.common.subscribe
 import com.easy.todolist.data.di.dataModule
 import com.easy.todolist.data.task.DefaultTaskRepository
 import com.easy.todolist.data.user.DefaultUserRepository
+import com.easy.todolist.model.Task
 import com.easy.todolist.model.User
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
@@ -26,4 +27,19 @@ class TodoHelper: KoinComponent {
     ) = userRepository.currentUserFlow().subscribe(onEach, onComplete, onThrow)
 
     suspend fun insertOrUpdateUser(user: User) = userRepository.insertUser(user)
+
+    fun loadTasks(
+        onEach: (tasks: List<Task>) -> Unit,
+        onComplete: () -> Unit,
+        onError: (error: Throwable) -> Unit
+    ) = taskRepository.loadTasks().subscribe(onEach, onComplete, onError)
+
+    fun findTaskById(
+        id: Long,
+        onEach: (item:Task) -> Unit,
+        onComplete: () -> Unit,
+        onError: (error: Throwable) -> Unit
+    ) = taskRepository.findTaskById(id).subscribe(onEach, onComplete, onError)
+
+    suspend fun insertOrUpdateTask(task: Task) = taskRepository.insertTask(task)
 }

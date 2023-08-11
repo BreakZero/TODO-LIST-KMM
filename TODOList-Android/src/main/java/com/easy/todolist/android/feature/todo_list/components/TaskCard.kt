@@ -20,8 +20,8 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.easy.todolist.android.R
-import com.easy.todolist.android.common.toDate
 import com.easy.todolist.android.enum.TaskCategory
+import com.easy.todolist.core.commom.getFormattedDateTime
 import com.easy.todolist.model.Task
 
 @Composable
@@ -68,7 +68,7 @@ fun TaskCardView(
                 color = MaterialTheme.colorScheme.onPrimary
             )
             Text(
-                text = task.createAt.toDate(),
+                text = task.createAt.getFormattedDateTime(),
                 style = MaterialTheme.typography.bodySmall,
                 color = MaterialTheme.colorScheme.onPrimary
             )

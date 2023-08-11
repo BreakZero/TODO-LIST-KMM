@@ -14,6 +14,19 @@
 		3C04A34A2A8239A100DAD24C /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C04A3492A8239A100DAD24C /* UserManager.swift */; };
 		3C04A34E2A82474100DAD24C /* TodoListScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C04A34D2A82474100DAD24C /* TodoListScreen.swift */; };
 		3C04A3502A82478900DAD24C /* SignUpScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C04A34F2A82478900DAD24C /* SignUpScreen.swift */; };
+		3C23B3DB2A838D07004592D5 /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C23B3DA2A838D07004592D5 /* SignUpViewModel.swift */; };
+		3C24A9D32A84F61700E1B6E3 /* TodoListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C24A9D22A84F61700E1B6E3 /* TodoListViewModel.swift */; };
+		3C24A9D52A85240300E1B6E3 /* TodoTaskEditScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C24A9D42A85240300E1B6E3 /* TodoTaskEditScreen.swift */; };
+		3C24A9D72A85241000E1B6E3 /* TodoTaskEditViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C24A9D62A85241000E1B6E3 /* TodoTaskEditViewModel.swift */; };
+		3C24A9D92A85F35000E1B6E3 /* FloatingActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C24A9D82A85F35000E1B6E3 /* FloatingActionButton.swift */; };
+		3C24A9DB2A85F3BD00E1B6E3 /* AppTopbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C24A9DA2A85F3BD00E1B6E3 /* AppTopbar.swift */; };
+		3C24A9DD2A85FBD200E1B6E3 /* ColorExtesion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C24A9DC2A85FBD200E1B6E3 /* ColorExtesion.swift */; };
+		3C24A9E12A8606AD00E1B6E3 /* TaskCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C24A9E02A8606AD00E1B6E3 /* TaskCategory.swift */; };
+		3C24A9E42A86208D00E1B6E3 /* SettingsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C24A9E32A86208D00E1B6E3 /* SettingsScreen.swift */; };
+		3C24A9E62A8620C100E1B6E3 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C24A9E52A8620C100E1B6E3 /* SettingsViewModel.swift */; };
+		3C72E6A52A839F6900532991 /* DefaultTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C72E6A42A839F6900532991 /* DefaultTextField.swift */; };
+		3C9D13F42A84E7DB00D5FC91 /* DateTimeUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9D13F32A84E7DB00D5FC91 /* DateTimeUtil.swift */; };
+		3C9D13F62A84ED1E00D5FC91 /* ViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9D13F52A84ED1E00D5FC91 /* ViewExtension.swift */; };
 		7555FF83242A565900829871 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7555FF82242A565900829871 /* ContentView.swift */; };
 /* End PBXBuildFile section */
 
@@ -26,6 +39,19 @@
 		3C04A3492A8239A100DAD24C /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		3C04A34D2A82474100DAD24C /* TodoListScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoListScreen.swift; sourceTree = "<group>"; };
 		3C04A34F2A82478900DAD24C /* SignUpScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpScreen.swift; sourceTree = "<group>"; };
+		3C23B3DA2A838D07004592D5 /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
+		3C24A9D22A84F61700E1B6E3 /* TodoListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoListViewModel.swift; sourceTree = "<group>"; };
+		3C24A9D42A85240300E1B6E3 /* TodoTaskEditScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoTaskEditScreen.swift; sourceTree = "<group>"; };
+		3C24A9D62A85241000E1B6E3 /* TodoTaskEditViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoTaskEditViewModel.swift; sourceTree = "<group>"; };
+		3C24A9D82A85F35000E1B6E3 /* FloatingActionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingActionButton.swift; sourceTree = "<group>"; };
+		3C24A9DA2A85F3BD00E1B6E3 /* AppTopbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTopbar.swift; sourceTree = "<group>"; };
+		3C24A9DC2A85FBD200E1B6E3 /* ColorExtesion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtesion.swift; sourceTree = "<group>"; };
+		3C24A9E02A8606AD00E1B6E3 /* TaskCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskCategory.swift; sourceTree = "<group>"; };
+		3C24A9E32A86208D00E1B6E3 /* SettingsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsScreen.swift; sourceTree = "<group>"; };
+		3C24A9E52A8620C100E1B6E3 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
+		3C72E6A42A839F6900532991 /* DefaultTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultTextField.swift; sourceTree = "<group>"; };
+		3C9D13F32A84E7DB00D5FC91 /* DateTimeUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTimeUtil.swift; sourceTree = "<group>"; };
+		3C9D13F52A84ED1E00D5FC91 /* ViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewExtension.swift; sourceTree = "<group>"; };
 		7555FF7B242A565900829871 /* TODOList-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TODOList-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7555FF82242A565900829871 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		7555FF8C242A565B00829871 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -64,14 +90,33 @@
 			isa = PBXGroup;
 			children = (
 				3C04A34F2A82478900DAD24C /* SignUpScreen.swift */,
+				3C23B3DA2A838D07004592D5 /* SignUpViewModel.swift */,
 			);
 			path = sign_up;
+			sourceTree = "<group>";
+		};
+		3C24A9DE2A86069800E1B6E3 /* enum */ = {
+			isa = PBXGroup;
+			children = (
+				3C24A9E02A8606AD00E1B6E3 /* TaskCategory.swift */,
+			);
+			path = enum;
+			sourceTree = "<group>";
+		};
+		3C24A9E22A86207B00E1B6E3 /* settings */ = {
+			isa = PBXGroup;
+			children = (
+				3C24A9E32A86208D00E1B6E3 /* SettingsScreen.swift */,
+				3C24A9E52A8620C100E1B6E3 /* SettingsViewModel.swift */,
+			);
+			path = settings;
 			sourceTree = "<group>";
 		};
 		3C5E92C52A7CC65300CAEC2D /* todo_list */ = {
 			isa = PBXGroup;
 			children = (
 				3C04A34D2A82474100DAD24C /* TodoListScreen.swift */,
+				3C24A9D22A84F61700E1B6E3 /* TodoListViewModel.swift */,
 			);
 			path = todo_list;
 			sourceTree = "<group>";
@@ -79,6 +124,8 @@
 		3C5E92C62A7CC66600CAEC2D /* todo_edit */ = {
 			isa = PBXGroup;
 			children = (
+				3C24A9D42A85240300E1B6E3 /* TodoTaskEditScreen.swift */,
+				3C24A9D62A85241000E1B6E3 /* TodoTaskEditViewModel.swift */,
 			);
 			path = todo_edit;
 			sourceTree = "<group>";
@@ -88,6 +135,26 @@
 			children = (
 			);
 			path = todo_detail;
+			sourceTree = "<group>";
+		};
+		3C72E6A32A839F5600532991 /* components */ = {
+			isa = PBXGroup;
+			children = (
+				3C72E6A42A839F6900532991 /* DefaultTextField.swift */,
+				3C9D13F52A84ED1E00D5FC91 /* ViewExtension.swift */,
+				3C24A9D82A85F35000E1B6E3 /* FloatingActionButton.swift */,
+				3C24A9DA2A85F3BD00E1B6E3 /* AppTopbar.swift */,
+			);
+			path = components;
+			sourceTree = "<group>";
+		};
+		3C9D13F22A84E7C900D5FC91 /* common */ = {
+			isa = PBXGroup;
+			children = (
+				3C9D13F32A84E7DB00D5FC91 /* DateTimeUtil.swift */,
+				3C24A9DC2A85FBD200E1B6E3 /* ColorExtesion.swift */,
+			);
+			path = common;
 			sourceTree = "<group>";
 		};
 		5A80D7BE124C62E0792F7592 /* Pods */ = {
@@ -120,6 +187,10 @@
 		7555FF7D242A565900829871 /* TODOList-iOS */ = {
 			isa = PBXGroup;
 			children = (
+				3C24A9E22A86207B00E1B6E3 /* settings */,
+				3C24A9DE2A86069800E1B6E3 /* enum */,
+				3C9D13F22A84E7C900D5FC91 /* common */,
+				3C72E6A32A839F5600532991 /* components */,
 				3C04A34C2A82470F00DAD24C /* sign_up */,
 				3C5E92C72A7CC66F00CAEC2D /* todo_detail */,
 				3C5E92C62A7CC66600CAEC2D /* todo_edit */,
@@ -230,11 +301,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3C9D13F62A84ED1E00D5FC91 /* ViewExtension.swift in Sources */,
+				3C9D13F42A84E7DB00D5FC91 /* DateTimeUtil.swift in Sources */,
 				3C04A3502A82478900DAD24C /* SignUpScreen.swift in Sources */,
 				3C04A34A2A8239A100DAD24C /* UserManager.swift in Sources */,
+				3C24A9D32A84F61700E1B6E3 /* TodoListViewModel.swift in Sources */,
+				3C24A9DB2A85F3BD00E1B6E3 /* AppTopbar.swift in Sources */,
+				3C24A9D72A85241000E1B6E3 /* TodoTaskEditViewModel.swift in Sources */,
 				3C04A34E2A82474100DAD24C /* TodoListScreen.swift in Sources */,
+				3C24A9D92A85F35000E1B6E3 /* FloatingActionButton.swift in Sources */,
+				3C72E6A52A839F6900532991 /* DefaultTextField.swift in Sources */,
 				2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */,
+				3C24A9E42A86208D00E1B6E3 /* SettingsScreen.swift in Sources */,
+				3C24A9DD2A85FBD200E1B6E3 /* ColorExtesion.swift in Sources */,
+				3C24A9D52A85240300E1B6E3 /* TodoTaskEditScreen.swift in Sources */,
+				3C23B3DB2A838D07004592D5 /* SignUpViewModel.swift in Sources */,
+				3C24A9E12A8606AD00E1B6E3 /* TaskCategory.swift in Sources */,
 				7555FF83242A565900829871 /* ContentView.swift in Sources */,
+				3C24A9E62A8620C100E1B6E3 /* SettingsViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -292,7 +376,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -347,7 +431,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -364,6 +448,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"TODOList-iOS/Preview Content\"";
+				DEVELOPMENT_TEAM = 6JF6SLX7QS;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "TODOList-iOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -392,6 +477,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"TODOList-iOS/Preview Content\"";
+				DEVELOPMENT_TEAM = 6JF6SLX7QS;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "TODOList-iOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (

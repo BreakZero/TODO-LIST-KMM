@@ -8,3 +8,4 @@ enum class TaskCategory(
     LIFE(color = 0xFFF76C6A, category = "LIFE"),
     GAMING(color = 0xFFF58B70, category = "GAMING")
 }
+
