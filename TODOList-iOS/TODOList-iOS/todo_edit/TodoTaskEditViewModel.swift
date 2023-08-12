@@ -6,15 +6,41 @@
 //  Copyright © 2023 orgName. All rights reserved.
 //
 
-import Foundation
 import data
+import _PhotosUI_SwiftUI
 
 extension TodoTaskEditScreen {
-    class ViewModel: ObservableObject {
+    @MainActor final class ViewModel: ObservableObject {
         @Published var title: String = ""
         @Published var description: String = ""
         @Published var deadline: Date = Date()
         @Published var deadlineDescription: String = ""
+        
+        @Published private(set) var showDatePicker: Bool = false
+        
+        @Published private(set) var selectedImage: UIImage? = nil
+        @Published var imageSelection: PhotosPickerItem? = nil {
+            didSet {
+                setImage(from: imageSelection)
+            }
+        }
+        private var attachment: KotlinByteArray? = nil
+        
+        private func setImage(from selection: PhotosPickerItem?) {
+            guard let selection else {return}
+            Task {
+                do {
+                    let data = try await selection.loadTransferable(type: Data.self)
+                    guard let data, let uiImage = UIImage(data: data)  else {
+                        throw URLError(.badServerResponse)
+                    }
+                    attachment = KotlinByteArray.from(data: data)
+                    selectedImage = uiImage
+                } catch {
+                    print(error)
+                }
+            }
+        }
         
         @Published private(set) var error: Error? = nil
         
@@ -29,6 +55,10 @@ extension TodoTaskEditScreen {
             }.assign(to: &$deadlineDescription)
         }
         
+        func onShowDatePickerChanged(isShow: Bool) {
+            self.showDatePicker = isShow
+        }
+        
         func insertTask(
             onCompletion: @escaping () -> Void
         ) {
@@ -41,13 +71,14 @@ extension TodoTaskEditScreen {
                 self.error = Error.DescriptionEmpty
                 return
             }
+            
             let task: ModelTask = ModelTask(
                 id: -1,
                 title: self.title,
                 description: self.description,
                 accentColor: getCategory(category: TaskCategory.allCases.randomElement() ?? TaskCategory.WORK),
                 deadline: self.deadline.toMillis(),
-                attachment: nil,
+                attachment: attachment,
                 createAt: currentTimeInMilliSeconds()
             )
             KoinManager.helper.insertOrUpdateTask(

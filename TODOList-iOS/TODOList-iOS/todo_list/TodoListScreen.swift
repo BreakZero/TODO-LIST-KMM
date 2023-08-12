@@ -66,6 +66,13 @@ struct TaskItemView: View {
             Text(task.createAt.asTimeStampToDateFormatted().description)
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .foregroundColor(Color.white)
+            if let data = task.attachment  {
+                Image(uiImage: KoinManager.helper.getUIImageFromBytes(bytes: data))
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/,height: 100)
+                    .cornerRadius(12)
+            }
         }
         .padding(.all, 8)
         .background(Color(hex: task.accentColor))
