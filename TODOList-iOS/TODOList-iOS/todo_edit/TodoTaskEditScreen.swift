@@ -22,7 +22,7 @@ struct TodoTaskEditScreen: View {
             Spacer().frame(height: 32)
             TextField("Title", text: $viewModel.title)
                 .textFieldStyle(.todo_default)
-            TextField("Description", text: $viewModel.description)
+            TextField("Description", text: $viewModel.description, axis: .vertical)
                 .textFieldStyle(.todo_default)
                 .multilineTextAlignment(.leading)
             TextField("Deadline", text: $viewModel.deadlineDescription)
@@ -36,15 +36,20 @@ struct TodoTaskEditScreen: View {
                     }).padding(.trailing, 32)
                 }
             PhotosPicker(selection: $viewModel.imageSelection, matching: .images) {
-                if let image = viewModel.selectedImage {
-                    Image(uiImage: image)
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: .infinity, height: 100)
-                } else {
-                    HStack {
+                GeometryReader { geo in
+                    if let image = viewModel.selectedImage {
+                        Image(uiImage: image)
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: geo.size.width * 0.6)
+                            .frame(width: geo.size.width)
+                    } else {
                         Image(systemName: "star")
-                    }.frame(width: .infinity, height: 100)
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: geo.size.width * 0.6)
+                            .frame(width: geo.size.width, height: geo.size.height)
+                    }
                 }
             }
             Button(action: {

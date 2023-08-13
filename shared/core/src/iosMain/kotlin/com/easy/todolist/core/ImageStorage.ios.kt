@@ -1,13 +1,18 @@
 package com.easy.todolist.core
 
+import kotlinx.cinterop.ObjCObjectVar
 import kotlinx.cinterop.addressOf
+import kotlinx.cinterop.alloc
 import kotlinx.cinterop.memScoped
+import kotlinx.cinterop.ptr
 import kotlinx.cinterop.refTo
 import kotlinx.cinterop.usePinned
+import kotlinx.cinterop.value
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import platform.Foundation.NSData
 import platform.Foundation.NSDocumentDirectory
+import platform.Foundation.NSError
 import platform.Foundation.NSFileManager
 import platform.Foundation.NSSearchPathForDirectoriesInDomains
 import platform.Foundation.NSString
@@ -43,21 +48,44 @@ actual class ImageStorage {
                 path = fullPath,
                 atomically = true
             )
-            fullPath
+            fileName
         }
     }
+
     actual suspend fun getImage(fileName: String): ByteArray? {
         return withContext(Dispatchers.Default) {
             memScoped {
-                NSData.dataWithContentsOfFile(fileName)?.let { bytes ->
+                val errorPtr: ObjCObjectVar<NSError?> = alloc()
+                val fullPath = documentDirectory.stringByAppendingPathComponent(fileName)
+                NSData.dataWithContentsOfFile(fullPath, options = 0, error = errorPtr.ptr)?.let { bytes ->
                     val array = ByteArray(bytes.length.toInt())
                     bytes.getBytes(array.refTo(0).getPointer(this), bytes.length)
                     return@withContext array
                 }
+
+//                val url = fileManager.URLForDirectory(
+//                    directory = NSDocumentDirectory,
+//                    inDomain = NSUserDomainMask,
+//                    appropriateForURL = null,
+//                    create = false,
+//                    error = null
+//                )!!
+//                val fileUrls = fileManager.contentsOfDirectoryAtURL(url = url, includingPropertiesForKeys = null, options = 0, error = errorPtr.ptr)
+//                val currentFileUrl = fileUrls?.first { it.toString().contains(newFileName) } as? NSURL
+//                currentFileUrl?.let {
+//                    NSData.dataWithContentsOfURL(currentFileUrl)
+//                        ?.let { bytes ->
+//                            val array = ByteArray(bytes.length.toInt())
+//                            bytes.getBytes(array.refTo(0).getPointer(this), bytes.length)
+//                            return@withContext array
+//                        }
+//                }
+                println(errorPtr.value?.description.orEmpty())
+                return@withContext null
             }
-            return@withContext null
         }
     }
+
     actual suspend fun deleteImage(fileName: String) {
         withContext(Dispatchers.Default) {
             fileManager.removeItemAtPath(fileName, null)

@@ -24,6 +24,9 @@
 		3C24A9E12A8606AD00E1B6E3 /* TaskCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C24A9E02A8606AD00E1B6E3 /* TaskCategory.swift */; };
 		3C24A9E42A86208D00E1B6E3 /* SettingsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C24A9E32A86208D00E1B6E3 /* SettingsScreen.swift */; };
 		3C24A9E62A8620C100E1B6E3 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C24A9E52A8620C100E1B6E3 /* SettingsViewModel.swift */; };
+		3C24A9E82A87205100E1B6E3 /* BytesExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C24A9E72A87205100E1B6E3 /* BytesExtension.swift */; };
+		3C24A9EA2A87CDC800E1B6E3 /* TodoTaskDetailScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C24A9E92A87CDC800E1B6E3 /* TodoTaskDetailScreen.swift */; };
+		3C24A9EC2A87CDD300E1B6E3 /* TodoTaskDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C24A9EB2A87CDD300E1B6E3 /* TodoTaskDetailViewModel.swift */; };
 		3C72E6A52A839F6900532991 /* DefaultTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C72E6A42A839F6900532991 /* DefaultTextField.swift */; };
 		3C9D13F42A84E7DB00D5FC91 /* DateTimeUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9D13F32A84E7DB00D5FC91 /* DateTimeUtil.swift */; };
 		3C9D13F62A84ED1E00D5FC91 /* ViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9D13F52A84ED1E00D5FC91 /* ViewExtension.swift */; };
@@ -49,6 +52,9 @@
 		3C24A9E02A8606AD00E1B6E3 /* TaskCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskCategory.swift; sourceTree = "<group>"; };
 		3C24A9E32A86208D00E1B6E3 /* SettingsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsScreen.swift; sourceTree = "<group>"; };
 		3C24A9E52A8620C100E1B6E3 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
+		3C24A9E72A87205100E1B6E3 /* BytesExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BytesExtension.swift; sourceTree = "<group>"; };
+		3C24A9E92A87CDC800E1B6E3 /* TodoTaskDetailScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoTaskDetailScreen.swift; sourceTree = "<group>"; };
+		3C24A9EB2A87CDD300E1B6E3 /* TodoTaskDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoTaskDetailViewModel.swift; sourceTree = "<group>"; };
 		3C72E6A42A839F6900532991 /* DefaultTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultTextField.swift; sourceTree = "<group>"; };
 		3C9D13F32A84E7DB00D5FC91 /* DateTimeUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTimeUtil.swift; sourceTree = "<group>"; };
 		3C9D13F52A84ED1E00D5FC91 /* ViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewExtension.swift; sourceTree = "<group>"; };
@@ -133,6 +139,8 @@
 		3C5E92C72A7CC66F00CAEC2D /* todo_detail */ = {
 			isa = PBXGroup;
 			children = (
+				3C24A9E92A87CDC800E1B6E3 /* TodoTaskDetailScreen.swift */,
+				3C24A9EB2A87CDD300E1B6E3 /* TodoTaskDetailViewModel.swift */,
 			);
 			path = todo_detail;
 			sourceTree = "<group>";
@@ -153,6 +161,7 @@
 			children = (
 				3C9D13F32A84E7DB00D5FC91 /* DateTimeUtil.swift */,
 				3C24A9DC2A85FBD200E1B6E3 /* ColorExtesion.swift */,
+				3C24A9E72A87205100E1B6E3 /* BytesExtension.swift */,
 			);
 			path = common;
 			sourceTree = "<group>";
@@ -304,6 +313,7 @@
 				3C9D13F62A84ED1E00D5FC91 /* ViewExtension.swift in Sources */,
 				3C9D13F42A84E7DB00D5FC91 /* DateTimeUtil.swift in Sources */,
 				3C04A3502A82478900DAD24C /* SignUpScreen.swift in Sources */,
+				3C24A9E82A87205100E1B6E3 /* BytesExtension.swift in Sources */,
 				3C04A34A2A8239A100DAD24C /* UserManager.swift in Sources */,
 				3C24A9D32A84F61700E1B6E3 /* TodoListViewModel.swift in Sources */,
 				3C24A9DB2A85F3BD00E1B6E3 /* AppTopbar.swift in Sources */,
@@ -314,9 +324,11 @@
 				2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */,
 				3C24A9E42A86208D00E1B6E3 /* SettingsScreen.swift in Sources */,
 				3C24A9DD2A85FBD200E1B6E3 /* ColorExtesion.swift in Sources */,
+				3C24A9EC2A87CDD300E1B6E3 /* TodoTaskDetailViewModel.swift in Sources */,
 				3C24A9D52A85240300E1B6E3 /* TodoTaskEditScreen.swift in Sources */,
 				3C23B3DB2A838D07004592D5 /* SignUpViewModel.swift in Sources */,
 				3C24A9E12A8606AD00E1B6E3 /* TaskCategory.swift in Sources */,
+				3C24A9EA2A87CDC800E1B6E3 /* TodoTaskDetailScreen.swift in Sources */,
 				7555FF83242A565900829871 /* ContentView.swift in Sources */,
 				3C24A9E62A8620C100E1B6E3 /* SettingsViewModel.swift in Sources */,
 			);
@@ -376,7 +388,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -431,7 +443,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
