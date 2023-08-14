@@ -19,12 +19,14 @@ struct TodoTaskDetailScreen: View {
         VStack {
             if let task = viewModel.task {
                 Text(task.title)
+                    .frame(maxWidth: .infinity, alignment: .leading)
                     .font(.title)
                     .bold()
                     .padding(.horizontal, 16)
                     .padding(.top, 4)
                 Spacer().frame(height: 8)
                 Text(task.description_)
+                    .frame(maxWidth: .infinity, alignment: .leading)
                     .font(.body)
                     .padding(.horizontal, 16)
                 if let bytes = task.attachment {
