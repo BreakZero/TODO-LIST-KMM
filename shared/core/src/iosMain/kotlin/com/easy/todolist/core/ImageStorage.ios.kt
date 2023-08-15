@@ -62,24 +62,6 @@ actual class ImageStorage {
                     bytes.getBytes(array.refTo(0).getPointer(this), bytes.length)
                     return@withContext array
                 }
-
-//                val url = fileManager.URLForDirectory(
-//                    directory = NSDocumentDirectory,
-//                    inDomain = NSUserDomainMask,
-//                    appropriateForURL = null,
-//                    create = false,
-//                    error = null
-//                )!!
-//                val fileUrls = fileManager.contentsOfDirectoryAtURL(url = url, includingPropertiesForKeys = null, options = 0, error = errorPtr.ptr)
-//                val currentFileUrl = fileUrls?.first { it.toString().contains(newFileName) } as? NSURL
-//                currentFileUrl?.let {
-//                    NSData.dataWithContentsOfURL(currentFileUrl)
-//                        ?.let { bytes ->
-//                            val array = ByteArray(bytes.length.toInt())
-//                            bytes.getBytes(array.refTo(0).getPointer(this), bytes.length)
-//                            return@withContext array
-//                        }
-//                }
                 println(errorPtr.value?.description.orEmpty())
                 return@withContext null
             }
@@ -88,7 +70,8 @@ actual class ImageStorage {
 
     actual suspend fun deleteImage(fileName: String) {
         withContext(Dispatchers.Default) {
-            fileManager.removeItemAtPath(fileName, null)
+            val fullPath = documentDirectory.stringByAppendingPathComponent(fileName)
+            fileManager.removeItemAtPath(fullPath, null)
         }
     }
 }

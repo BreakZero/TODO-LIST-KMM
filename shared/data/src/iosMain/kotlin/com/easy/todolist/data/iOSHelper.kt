@@ -48,13 +48,15 @@ class TodoHelper: KoinComponent {
 
     suspend fun insertOrUpdateTask(task: Task) = taskRepository.insertTask(task)
 
-    fun getUIImageFromBytes(bytes: ByteArray): UIImage {
-        val data = bytes.usePinned {
-            NSData.create(
-                bytes = it.addressOf(0),
-                length = bytes.size.toULong()
-            )
+    companion object {
+        fun getUIImageFromBytes(bytes: ByteArray): UIImage {
+            val data = bytes.usePinned {
+                NSData.create(
+                    bytes = it.addressOf(0),
+                    length = bytes.size.toULong()
+                )
+            }
+            return UIImage(data)
         }
-        return UIImage(data)
     }
 }

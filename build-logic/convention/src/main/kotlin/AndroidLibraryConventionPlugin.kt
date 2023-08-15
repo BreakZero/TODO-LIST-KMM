@@ -41,14 +41,14 @@ class AndroidLibraryConventionPlugin : Plugin<Project> {
             extensions.configure<LibraryAndroidComponentsExtension> {
                 configurePrintApksTask(this)
             }
-            val libs = extensions.getByType<VersionCatalogsExtension>().named("libs")
-            configurations.configureEach {
-                resolutionStrategy {
-                    force(libs.findLibrary("junit4").get())
-                    // Temporary workaround for https://issuetracker.google.com/174733673
-                    force("org.objenesis:objenesis:2.6")
-                }
-            }
+//            val libs = extensions.getByType<VersionCatalogsExtension>().named("libs")
+//            configurations.configureEach {
+//                resolutionStrategy {
+//                    force(libs.findLibrary("junit4").get())
+//                    // Temporary workaround for https://issuetracker.google.com/174733673
+//                    force("org.objenesis:objenesis:2.6")
+//                }
+//            }
         }
     }
 }

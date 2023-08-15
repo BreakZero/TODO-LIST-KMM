@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import data
 
 struct TodoTaskDetailScreen: View {
     private var taskId: Int64
@@ -30,7 +31,7 @@ struct TodoTaskDetailScreen: View {
                     .font(.body)
                     .padding(.horizontal, 16)
                 if let bytes = task.attachment {
-                    let uiImage = KoinManager.helper.getUIImageFromBytes(bytes: bytes)
+                    let uiImage = TodoHelper.companion.getUIImageFromBytes(bytes: bytes)
                     GeometryReader { geo in
                         Image(uiImage: uiImage)
                             .resizable()

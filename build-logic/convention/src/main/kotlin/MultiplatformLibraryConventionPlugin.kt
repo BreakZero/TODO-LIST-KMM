@@ -21,7 +21,7 @@ class MultiplatformLibraryConventionPlugin : Plugin<Project> {
 
             extensions.configure<LibraryExtension> {
                 compileOptions {
-                    sourceCompatibility = JavaVersion.VERSION_17 // Or VERSION_17 in your case
+                    sourceCompatibility = JavaVersion.VERSION_17
                     targetCompatibility = JavaVersion.VERSION_17
                 }
                 compileSdk = AndroidBuildConfig.compileSdkVersion
@@ -81,13 +81,13 @@ class MultiplatformLibraryConventionPlugin : Plugin<Project> {
 //        }
             }
 
-            configurations.configureEach {
-                resolutionStrategy {
-                    force(libs.findLibrary("junit4").get())
-                    // Temporary workaround for https://issuetracker.google.com/174733673
-                    force("org.objenesis:objenesis:2.6")
-                }
-            }
+//            configurations.configureEach {
+//                resolutionStrategy {
+//                    force(libs.findLibrary("junit4").get())
+//                    // Temporary workaround for https://issuetracker.google.com/174733673
+//                    force("org.objenesis:objenesis:2.6")
+//                }
+//            }
         }
     }
 }

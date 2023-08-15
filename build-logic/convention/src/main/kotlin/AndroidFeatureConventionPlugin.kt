@@ -26,11 +26,12 @@ class AndroidFeatureConventionPlugin : Plugin<Project> {
         with(target) {
             pluginManager.apply {
                 apply("easy.android.library")
-//        apply("easy.android.hilt")
+                // ignore hilt for this project
+                // apply("easy.android.hilt")
             }
             extensions.configure<LibraryExtension> {
                 defaultConfig {
-//          testInstrumentationRunner = "com.easy.defi.app.core.testing.EasyTestRunner"
+                    // testInstrumentationRunner = "com.easy.defi.app.core.testing.EasyTestRunner"
                 }
             }
 
