@@ -2,12 +2,11 @@ import com.android.build.api.variant.LibraryAndroidComponentsExtension
 import com.android.build.gradle.LibraryExtension
 import com.easy.configs.configureFlavors
 import com.easy.configs.configurePrintApksTask
+import com.easy.configs.libs
 import org.gradle.api.JavaVersion
 import org.gradle.api.Plugin
 import org.gradle.api.Project
-import org.gradle.api.artifacts.VersionCatalogsExtension
 import org.gradle.kotlin.dsl.configure
-import org.gradle.kotlin.dsl.getByType
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 
 class MultiplatformLibraryConventionPlugin : Plugin<Project> {
@@ -32,10 +31,9 @@ class MultiplatformLibraryConventionPlugin : Plugin<Project> {
             extensions.configure<LibraryAndroidComponentsExtension> {
                 configurePrintApksTask(this)
             }
-            val libs = extensions.getByType<VersionCatalogsExtension>().named("libs")
             extensions.configure<KotlinMultiplatformExtension> {
 //                jvmToolchain(17)
-                android {
+                androidTarget {
                     compilations.all {
                         kotlinOptions {
                             jvmTarget = JavaVersion.VERSION_17.toString()
@@ -52,8 +50,6 @@ class MultiplatformLibraryConventionPlugin : Plugin<Project> {
                     }
                 }
                 val commonTest = sourceSets.getByName("commonTest")
-                val androidMain = sourceSets.getByName("androidMain")
-                val androidUnitTest = sourceSets.getByName("androidUnitTest")
                 val iosX64Main = sourceSets.getByName("iosX64Main")
                 val iosArm64Main = sourceSets.getByName("iosArm64Main")
                 val iosSimulatorArm64Main = sourceSets.getByName("iosSimulatorArm64Main")
@@ -66,7 +62,7 @@ class MultiplatformLibraryConventionPlugin : Plugin<Project> {
                 val iosX64Test = sourceSets.getByName("iosX64Test")
                 val iosArm64Test = sourceSets.getByName("iosArm64Test")
                 val iosSimulatorArm64Test = sourceSets.getByName("iosSimulatorArm64Test")
-                val iosTest = sourceSets.create("iosTest") {
+                sourceSets.create("iosTest") {
                     dependsOn(commonTest)
                     iosX64Test.dependsOn(this)
                     iosArm64Test.dependsOn(this)

@@ -41,7 +41,6 @@ class AndroidLibraryConventionPlugin : Plugin<Project> {
             extensions.configure<LibraryAndroidComponentsExtension> {
                 configurePrintApksTask(this)
             }
-//            val libs = extensions.getByType<VersionCatalogsExtension>().named("libs")
 //            configurations.configureEach {
 //                resolutionStrategy {
 //                    force(libs.findLibrary("junit4").get())

@@ -1,3 +1,5 @@
+@file:OptIn(ExperimentalForeignApi::class, ExperimentalForeignApi::class)
+
 package com.easy.todolist.data
 
 import com.easy.todolist.core.common.subscribe
@@ -6,6 +8,8 @@ import com.easy.todolist.data.task.DefaultTaskRepository
 import com.easy.todolist.data.user.DefaultUserRepository
 import com.easy.todolist.model.Task
 import com.easy.todolist.model.User
+import kotlinx.cinterop.BetaInteropApi
+import kotlinx.cinterop.ExperimentalForeignApi
 import kotlinx.cinterop.addressOf
 import kotlinx.cinterop.usePinned
 import org.koin.core.component.KoinComponent
@@ -49,6 +53,7 @@ class TodoHelper: KoinComponent {
     suspend fun insertOrUpdateTask(task: Task) = taskRepository.insertTask(task)
 
     companion object {
+        @OptIn(BetaInteropApi::class)
         fun getUIImageFromBytes(bytes: ByteArray): UIImage {
             val data = bytes.usePinned {
                 NSData.create(

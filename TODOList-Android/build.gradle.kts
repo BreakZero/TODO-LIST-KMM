@@ -5,7 +5,6 @@ plugins {
     id("jacoco")
 }
 
-
 android {
     namespace = "com.easy.todolist.android"
     defaultConfig {

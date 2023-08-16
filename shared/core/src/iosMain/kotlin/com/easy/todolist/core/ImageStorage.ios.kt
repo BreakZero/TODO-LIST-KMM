@@ -1,5 +1,6 @@
 package com.easy.todolist.core
 
+import kotlinx.cinterop.BetaInteropApi
 import kotlinx.cinterop.ObjCObjectVar
 import kotlinx.cinterop.addressOf
 import kotlinx.cinterop.alloc
@@ -24,6 +25,7 @@ import platform.Foundation.getBytes
 import platform.Foundation.stringByAppendingPathComponent
 import platform.Foundation.writeToFile
 
+@OptIn(kotlinx.cinterop.ExperimentalForeignApi::class)
 actual class ImageStorage {
     private val fileManager = NSFileManager.defaultManager
     private val documentDirectory = NSSearchPathForDirectoriesInDomains(
@@ -32,6 +34,7 @@ actual class ImageStorage {
         expandTilde = true
     ).first() as NSString
 
+    @OptIn(BetaInteropApi::class)
     actual suspend fun saveImage(bytes: ByteArray): String {
         return withContext(Dispatchers.Default) {
             val fileName = NSUUID.UUID().UUIDString + ".jpg"
@@ -52,12 +55,13 @@ actual class ImageStorage {
         }
     }
 
+    @OptIn(BetaInteropApi::class)
     actual suspend fun getImage(fileName: String): ByteArray? {
         return withContext(Dispatchers.Default) {
             memScoped {
                 val errorPtr: ObjCObjectVar<NSError?> = alloc()
                 val fullPath = documentDirectory.stringByAppendingPathComponent(fileName)
-                NSData.dataWithContentsOfFile(fullPath, options = 0, error = errorPtr.ptr)?.let { bytes ->
+                NSData.dataWithContentsOfFile(fullPath)?.let { bytes ->
                     val array = ByteArray(bytes.length.toInt())
                     bytes.getBytes(array.refTo(0).getPointer(this), bytes.length)
                     return@withContext array

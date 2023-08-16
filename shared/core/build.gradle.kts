@@ -3,9 +3,6 @@ plugins {
 }
 
 kotlin {
-    jvmToolchain {
-        this.languageVersion.set(JavaLanguageVersion.of(17))
-    }
     cocoapods {
         summary = "Some description for the Shared Module"
         homepage = "Link to the Shared Module homepage"
