@@ -12,6 +12,7 @@ import kotlinx.cinterop.value
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import platform.Foundation.NSData
+import platform.Foundation.NSDataReadingOptions
 import platform.Foundation.NSDocumentDirectory
 import platform.Foundation.NSError
 import platform.Foundation.NSFileManager
@@ -61,7 +62,11 @@ actual class ImageStorage {
             memScoped {
                 val errorPtr: ObjCObjectVar<NSError?> = alloc()
                 val fullPath = documentDirectory.stringByAppendingPathComponent(fileName)
-                NSData.dataWithContentsOfFile(fullPath)?.let { bytes ->
+                NSData.dataWithContentsOfFile(
+                    path = fullPath,
+                    options = NSDataReadingOptions.MIN_VALUE,
+                    error = errorPtr.ptr
+                )?.let { bytes ->
                     val array = ByteArray(bytes.length.toInt())
                     bytes.getBytes(array.refTo(0).getPointer(this), bytes.length)
                     return@withContext array
