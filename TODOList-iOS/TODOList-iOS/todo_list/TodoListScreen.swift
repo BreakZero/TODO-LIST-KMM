@@ -40,7 +40,17 @@ struct TodoListScreen: View {
                         viewModel.onShowAddTaskSheetChanged(isShow: value)
                     }),
                 content: {
-                    TodoTaskEditScreen()
+                    TaskFormSheet(
+                        confirmButtonText: "ADD TASK",
+                        onConfirmed: { task in
+                            viewModel.insertTask(
+                                task: task,
+                                onCompletion: {
+                                    viewModel.onShowAddTaskSheetChanged(isShow: false)
+                                }
+                            )
+                        }
+                    )
                 })
         }
     }

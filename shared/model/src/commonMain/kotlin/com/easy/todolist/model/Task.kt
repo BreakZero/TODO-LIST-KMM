@@ -12,4 +12,16 @@ data class Task(
     fun inProgress(): Boolean {
         return false
     }
+
+    override fun toString(): String {
+        return """
+            id: $id,
+            title: $title,
+            description: $description,
+            accentColor: $accentColor,
+            deadline: $deadline,
+            attachment: ${attachment?.size},
+            createAt: $createAt
+        """.trimIndent()
+    }
 }

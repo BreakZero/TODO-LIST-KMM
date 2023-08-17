@@ -16,8 +16,6 @@
 		3C04A3502A82478900DAD24C /* SignUpScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C04A34F2A82478900DAD24C /* SignUpScreen.swift */; };
 		3C23B3DB2A838D07004592D5 /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C23B3DA2A838D07004592D5 /* SignUpViewModel.swift */; };
 		3C24A9D32A84F61700E1B6E3 /* TodoListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C24A9D22A84F61700E1B6E3 /* TodoListViewModel.swift */; };
-		3C24A9D52A85240300E1B6E3 /* TodoTaskEditScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C24A9D42A85240300E1B6E3 /* TodoTaskEditScreen.swift */; };
-		3C24A9D72A85241000E1B6E3 /* TodoTaskEditViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C24A9D62A85241000E1B6E3 /* TodoTaskEditViewModel.swift */; };
 		3C24A9D92A85F35000E1B6E3 /* FloatingActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C24A9D82A85F35000E1B6E3 /* FloatingActionButton.swift */; };
 		3C24A9DB2A85F3BD00E1B6E3 /* AppTopbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C24A9DA2A85F3BD00E1B6E3 /* AppTopbar.swift */; };
 		3C24A9DD2A85FBD200E1B6E3 /* ColorExtesion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C24A9DC2A85FBD200E1B6E3 /* ColorExtesion.swift */; };
@@ -30,6 +28,8 @@
 		3C72E6A52A839F6900532991 /* DefaultTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C72E6A42A839F6900532991 /* DefaultTextField.swift */; };
 		3C9D13F42A84E7DB00D5FC91 /* DateTimeUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9D13F32A84E7DB00D5FC91 /* DateTimeUtil.swift */; };
 		3C9D13F62A84ED1E00D5FC91 /* ViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9D13F52A84ED1E00D5FC91 /* ViewExtension.swift */; };
+		3CB84EC92A8E453300913DD1 /* TaskFormSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CB84EC82A8E453300913DD1 /* TaskFormSheet.swift */; };
+		3CB84ECC2A8E459700913DD1 /* TaskFormContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CB84ECB2A8E459700913DD1 /* TaskFormContract.swift */; };
 		7555FF83242A565900829871 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7555FF82242A565900829871 /* ContentView.swift */; };
 /* End PBXBuildFile section */
 
@@ -44,8 +44,6 @@
 		3C04A34F2A82478900DAD24C /* SignUpScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpScreen.swift; sourceTree = "<group>"; };
 		3C23B3DA2A838D07004592D5 /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
 		3C24A9D22A84F61700E1B6E3 /* TodoListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoListViewModel.swift; sourceTree = "<group>"; };
-		3C24A9D42A85240300E1B6E3 /* TodoTaskEditScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoTaskEditScreen.swift; sourceTree = "<group>"; };
-		3C24A9D62A85241000E1B6E3 /* TodoTaskEditViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoTaskEditViewModel.swift; sourceTree = "<group>"; };
 		3C24A9D82A85F35000E1B6E3 /* FloatingActionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingActionButton.swift; sourceTree = "<group>"; };
 		3C24A9DA2A85F3BD00E1B6E3 /* AppTopbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTopbar.swift; sourceTree = "<group>"; };
 		3C24A9DC2A85FBD200E1B6E3 /* ColorExtesion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtesion.swift; sourceTree = "<group>"; };
@@ -58,6 +56,8 @@
 		3C72E6A42A839F6900532991 /* DefaultTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultTextField.swift; sourceTree = "<group>"; };
 		3C9D13F32A84E7DB00D5FC91 /* DateTimeUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTimeUtil.swift; sourceTree = "<group>"; };
 		3C9D13F52A84ED1E00D5FC91 /* ViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewExtension.swift; sourceTree = "<group>"; };
+		3CB84EC82A8E453300913DD1 /* TaskFormSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskFormSheet.swift; sourceTree = "<group>"; };
+		3CB84ECB2A8E459700913DD1 /* TaskFormContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskFormContract.swift; sourceTree = "<group>"; };
 		7555FF7B242A565900829871 /* TODOList-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TODOList-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7555FF82242A565900829871 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		7555FF8C242A565B00829871 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -127,13 +127,13 @@
 			path = todo_list;
 			sourceTree = "<group>";
 		};
-		3C5E92C62A7CC66600CAEC2D /* todo_edit */ = {
+		3C5E92C62A7CC66600CAEC2D /* edit_sheet */ = {
 			isa = PBXGroup;
 			children = (
-				3C24A9D42A85240300E1B6E3 /* TodoTaskEditScreen.swift */,
-				3C24A9D62A85241000E1B6E3 /* TodoTaskEditViewModel.swift */,
+				3CB84ECB2A8E459700913DD1 /* TaskFormContract.swift */,
+				3CB84EC82A8E453300913DD1 /* TaskFormSheet.swift */,
 			);
-			path = todo_edit;
+			path = edit_sheet;
 			sourceTree = "<group>";
 		};
 		3C5E92C72A7CC66F00CAEC2D /* todo_detail */ = {
@@ -196,19 +196,19 @@
 		7555FF7D242A565900829871 /* TODOList-iOS */ = {
 			isa = PBXGroup;
 			children = (
-				3C24A9E22A86207B00E1B6E3 /* settings */,
-				3C24A9DE2A86069800E1B6E3 /* enum */,
+				058557BA273AAA24004C7B11 /* Assets.xcassets */,
 				3C9D13F22A84E7C900D5FC91 /* common */,
 				3C72E6A32A839F5600532991 /* components */,
-				3C04A34C2A82470F00DAD24C /* sign_up */,
-				3C5E92C72A7CC66F00CAEC2D /* todo_detail */,
-				3C5E92C62A7CC66600CAEC2D /* todo_edit */,
-				3C5E92C52A7CC65300CAEC2D /* todo_list */,
-				058557BA273AAA24004C7B11 /* Assets.xcassets */,
 				7555FF82242A565900829871 /* ContentView.swift */,
+				3C5E92C62A7CC66600CAEC2D /* edit_sheet */,
+				3C24A9DE2A86069800E1B6E3 /* enum */,
 				7555FF8C242A565B00829871 /* Info.plist */,
 				2152FB032600AC8F00CF470E /* iOSApp.swift */,
 				058557D7273AAEEB004C7B11 /* Preview Content */,
+				3C24A9E22A86207B00E1B6E3 /* settings */,
+				3C04A34C2A82470F00DAD24C /* sign_up */,
+				3C5E92C72A7CC66F00CAEC2D /* todo_detail */,
+				3C5E92C52A7CC65300CAEC2D /* todo_list */,
 				3C04A3492A8239A100DAD24C /* UserManager.swift */,
 			);
 			path = "TODOList-iOS";
@@ -314,10 +314,10 @@
 				3C9D13F42A84E7DB00D5FC91 /* DateTimeUtil.swift in Sources */,
 				3C04A3502A82478900DAD24C /* SignUpScreen.swift in Sources */,
 				3C24A9E82A87205100E1B6E3 /* BytesExtension.swift in Sources */,
+				3CB84ECC2A8E459700913DD1 /* TaskFormContract.swift in Sources */,
 				3C04A34A2A8239A100DAD24C /* UserManager.swift in Sources */,
 				3C24A9D32A84F61700E1B6E3 /* TodoListViewModel.swift in Sources */,
 				3C24A9DB2A85F3BD00E1B6E3 /* AppTopbar.swift in Sources */,
-				3C24A9D72A85241000E1B6E3 /* TodoTaskEditViewModel.swift in Sources */,
 				3C04A34E2A82474100DAD24C /* TodoListScreen.swift in Sources */,
 				3C24A9D92A85F35000E1B6E3 /* FloatingActionButton.swift in Sources */,
 				3C72E6A52A839F6900532991 /* DefaultTextField.swift in Sources */,
@@ -325,10 +325,10 @@
 				3C24A9E42A86208D00E1B6E3 /* SettingsScreen.swift in Sources */,
 				3C24A9DD2A85FBD200E1B6E3 /* ColorExtesion.swift in Sources */,
 				3C24A9EC2A87CDD300E1B6E3 /* TodoTaskDetailViewModel.swift in Sources */,
-				3C24A9D52A85240300E1B6E3 /* TodoTaskEditScreen.swift in Sources */,
 				3C23B3DB2A838D07004592D5 /* SignUpViewModel.swift in Sources */,
 				3C24A9E12A8606AD00E1B6E3 /* TaskCategory.swift in Sources */,
 				3C24A9EA2A87CDC800E1B6E3 /* TodoTaskDetailScreen.swift in Sources */,
+				3CB84EC92A8E453300913DD1 /* TaskFormSheet.swift in Sources */,
 				7555FF83242A565900829871 /* ContentView.swift in Sources */,
 				3C24A9E62A8620C100E1B6E3 /* SettingsViewModel.swift in Sources */,
 			);

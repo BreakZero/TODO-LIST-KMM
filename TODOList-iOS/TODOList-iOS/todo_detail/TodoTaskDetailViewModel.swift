@@ -14,6 +14,8 @@ extension TodoTaskDetailScreen {
     @MainActor final class ViewModel: ObservableObject {
         @Published private(set) var task: ModelTask? = nil
         
+        @Published var isShowEditor: Bool = false
+        
         func fetch(taskId: Int64) {
             KoinManager.helper.findTaskById(
                 id: taskId,
@@ -22,6 +24,23 @@ extension TodoTaskDetailScreen {
                 },
                 onComplete: {},
                 onError: {error in}
+            )
+        }
+        
+        func updateTask(
+            task: ModelTask,
+            onCompeletion: @escaping () -> Void
+        ) {
+            print("editted task: \(task.title), desc: \(task.description_)")
+            KoinManager.helper.updateTask(
+                task: task,
+                completionHandler: { error in
+                    if error == nil {
+                        onCompeletion()
+                    } else {
+                        //
+                    }
+                }
             )
         }
     }

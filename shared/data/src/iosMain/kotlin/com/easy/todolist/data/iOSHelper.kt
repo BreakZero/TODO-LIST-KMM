@@ -50,7 +50,9 @@ class TodoHelper: KoinComponent {
         onError: (error: Throwable) -> Unit
     ) = taskRepository.findTaskById(id).subscribe(onEach, onComplete, onError)
 
-    suspend fun insertOrUpdateTask(task: Task) = taskRepository.insertTask(task)
+    suspend fun insertTask(task: Task) = taskRepository.insertTask(task)
+
+    suspend fun updateTask(task: Task) = taskRepository.upsertTask(task)
 
     companion object {
         @OptIn(BetaInteropApi::class)

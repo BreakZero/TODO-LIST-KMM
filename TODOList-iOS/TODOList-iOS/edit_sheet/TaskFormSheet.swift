@@ -1,8 +1,8 @@
 //
-//  TodoTaskEditScreen.swift
+//  TaskFormEditor.swift
 //  TODOList-iOS
 //
-//  Created by Jin on 2023/8/10.
+//  Created by Jin on 2023/8/17.
 //  Copyright © 2023 orgName. All rights reserved.
 //
 
@@ -10,35 +10,49 @@ import Foundation
 import SwiftUI
 import PhotosUI
 import UIKit
+import data
 
-struct TodoTaskEditScreen: View {
-    @Environment(\.dismiss) private var dismiss
-    @StateObject private var viewModel = ViewModel()
+struct TaskFormSheet: View {
+    @StateObject private var formContract = TaskFormContract()
+    
+    private var taskId: Int64? = nil
+    private var confirmButtonText: String
+    private var onConfirmed: (ModelTask) -> Void
+    
+    init(
+        taskId: Int64? = nil,
+        confirmButtonText: String,
+        onConfirmed: @escaping (ModelTask) -> Void
+    ) {
+        self.confirmButtonText = confirmButtonText
+        self.onConfirmed = onConfirmed
+        self.taskId = taskId
+    }
     
     var body: some View {
         VStack(
             alignment: .leading
         ) {
             Spacer().frame(height: 32)
-            TextField("Title", text: $viewModel.title)
+            TextField("Title", text: $formContract.title)
                 .textFieldStyle(.todo_default)
-            TextField("Description", text: $viewModel.description, axis: .vertical)
+            TextField("Description", text: $formContract.description, axis: .vertical)
                 .lineLimit(3...)
                 .textFieldStyle(.todo_default)
                 .multilineTextAlignment(.leading)
-            TextField("Deadline", text: $viewModel.deadlineDescription)
+            TextField("Deadline", text: $formContract.deadlineDescription)
                 .textFieldStyle(.todo_default)
                 .disabled(true)
                 .overlay(alignment: .trailing) {
                     Button(action: {
-                        viewModel.onShowDatePickerChanged(isShow: true)
+                        formContract.onShowDatePickerChanged(isShow: true)
                     }, label: {
                         Image(systemName: "calendar")
                     }).padding(.trailing, 32)
                 }
-            PhotosPicker(selection: $viewModel.imageSelection, matching: .images) {
+            PhotosPicker(selection: $formContract.imageSelection, matching: .images) {
                 GeometryReader { geo in
-                    if let image = viewModel.selectedImage {
+                    if let image = formContract.selectedImage {
                         Image(uiImage: image)
                             .resizable()
                             .scaledToFit()
@@ -54,36 +68,41 @@ struct TodoTaskEditScreen: View {
                 }
             }
             Button(action: {
-                viewModel.insertTask {
-                    dismiss()
-                }
+                // generated task for upstream
+                formContract.onConfirmed(onTaskGenerated: { task in
+                     onConfirmed(task)
+                })
             }, label: {
-                Text("ADD TODO").frame(maxWidth: .infinity)
+                Text(confirmButtonText).frame(maxWidth: .infinity)
                     .frame(height: 40)
             }).padding(.horizontal)
                 .buttonStyle(.borderedProminent)
+        }.onAppear {
+            if taskId != nil {
+                formContract.fetch(taskId: taskId!)
+            }
         }.errorAlert(
             error: Binding(
-                get: { viewModel.error },
+                get: { formContract.error },
                 set: {value in
-                    viewModel.clearError()
+                    formContract.clearError()
                 }
             )).sheet(isPresented: Binding(
                 get: {
-                    viewModel.showDatePicker
+                    formContract.showDatePicker
                 },
                 set: { value in
-                    viewModel.onShowDatePickerChanged(isShow: value)
+                    formContract.onShowDatePickerChanged(isShow: value)
                 }
             ), content: {
                 VStack {
                     DatePicker(
                         "Deadline",
-                        selection: $viewModel.deadline,
+                        selection: $formContract.deadline,
                         displayedComponents: [.date, .hourAndMinute]
                     ).datePickerStyle(.graphical)
                     Button(action: {
-                        viewModel.onShowDatePickerChanged(isShow: false)
+                        formContract.onShowDatePickerChanged(isShow: false)
                     }, label: {
                         Text("DONE").frame(maxWidth: .infinity)
                             .frame(height: 40)

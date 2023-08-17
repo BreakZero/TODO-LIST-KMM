@@ -10,6 +10,7 @@ import SwiftUI
 import data
 
 struct TodoTaskDetailScreen: View {
+    
     private var taskId: Int64
     @StateObject var viewModel: ViewModel = ViewModel()
     init(taskId: Int64) {
@@ -49,7 +50,7 @@ struct TodoTaskDetailScreen: View {
         }.toolbar(content: {
             ToolbarItemGroup(placement: .primaryAction) {
                 Button(action: {
-                    
+                    viewModel.isShowEditor = true
                 }, label: {
                     Image(systemName: "square.and.pencil")
                 })
@@ -59,7 +60,23 @@ struct TodoTaskDetailScreen: View {
                     Image(systemName: "trash")
                 })
             }
-        })
+        }).sheet(
+            isPresented: $viewModel.isShowEditor,
+            content: {
+                TaskFormSheet(
+                    taskId: taskId,
+                    confirmButtonText: "EDIT TASK",
+                    onConfirmed: { task in
+                        viewModel.updateTask(
+                            task: task,
+                            onCompeletion: {
+                                viewModel.isShowEditor = false
+                            }
+                        )
+                    }
+                )
+            }
+        )
     }
 }
 

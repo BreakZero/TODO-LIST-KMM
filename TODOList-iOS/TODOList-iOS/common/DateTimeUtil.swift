@@ -21,6 +21,12 @@ extension Int64 {
         let date = Date(timeIntervalSince1970: (timeSta / 1000.0))
         return date.formatToString()
     }
+    
+    func asDate() -> Date {
+        let timeSta: TimeInterval = Double(self)
+        let date = Date(timeIntervalSince1970: (timeSta / 1000.0))
+        return date
+    }
 }
 
 private let dateFormatter = DateFormatter()

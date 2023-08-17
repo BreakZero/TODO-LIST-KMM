@@ -1,16 +1,16 @@
 //
-//  TodoTaskEditViewModel.swift
+//  TaskFormContract.swift
 //  TODOList-iOS
 //
-//  Created by Jin on 2023/8/10.
+//  Created by Jin on 2023/8/17.
 //  Copyright © 2023 orgName. All rights reserved.
 //
 
 import data
 import _PhotosUI_SwiftUI
 
-extension TodoTaskEditScreen {
-    @MainActor final class ViewModel: ObservableObject {
+extension TaskFormSheet {
+    @MainActor final class TaskFormContract: ObservableObject {
         @Published var title: String = ""
         @Published var description: String = ""
         @Published var deadline: Date = Date()
@@ -24,6 +24,7 @@ extension TodoTaskEditScreen {
                 setImage(from: imageSelection)
             }
         }
+        private var taskId: Int64? = nil
         private var attachment: KotlinByteArray? = nil
         
         private func setImage(from selection: PhotosPickerItem?) {
@@ -55,12 +56,33 @@ extension TodoTaskEditScreen {
             }.assign(to: &$deadlineDescription)
         }
         
-        func onShowDatePickerChanged(isShow: Bool) {
-            self.showDatePicker = isShow
+        func fetch(taskId: Int64) {
+            self.taskId = taskId
+            print("task id: \(taskId)")
+            KoinManager.helper.findTaskById(
+                id: taskId,
+                onEach: { task in
+                    print("find the task: \(task.description_)")
+                    self.title = task.title
+                    self.description = task.description_
+                    self.deadline = task.deadline.asDate()
+                    self.attachment = task.attachment
+                    if let bytes = task.attachment {
+                        let uiImage = TodoHelper.companion.getUIImageFromBytes(bytes: bytes)
+                        self.selectedImage = uiImage
+                    }
+                },
+                onComplete: {
+                    
+                },
+                onError: { error in
+                    
+                }
+            )
         }
         
-        func insertTask(
-            onCompletion: @escaping () -> Void
+        func onConfirmed(
+            onTaskGenerated: @escaping (ModelTask) -> Void
         ) {
             print("title: \(title), desc: \(description), deadline: \(deadlineDescription)")
             if self.title.isEmpty {
@@ -73,7 +95,7 @@ extension TodoTaskEditScreen {
             }
             
             let task: ModelTask = ModelTask(
-                id: -1,
+                id: self.taskId ?? -1,
                 title: self.title,
                 description: self.description,
                 accentColor: getCategory(category: TaskCategory.allCases.randomElement() ?? TaskCategory.WORK),
@@ -81,16 +103,11 @@ extension TodoTaskEditScreen {
                 attachment: attachment,
                 createAt: currentTimeInMilliSeconds()
             )
-            KoinManager.helper.insertOrUpdateTask(
-                task: task,
-                completionHandler: { error in
-                    if error == nil {
-                        onCompletion()
-                    } else {
-                        self.error = Error.InsertSomethingWrong
-                    }
-                }
-            )
+            onTaskGenerated(task)
+        }
+        
+        func onShowDatePickerChanged(isShow: Bool) {
+            self.showDatePicker = isShow
         }
         
         func clearError() {
@@ -100,13 +117,11 @@ extension TodoTaskEditScreen {
         enum Error: LocalizedError {
             case TitleEmpty
             case DescriptionEmpty
-            case InsertSomethingWrong
             
             var errorDescription: String? {
                 switch self {
                 case .TitleEmpty: "Title could not empty"
                 case .DescriptionEmpty: "Description could not empty"
-                case .InsertSomethingWrong: "Something went wrong"
                 }
             }
         }
