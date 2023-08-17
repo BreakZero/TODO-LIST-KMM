@@ -13,7 +13,7 @@ import kotlinx.coroutines.launch
 class SignInViewModel(
     private val userRepository: DefaultUserRepository
 ): ViewModel() {
-    private val _state = MutableStateFlow(SignInUIState())
+    private val _state = MutableStateFlow(SignInUiState())
     val state = _state.asStateFlow()
 
     private val _eventChannel = Channel<SignInEvent>()

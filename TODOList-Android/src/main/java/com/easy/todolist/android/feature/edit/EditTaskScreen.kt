@@ -1,4 +1,4 @@
-package com.easy.todolist.android.feature.add_edit
+package com.easy.todolist.android.feature.edit
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
@@ -23,7 +23,7 @@ import com.easy.todolist.model.Task
 @Composable
 fun AddEditTaskSheet(
     task: Task,
-    onEvent: (AddEditTaskEvent) -> Unit
+    onEvent: (EditTaskEvent) -> Unit
 ) {
     Column(
         modifier = Modifier
@@ -36,7 +36,7 @@ fun AddEditTaskSheet(
             modifier = Modifier.fillMaxWidth(),
             value = task.title,
             onValueChange = {
-                onEvent(AddEditTaskEvent.OnTitleChanged(it))
+                onEvent(EditTaskEvent.OnTitleChanged(it))
             },
             placeholder = {
                 Text(text = "Title")
@@ -49,7 +49,7 @@ fun AddEditTaskSheet(
                 .weight(1f),
             value = task.description,
             onValueChange = {
-                onEvent(AddEditTaskEvent.OnDescriptionChanged(it))
+                onEvent(EditTaskEvent.OnDescriptionChanged(it))
             },
             placeholder = {
                 Text(text = "Description")
@@ -60,7 +60,7 @@ fun AddEditTaskSheet(
             modifier = Modifier.fillMaxWidth(),
             value = task.deadline.toString(),
             onValueChange = {
-                onEvent(AddEditTaskEvent.OnDeadlineChanged(it))
+                onEvent(EditTaskEvent.OnDeadlineChanged(it))
             },
             readOnly = true,
             placeholder = {
@@ -79,7 +79,7 @@ fun AddEditTaskSheet(
             modifier = Modifier.fillMaxWidth(),
             value = task.deadline.toString(),
             onValueChange = {
-                onEvent(AddEditTaskEvent.OnAttachmentChanged(it))
+                onEvent(EditTaskEvent.OnAttachmentChanged(it))
             },
             readOnly = true,
             placeholder = {
@@ -97,7 +97,7 @@ fun AddEditTaskSheet(
         Button(
             modifier = Modifier.fillMaxWidth(),
             colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.secondaryContainer),
-            onClick = { onEvent(AddEditTaskEvent.OnSave) }) {
+            onClick = { onEvent(EditTaskEvent.OnSave) }) {
 
         }
     }

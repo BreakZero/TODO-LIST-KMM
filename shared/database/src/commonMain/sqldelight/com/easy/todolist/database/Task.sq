@@ -14,6 +14,19 @@ SELECT * FROM LocalTaskEntity;
 findTaskById:
 SELECT * FROM LocalTaskEntity WHERE id = ?;
 
+upsertTask:
+INSERT OR REPLACE INTO
+LocalTaskEntity(
+    id,
+    title,
+    description,
+    accentColor,
+    deadline,
+    attachmentPath,
+    createAt
+)
+VALUES (?,?,?,?,?,?,?);
+
 insertTask:
 INSERT INTO
 LocalTaskEntity(

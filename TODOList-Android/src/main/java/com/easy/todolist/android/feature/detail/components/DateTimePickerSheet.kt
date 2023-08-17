@@ -1,28 +1,29 @@
-package com.easy.todolist.android.feature.todo_list.components
+package com.easy.todolist.android.feature.detail.components
 
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import com.easy.todolist.android.components.DataTimePicker
-import com.easy.todolist.android.feature.todo_list.TodoListEvent
+import com.easy.todolist.android.feature.detail.TaskDetailEvent
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun TimeSheet(
+fun DateTimePickerSheet(
     modifier: Modifier = Modifier,
-    onEvent: (TodoListEvent) -> Unit
+    onEvent: (TaskDetailEvent) -> Unit
 ) {
     ModalBottomSheet(
         modifier = modifier,
         onDismissRequest = {
-            onEvent(TodoListEvent.HideDateTimePicker)
+            onEvent(TaskDetailEvent.HideDateTimePicker)
         }
     ) {
         DataTimePicker(
-            modifier = modifier,
+            modifier = Modifier.fillMaxWidth(),
             onDateTimeSelected = {
-                onEvent(TodoListEvent.OnDeadlineChanged(it))
+                onEvent(TaskDetailEvent.OnDeadlineChanged(it))
             }
         )
     }

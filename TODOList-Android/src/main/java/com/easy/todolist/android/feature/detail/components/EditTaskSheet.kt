@@ -1,47 +1,45 @@
-package com.easy.todolist.android.feature.todo_list.components
+package com.easy.todolist.android.feature.detail.components
 
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import com.easy.todolist.android.components.TaskFormEditor
-import com.easy.todolist.android.feature.todo_list.TodoListEvent
+import com.easy.todolist.android.feature.detail.TaskDetailEvent
 import com.easy.todolist.model.Task
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun AddNewTaskSheet(
+fun EditTaskSheet(
     modifier: Modifier = Modifier,
-    task: Task?,
-    onEvent: (TodoListEvent) -> Unit
+    task: Task,
+    onEvent: (TaskDetailEvent) -> Unit
 ) {
     ModalBottomSheet(
         modifier = modifier,
         onDismissRequest = {
-            onEvent(TodoListEvent.HideAddTaskSheet)
+            onEvent(TaskDetailEvent.HideEditSheet)
         }
     ) {
         TaskFormEditor(
             modifier = Modifier.fillMaxWidth(),
             task = task,
-            confirmButtonText = "ADD TODO",
+            confirmButtonText = "Edit Task",
             onTitleChanged = {
-                onEvent(TodoListEvent.OnTitleChanged(it))
+                onEvent(TaskDetailEvent.OnTitleChanged(it))
             },
             onDescriptionChanged = {
-                onEvent(TodoListEvent.OnDescriptionChanged(it))
+                onEvent(TaskDetailEvent.OnDescriptionChanged(it))
             },
-
             openDatePicker = {
-                onEvent(TodoListEvent.ShowDateTimePicker)
+                onEvent(TaskDetailEvent.ShowDateTimePicker)
             },
             openImagePicker = {
-                onEvent(TodoListEvent.ShowImagePicker)
+                onEvent(TaskDetailEvent.ShowImagePicker)
             },
             onConfirmed = {
-                onEvent(TodoListEvent.OnSaveNewTask)
+                onEvent(TaskDetailEvent.OnConfirmed)
             }
         )
     }

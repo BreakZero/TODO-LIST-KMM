@@ -3,7 +3,6 @@ package com.easy.todolist.android.feature.todo_list
 import androidx.activity.ComponentActivity
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.remember
 import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
@@ -36,7 +35,7 @@ fun NavGraphBuilder.bindTodoListGraph(
                 when (it) {
                     is TodoListEvent.SettingClick -> toSettings()
                     is TodoListEvent.OnItemClick -> viewDetail(it.id)
-                    is TodoListEvent.ChooseImage -> {
+                    is TodoListEvent.ShowImagePicker -> {
                         imagePicker.pickImage()
                     }
                     else -> Unit
@@ -44,7 +43,7 @@ fun NavGraphBuilder.bindTodoListGraph(
             }
         }
 
-        val uiState: TodoListUIState by viewModel.uiState.collectAsStateWithLifecycle()
+        val uiState: TodoListUiState by viewModel.uiState.collectAsStateWithLifecycle()
         val newTask = viewModel.newTask
         TodoListScreen(
             uiState = uiState,

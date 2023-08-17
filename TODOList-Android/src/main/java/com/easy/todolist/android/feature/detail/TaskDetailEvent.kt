@@ -1,7 +1,18 @@
 package com.easy.todolist.android.feature.detail
 
 sealed interface TaskDetailEvent {
-    object OnDelete : TaskDetailEvent
-    object OnEdit : TaskDetailEvent
-    object PopBack : TaskDetailEvent
+    data object OnDelete : TaskDetailEvent
+    data object PopBack : TaskDetailEvent
+    data object ShowEditSheet : TaskDetailEvent
+    data object HideEditSheet: TaskDetailEvent
+    data object ShowDateTimePicker: TaskDetailEvent
+    data object HideDateTimePicker: TaskDetailEvent
+    data object ShowImagePicker: TaskDetailEvent
+
+    data object OnConfirmed: TaskDetailEvent
+
+    data class OnTitleChanged(val title: String): TaskDetailEvent
+    data class OnDescriptionChanged(val description: String): TaskDetailEvent
+    data class OnDeadlineChanged(val deadline: Long): TaskDetailEvent
+    data class OnAttachmentChanged(val attachment: ByteArray): TaskDetailEvent
 }

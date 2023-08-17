@@ -30,7 +30,7 @@ import com.easy.todolist.android.R
 
 @Composable
 fun SignUpScreen(
-    uiState: SignUpUIState,
+    uiState: SignUpUiState,
     onEvent: (SignUpEvent) -> Unit
 ) {
     Column(modifier = Modifier.fillMaxSize()) {

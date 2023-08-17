@@ -22,11 +22,11 @@ class TodoListViewModel(
     private val taskRepository: DefaultTaskRepository
 ) : ViewModel() {
 
-    private val _state = MutableStateFlow(TodoListUIState())
+    private val _state = MutableStateFlow(TodoListUiState())
 
     val uiState = combine(_state, taskRepository.loadTasks()) { state, tasks ->
         state.copy(tasks = tasks)
-    }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), TodoListUIState())
+    }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), TodoListUiState())
 
     private val _eventChannel = Channel<TodoListEvent>()
     val eventChannel = _eventChannel.receiveAsFlow()
@@ -36,7 +36,7 @@ class TodoListViewModel(
 
     fun onEvent(event: TodoListEvent) {
         when (event) {
-            is TodoListEvent.AddNewTask -> {
+            is TodoListEvent.ShowAddTaskSheet -> {
                 newTask = Task(
                     id = -1,
                     title = "",
@@ -51,7 +51,7 @@ class TodoListViewModel(
                 }
             }
 
-            is TodoListEvent.CloseAddNewSheet -> {
+            is TodoListEvent.HideAddTaskSheet -> {
                 _state.update {
                     it.copy(isAddNewTaskOpen = false)
                 }
@@ -96,13 +96,13 @@ class TodoListViewModel(
                 }
             }
 
-            is TodoListEvent.ChooseDeadline -> {
+            is TodoListEvent.ShowDateTimePicker -> {
                 _state.update {
                     it.copy(isDatePickerOpen = true)
                 }
             }
 
-            is TodoListEvent.CloseDeadlinePicker -> {
+            is TodoListEvent.HideDateTimePicker -> {
                 _state.update {
                     it.copy(isDatePickerOpen = false)
                 }

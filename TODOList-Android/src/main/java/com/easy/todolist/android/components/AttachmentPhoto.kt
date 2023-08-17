@@ -1,4 +1,4 @@
-package com.easy.todolist.android.feature.todo_list.components
+package com.easy.todolist.android.components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement

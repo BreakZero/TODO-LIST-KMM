@@ -31,7 +31,7 @@ import com.easy.todolist.android.R
 
 @Composable
 fun SignInScreen(
-    uiState: SignInUIState,
+    uiState: SignInUiState,
     onEvent: (SignInEvent) -> Unit
 ) {
     Column(modifier = Modifier.fillMaxSize()) {
@@ -117,7 +117,7 @@ fun SignInScreen(
 @Composable
 fun SignInPreview() {
     SignInScreen(
-        uiState = SignInUIState(),
+        uiState = SignInUiState(),
         onEvent = {
 
         }

@@ -48,6 +48,30 @@ class DefaultTaskRepository constructor(
         )
     }
 
+    suspend fun upsertTask(task: Task) = withContext(dispatcher) {
+        val localTask = queries.findTaskById(task.id).executeAsOneOrNull()
+        val bytes = localTask?.attachmentPath?.let {
+            imageStorage.getImage(it)
+        }
+        val updateTaskBytes = task.attachment
+        val isSameImage = bytes != null && updateTaskBytes != null &&
+                bytes.contentEquals(updateTaskBytes)
+        val imagePath: String? = if (isSameImage) {
+            localTask?.attachmentPath
+        } else {
+            imageStorage.saveImage(updateTaskBytes!!)
+        }
+        queries.upsertTask(
+            id = task.id,
+            title = task.title,
+            description = task.description,
+            accentColor = task.accentColor,
+            attachmentPath = imagePath,
+            deadline = task.deadline,
+            createAt = task.createAt
+        )
+    }
+
     fun findTaskById(id: Long) =
         queries.findTaskById(id).asFlow().mapToOne(dispatcher).map {
             it.toExternalModel(imageStorage)

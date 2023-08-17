@@ -1,6 +1,6 @@
 package com.easy.todolist.android.feature.sign_up
 
-data class SignUpUIState(
+data class SignUpUiState(
     val email: String = "",
     val fullName: String = "",
     val password: String = "",

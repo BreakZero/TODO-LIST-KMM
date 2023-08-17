@@ -23,6 +23,7 @@ struct TodoTaskEditScreen: View {
             TextField("Title", text: $viewModel.title)
                 .textFieldStyle(.todo_default)
             TextField("Description", text: $viewModel.description, axis: .vertical)
+                .lineLimit(3...)
                 .textFieldStyle(.todo_default)
                 .multilineTextAlignment(.leading)
             TextField("Deadline", text: $viewModel.deadlineDescription)

@@ -26,14 +26,25 @@ import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import com.easy.todolist.android.common.ImagePicker
+import com.easy.todolist.android.feature.detail.components.DateTimePickerSheet
+import com.easy.todolist.android.feature.detail.components.EditTaskSheet
+import com.easy.todolist.android.feature.todo_list.TodoListEvent
 import com.easy.todolist.core.commom.getFormattedDateTime
+import com.easy.todolist.model.Task
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun TaskDetailScreen(
-    uiState: TaskDetailUIState,
+    uiState: TaskDetailUiState,
+    sheetUiState: TaskDetailSheetUiState,
+    editTask: Task?,
+    imagePicker: ImagePicker,
     onEvent: (TaskDetailEvent) -> Unit
 ) {
+    imagePicker.registerPicker(onImagePicked = {
+        onEvent(TaskDetailEvent.OnAttachmentChanged(it))
+    })
     Scaffold(
         modifier = Modifier.fillMaxSize(),
         topBar = {
@@ -49,7 +60,7 @@ fun TaskDetailScreen(
                 actions = {
                     Row {
                         IconButton(onClick = {
-                            onEvent(TaskDetailEvent.OnEdit)
+                            onEvent(TaskDetailEvent.ShowEditSheet)
                         }) {
                             Icon(imageVector = Icons.Default.Edit, contentDescription = null)
                         }
@@ -63,7 +74,7 @@ fun TaskDetailScreen(
             )
         }
     ) {
-        if (uiState is TaskDetailUIState.Success) {
+        if (uiState is TaskDetailUiState.Success) {
             val task = uiState.task
             Column(
                 modifier = Modifier
@@ -108,6 +119,14 @@ fun TaskDetailScreen(
                     style = MaterialTheme.typography.bodySmall.copy(textAlign = TextAlign.Center),
                     text = "Created at ${task.createAt.getFormattedDateTime()}"
                 )
+            }
+            if (sheetUiState.isEditSheetOpen && editTask != null) {
+                EditTaskSheet(task = editTask, onEvent = onEvent)
+            }
+            if (sheetUiState.isDateTimePickerOpen) {
+                DateTimePickerSheet(
+                    modifier = Modifier.fillMaxWidth(),
+                    onEvent = onEvent)
             }
         }
     }

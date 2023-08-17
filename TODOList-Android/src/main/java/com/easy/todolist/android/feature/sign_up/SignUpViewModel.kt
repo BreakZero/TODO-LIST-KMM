@@ -15,7 +15,7 @@ import java.util.UUID
 class SignUpViewModel(
     private val userRepository: DefaultUserRepository
 ) : ViewModel() {
-    private val _state = MutableStateFlow(SignUpUIState())
+    private val _state = MutableStateFlow(SignUpUiState())
     val state = _state.asStateFlow()
 
     private val _eventChannel = Channel<SignUpEvent>()
