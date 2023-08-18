@@ -4,7 +4,11 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ModalBottomSheet
+import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import com.easy.todolist.android.components.TaskFormEditor
 import com.easy.todolist.android.feature.todo_list.TodoListEvent
@@ -17,8 +21,12 @@ fun AddNewTaskSheet(
     task: Task?,
     onEvent: (TodoListEvent) -> Unit
 ) {
+    val bottomSheetState = rememberModalBottomSheetState(
+        skipPartiallyExpanded = true
+    )
     ModalBottomSheet(
         modifier = modifier,
+        sheetState = bottomSheetState,
         onDismissRequest = {
             onEvent(TodoListEvent.HideAddTaskSheet)
         }

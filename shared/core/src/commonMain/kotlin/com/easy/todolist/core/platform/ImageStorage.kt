@@ -1,4 +1,4 @@
-package com.easy.todolist.core
+package com.easy.todolist.core.platform
 
 expect class ImageStorage {
     suspend fun saveImage(bytes: ByteArray): String

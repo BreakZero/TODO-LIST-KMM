@@ -1,6 +1,8 @@
 package com.easy.todolist.android.feature.detail
 
 sealed interface TaskDetailEvent {
+    data object ShowDeleteActions: TaskDetailEvent
+    data object HideDeleteActions: TaskDetailEvent
     data object OnDelete : TaskDetailEvent
     data object PopBack : TaskDetailEvent
     data object ShowEditSheet : TaskDetailEvent

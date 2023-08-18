@@ -73,7 +73,7 @@ struct TaskItemView: View {
                 .padding(.vertical, 2)
                 .foregroundColor(Color.white)
                 .lineLimit(3)
-            Text(task.createAt.asTimeStampToDateFormatted().description)
+            Text(KoinManager.commonHelper.dateFormatted(timestamp: task.createAt))
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .foregroundColor(Color.white)
         }

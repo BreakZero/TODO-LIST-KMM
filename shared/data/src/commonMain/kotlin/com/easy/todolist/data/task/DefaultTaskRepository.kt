@@ -3,10 +3,11 @@ package com.easy.todolist.data.task
 import app.cash.sqldelight.coroutines.asFlow
 import app.cash.sqldelight.coroutines.mapToList
 import app.cash.sqldelight.coroutines.mapToOne
-import com.easy.todolist.core.ImageStorage
+import com.easy.todolist.core.platform.ImageStorage
+import com.easy.todolist.core.commom.DateTimeDecoder
 import com.easy.todolist.data.mapper.toExternalModel
 import com.easy.todolist.database.DatabaseDriverFactory
-import com.easy.todolist.database.TodoListDatabase
+import com.easy.todolist.database.createQueryWrapper
 import com.easy.todolist.model.Task
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
@@ -21,7 +22,7 @@ class DefaultTaskRepository constructor(
     private val imageStorage: ImageStorage,
     private val dispatcher: CoroutineDispatcher = Dispatchers.IO
 ) {
-    private val queries = TodoListDatabase(driverFactory.createDriver()).taskQueries
+    private val queries = createQueryWrapper(driverFactory.createDriver()).taskQueries
 
     fun loadTasks() = queries.findAllTasks().asFlow().mapToList(dispatcher).map { taskEntities ->
         supervisorScope {
@@ -43,8 +44,8 @@ class DefaultTaskRepository constructor(
             description = task.description,
             accentColor = task.accentColor,
             attachmentPath = imagePath,
-            deadline = task.deadline,
-            createAt = task.createAt
+            deadline = DateTimeDecoder.decodeToDateTime(task.deadline),
+            createAt = DateTimeDecoder.decodeToDateTime(task.createAt)
         )
     }
 
@@ -69,8 +70,8 @@ class DefaultTaskRepository constructor(
             description = task.description,
             accentColor = task.accentColor,
             attachmentPath = imagePath,
-            deadline = task.deadline,
-            createAt = task.createAt
+            deadline = DateTimeDecoder.decodeToDateTime(task.deadline),
+            createAt = DateTimeDecoder.decodeToDateTime(task.createAt)
         )
     }
 
@@ -78,6 +79,12 @@ class DefaultTaskRepository constructor(
         queries.findTaskById(id).asFlow().mapToOne(dispatcher).map {
             it.toExternalModel(imageStorage)
         }
+
+    suspend fun deleteById(id: Long) {
+        queries.transactionWithResult {
+            queries.deleteById(id)
+        }
+    }
 }
 
 object TaskValidator {

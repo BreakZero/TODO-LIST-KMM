@@ -32,7 +32,8 @@ struct TodoTaskDetailScreen: View {
                     .font(.body)
                     .padding(.horizontal, 16)
                 if let bytes = task.attachment {
-                    let uiImage = TodoHelper.companion.getUIImageFromBytes(bytes: bytes)
+                    let uiImage = KoinManager.commonHelper.getUIImageFromBytes(bytes: bytes)
+                    
                     GeometryReader { geo in
                         Image(uiImage: uiImage)
                             .resizable()
@@ -42,7 +43,7 @@ struct TodoTaskDetailScreen: View {
                     } 
                 }
                 Spacer()
-                Text("Created at \(task.createAt.asTimeStampToDateFormatted())")
+                Text("Created at \(KoinManager.commonHelper.dateFormatted(timestamp: task.createAt))")
                     .font(.caption)
             }
         }.onAppear {

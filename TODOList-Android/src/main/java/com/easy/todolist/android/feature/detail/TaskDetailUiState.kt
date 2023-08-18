@@ -11,7 +11,8 @@ sealed interface TaskDetailUiState {
 
 data class TaskDetailSheetUiState(
     val isEditSheetOpen: Boolean = false,
-    val isDateTimePickerOpen: Boolean = false
+    val isDateTimePickerOpen: Boolean = false,
+    val isDeleteActionOpen: Boolean = false
 )
 
 

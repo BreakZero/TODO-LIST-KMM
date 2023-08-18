@@ -31,3 +31,6 @@ kotlin {
 android {
     namespace = "com.easy.todolist.core"
 }
+dependencies {
+    implementation(libs.androidx.annotation.jvm)
+}

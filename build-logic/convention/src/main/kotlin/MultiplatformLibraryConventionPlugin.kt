@@ -24,8 +24,9 @@ class MultiplatformLibraryConventionPlugin : Plugin<Project> {
                     targetCompatibility = JavaVersion.VERSION_17
                 }
                 compileSdk = AndroidBuildConfig.compileSdkVersion
-                defaultConfig.targetSdk = AndroidBuildConfig.targetSdkVersion
-                defaultConfig.minSdk = AndroidBuildConfig.minSdkVersion
+                defaultConfig {
+                    minSdk = AndroidBuildConfig.minSdkVersion
+                }
                 configureFlavors(this)
             }
             extensions.configure<LibraryAndroidComponentsExtension> {

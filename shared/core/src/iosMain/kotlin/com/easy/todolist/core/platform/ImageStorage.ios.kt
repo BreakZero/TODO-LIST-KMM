@@ -1,4 +1,4 @@
-package com.easy.todolist.core
+package com.easy.todolist.core.platform
 
 import kotlinx.cinterop.BetaInteropApi
 import kotlinx.cinterop.ObjCObjectVar

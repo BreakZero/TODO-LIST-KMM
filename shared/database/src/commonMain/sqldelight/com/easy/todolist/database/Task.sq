@@ -1,11 +1,13 @@
+import kotlinx.datetime.LocalDateTime;
+
 CREATE TABLE LocalTaskEntity(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     title TEXT NOT NULL,
     description TEXT NOT NULL,
     accentColor INTEGER NOT NULL,
-    deadline INTEGER NOT NULL,
+    deadline INTEGER AS LocalDateTime NOT NULL,
     attachmentPath TEXT, -- only support image/*
-    createAt INTEGER NOT NULL
+    createAt INTEGER AS LocalDateTime NOT NULL
 );
 
 findAllTasks:
@@ -38,3 +40,7 @@ LocalTaskEntity(
     createAt
 )
 VALUES (?,?,?,?,?,?);
+
+deleteById:
+DELETE FROM LocalTaskEntity
+WHERE id = :id;

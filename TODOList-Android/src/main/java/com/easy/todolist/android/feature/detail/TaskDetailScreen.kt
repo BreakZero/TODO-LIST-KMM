@@ -26,11 +26,11 @@ import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import com.easy.todolist.android.common.DateTimeX
 import com.easy.todolist.android.common.ImagePicker
 import com.easy.todolist.android.feature.detail.components.DateTimePickerSheet
+import com.easy.todolist.android.feature.detail.components.DeleteActionSheet
 import com.easy.todolist.android.feature.detail.components.EditTaskSheet
-import com.easy.todolist.android.feature.todo_list.TodoListEvent
-import com.easy.todolist.core.commom.getFormattedDateTime
 import com.easy.todolist.model.Task
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -65,7 +65,7 @@ fun TaskDetailScreen(
                             Icon(imageVector = Icons.Default.Edit, contentDescription = null)
                         }
                         IconButton(onClick = {
-                            onEvent(TaskDetailEvent.OnDelete)
+                            onEvent(TaskDetailEvent.ShowDeleteActions)
                         }) {
                             Icon(imageVector = Icons.Default.Delete, contentDescription = null)
                         }
@@ -117,7 +117,7 @@ fun TaskDetailScreen(
                 Text(
                     modifier = Modifier.fillMaxWidth(),
                     style = MaterialTheme.typography.bodySmall.copy(textAlign = TextAlign.Center),
-                    text = "Created at ${task.createAt.getFormattedDateTime()}"
+                    text = "Created at ${DateTimeX.formattedDate(task.createAt)}"
                 )
             }
             if (sheetUiState.isEditSheetOpen && editTask != null) {
@@ -127,6 +127,9 @@ fun TaskDetailScreen(
                 DateTimePickerSheet(
                     modifier = Modifier.fillMaxWidth(),
                     onEvent = onEvent)
+            }
+            if (sheetUiState.isDeleteActionOpen) {
+                DeleteActionSheet(onEvent = onEvent)
             }
         }
     }

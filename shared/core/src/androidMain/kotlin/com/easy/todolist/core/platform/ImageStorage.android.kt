@@ -1,4 +1,4 @@
-package com.easy.todolist.core
+package com.easy.todolist.core.platform
 
 import android.content.Context
 import kotlinx.coroutines.Dispatchers

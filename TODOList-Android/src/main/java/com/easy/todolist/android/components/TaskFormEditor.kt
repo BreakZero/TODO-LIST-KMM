@@ -19,8 +19,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.easy.todolist.android.enum.TaskCategory
-import com.easy.todolist.core.commom.getFormattedDateTime
+import com.easy.todolist.android.common.DateTimeX
+import com.easy.todolist.android.preview_data.defaultPreviewTask
 import com.easy.todolist.model.Task
 
 @Composable
@@ -60,7 +60,7 @@ fun TaskFormEditor(
         Spacer(modifier = Modifier.height(8.dp))
         OutlinedTextField(
             modifier = Modifier.fillMaxWidth(),
-            value = task?.deadline.getFormattedDateTime(),
+            value = DateTimeX.formattedDate(task?.deadline),
             onValueChange = {},
             readOnly = true,
             placeholder = {
@@ -98,23 +98,14 @@ fun TaskFormEditor(
 @Composable
 @Preview(showBackground = true)
 private fun TaskFormEditor_Preview() {
-    val timestamp = System.currentTimeMillis()
+    val timestamp = ""
     TaskFormEditor(
         modifier = Modifier.fillMaxWidth(),
-        task = Task(
-            id = 0,
-            title = "Title",
-            description = "descriptionssssssss",
-            deadline = timestamp,
-            accentColor = TaskCategory.WORK.color,
-            createAt = timestamp,
-            attachment = null
-        ),
+        task = defaultPreviewTask,
         confirmButtonText = "Confirm",
         onTitleChanged = {},
         onDescriptionChanged = {},
         openDatePicker = { /*TODO*/ },
         openImagePicker = { /*TODO*/ }) {
-
     }
 }

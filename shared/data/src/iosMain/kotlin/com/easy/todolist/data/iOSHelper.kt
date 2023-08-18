@@ -8,16 +8,10 @@ import com.easy.todolist.data.task.DefaultTaskRepository
 import com.easy.todolist.data.user.DefaultUserRepository
 import com.easy.todolist.model.Task
 import com.easy.todolist.model.User
-import kotlinx.cinterop.BetaInteropApi
 import kotlinx.cinterop.ExperimentalForeignApi
-import kotlinx.cinterop.addressOf
-import kotlinx.cinterop.usePinned
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 import org.koin.core.context.startKoin
-import platform.Foundation.NSData
-import platform.Foundation.create
-import platform.UIKit.UIImage
 
 fun initKoin() {
     startKoin {
@@ -53,17 +47,4 @@ class TodoHelper: KoinComponent {
     suspend fun insertTask(task: Task) = taskRepository.insertTask(task)
 
     suspend fun updateTask(task: Task) = taskRepository.upsertTask(task)
-
-    companion object {
-        @OptIn(BetaInteropApi::class)
-        fun getUIImageFromBytes(bytes: ByteArray): UIImage {
-            val data = bytes.usePinned {
-                NSData.create(
-                    bytes = it.addressOf(0),
-                    length = bytes.size.toULong()
-                )
-            }
-            return UIImage(data)
-        }
-    }
 }

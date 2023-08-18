@@ -13,7 +13,7 @@ extension TaskFormSheet {
     @MainActor final class TaskFormContract: ObservableObject {
         @Published var title: String = ""
         @Published var description: String = ""
-        @Published var deadline: Date = Date()
+        @Published var deadline: Date = Date.now
         @Published var deadlineDescription: String = ""
         
         @Published private(set) var showDatePicker: Bool = false
@@ -45,13 +45,9 @@ extension TaskFormSheet {
         
         @Published private(set) var error: Error? = nil
         
-        private let dateFormatter = DateFormatter()
         init() {
-            dateFormatter.dateFormat = "HH:mm E, d MMM y"
             $deadline.map {
-                print("===== \($0.toMillis() ?? 0)")
-                let result = self.dateFormatter.string(from: $0)
-                print("====== \(result)")
+                let result = KoinManager.commonHelper.dateFormatted(timestamp: $0.toMillis())
                 return result
             }.assign(to: &$deadlineDescription)
         }
@@ -65,10 +61,10 @@ extension TaskFormSheet {
                     print("find the task: \(task.description_)")
                     self.title = task.title
                     self.description = task.description_
-                    self.deadline = task.deadline.asDate()
+                    self.deadline = KoinManager.commonHelper.timestampToDate(timestamp: task.deadline)
                     self.attachment = task.attachment
                     if let bytes = task.attachment {
-                        let uiImage = TodoHelper.companion.getUIImageFromBytes(bytes: bytes)
+                        let uiImage = KoinManager.commonHelper.getUIImageFromBytes(bytes: bytes)
                         self.selectedImage = uiImage
                     }
                 },

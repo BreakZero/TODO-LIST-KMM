@@ -12,4 +12,5 @@ struct iOSApp: App {
 
 class KoinManager {
     static let helper = TodoHelper()
+    static let commonHelper = CommonHelper()
 }
