@@ -47,4 +47,5 @@ class TodoHelper: KoinComponent {
     suspend fun insertTask(task: Task) = taskRepository.insertTask(task)
 
     suspend fun updateTask(task: Task) = taskRepository.upsertTask(task)
+    suspend fun deleteById(id: Long) = taskRepository.deleteById(id)
 }

@@ -15,6 +15,7 @@ extension TodoTaskDetailScreen {
         @Published private(set) var task: ModelTask? = nil
         
         @Published var isShowEditor: Bool = false
+        @Published var isShowDeleteActions: Bool = false
         
         func fetch(taskId: Int64) {
             KoinManager.helper.findTaskById(
@@ -31,7 +32,6 @@ extension TodoTaskDetailScreen {
             task: ModelTask,
             onCompeletion: @escaping () -> Void
         ) {
-            print("editted task: \(task.title), desc: \(task.description_)")
             KoinManager.helper.updateTask(
                 task: task,
                 completionHandler: { error in
@@ -42,6 +42,24 @@ extension TodoTaskDetailScreen {
                     }
                 }
             )
+        }
+        
+        func deleteTask(
+            id: Int64,
+            onCompeletion: @escaping () -> Void
+        ) {
+            KoinManager.helper.deleteById(
+                id: id,
+                completionHandler: {error in
+                    if error == nil {
+                        // back to main thread to popup destination
+                        DispatchQueue.main.async {
+                            onCompeletion()
+                        }
+                    } else {
+                        //
+                    }
+            })
         }
     }
 }

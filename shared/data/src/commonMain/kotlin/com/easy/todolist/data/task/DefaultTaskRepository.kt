@@ -3,6 +3,7 @@ package com.easy.todolist.data.task
 import app.cash.sqldelight.coroutines.asFlow
 import app.cash.sqldelight.coroutines.mapToList
 import app.cash.sqldelight.coroutines.mapToOne
+import app.cash.sqldelight.coroutines.mapToOneNotNull
 import com.easy.todolist.core.platform.ImageStorage
 import com.easy.todolist.core.commom.DateTimeDecoder
 import com.easy.todolist.data.mapper.toExternalModel
@@ -76,14 +77,12 @@ class DefaultTaskRepository constructor(
     }
 
     fun findTaskById(id: Long) =
-        queries.findTaskById(id).asFlow().mapToOne(dispatcher).map {
+        queries.findTaskById(id).asFlow().mapToOneNotNull(dispatcher).map {
             it.toExternalModel(imageStorage)
         }
 
-    suspend fun deleteById(id: Long) {
-        queries.transactionWithResult {
-            queries.deleteById(id)
-        }
+    suspend fun deleteById(id: Long) = withContext(dispatcher) {
+        queries.deleteById(id)
     }
 }
 

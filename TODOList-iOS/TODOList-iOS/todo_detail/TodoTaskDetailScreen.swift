@@ -10,6 +10,7 @@ import SwiftUI
 import data
 
 struct TodoTaskDetailScreen: View {
+    @Environment(\.dismiss) private var dismiss
     
     private var taskId: Int64
     @StateObject var viewModel: ViewModel = ViewModel()
@@ -56,7 +57,7 @@ struct TodoTaskDetailScreen: View {
                     Image(systemName: "square.and.pencil")
                 })
                 Button(action: {
-                    
+                    viewModel.isShowDeleteActions = true
                 }, label: {
                     Image(systemName: "trash")
                 })
@@ -77,7 +78,26 @@ struct TodoTaskDetailScreen: View {
                     }
                 )
             }
-        )
+        ).actionSheet(isPresented: $viewModel.isShowDeleteActions) {
+            ActionSheet(
+                title: Text("Delete Actions"),
+                buttons: [
+                    .default(Text("Delete")) {
+                        viewModel.deleteTask(
+                            id: self.taskId,
+                            onCompeletion: {
+                                print(Thread.current.isMainThread)
+                                dismiss()
+                                print("dismiss called")
+                            }
+                        )
+                    },
+                    .default(Text("Cancel")) {
+                        viewModel.isShowDeleteActions = false
+                    }
+                ]
+            )
+        }
     }
 }
 

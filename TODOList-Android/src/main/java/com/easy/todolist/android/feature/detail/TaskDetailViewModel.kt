@@ -57,7 +57,6 @@ class TaskDetailViewModel(
                 editTask = editTask?.copy(attachment = event.attachment)
             }
 
-            is TaskDetailEvent.OnDelete -> {}
             is TaskDetailEvent.ShowEditSheet -> {
                 _sheetUiState.update {
                     it.copy(isEditSheetOpen = true)
@@ -69,11 +68,13 @@ class TaskDetailViewModel(
                     it.copy(isDateTimePickerOpen = true)
                 }
             }
+
             is TaskDetailEvent.ShowDeleteActions -> {
                 _sheetUiState.update {
                     it.copy(isDeleteActionOpen = true)
                 }
             }
+
             is TaskDetailEvent.HideEditSheet -> {
                 _sheetUiState.update {
                     it.copy(isEditSheetOpen = false)
@@ -85,16 +86,25 @@ class TaskDetailViewModel(
                     it.copy(isDateTimePickerOpen = false)
                 }
             }
+
             is TaskDetailEvent.HideDeleteActions -> {
                 _sheetUiState.update {
                     it.copy(isDeleteActionOpen = false)
                 }
             }
+
             is TaskDetailEvent.OnConfirmed -> {
                 updateTask()
             }
+
+            is TaskDetailEvent.OnDelete -> {
+                viewModelScope.launch {
+                    taskRepository.deleteById(transferArgs.taskId.toLong())
+                    dispatchEvent(TaskDetailEvent.PopBack)
+                }
+            }
+
             is TaskDetailEvent.ShowImagePicker, TaskDetailEvent.PopBack -> dispatchEvent(event)
-            else -> Unit
         }
     }
 

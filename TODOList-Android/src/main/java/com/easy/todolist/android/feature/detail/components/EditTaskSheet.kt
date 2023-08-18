@@ -3,6 +3,7 @@ package com.easy.todolist.android.feature.detail.components
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ModalBottomSheet
+import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import com.easy.todolist.android.components.TaskFormEditor
@@ -16,8 +17,12 @@ fun EditTaskSheet(
     task: Task,
     onEvent: (TaskDetailEvent) -> Unit
 ) {
+    val bottomSheetState = rememberModalBottomSheetState(
+        skipPartiallyExpanded = true
+    )
     ModalBottomSheet(
         modifier = modifier,
+        sheetState = bottomSheetState,
         onDismissRequest = {
             onEvent(TaskDetailEvent.HideEditSheet)
         }
