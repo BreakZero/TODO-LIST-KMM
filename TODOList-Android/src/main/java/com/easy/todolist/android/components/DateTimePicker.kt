@@ -16,15 +16,19 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import java.time.Instant
+import java.time.LocalDateTime
+import java.time.ZoneId
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun DataTimePicker(
     modifier: Modifier = Modifier,
+    initDateMillis: Long? = null,
     onDateTimeSelected: (Long) -> Unit
 ) {
-    val datePickerState = rememberDatePickerState()
-    val timePickerState = rememberTimePickerState()
+    val datePickerState = rememberDatePickerState(initialSelectedDateMillis = initDateMillis)
+    val timePickerState = rememberTimePickerState(initialHour = 12)
     val scrollState = rememberScrollState()
     Column(
         modifier = modifier
@@ -39,8 +43,13 @@ fun DataTimePicker(
                 .padding(horizontal = 16.dp),
             onClick = {
                 datePickerState.selectedDateMillis?.let {
-                    val timestamp = it + (timePickerState.hour * 3600 + timePickerState.minute * 60) * 1000
-                    onDateTimeSelected(timestamp)
+                    val dateTime =
+                        LocalDateTime.ofInstant(Instant.ofEpochMilli(it), ZoneId.of("UTC"))
+                            .plusHours(timePickerState.hour.toLong())
+                            .plusMinutes(timePickerState.minute.toLong())
+                    val epochMilli = dateTime.atZone(ZoneId.systemDefault()).toInstant()
+                        .toEpochMilli()
+                    onDateTimeSelected(epochMilli)
                 }
             }) {
             Text(text = "CONFIRM")

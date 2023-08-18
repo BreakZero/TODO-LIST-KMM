@@ -6,6 +6,7 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.easy.todolist.android.enum.TaskCategory
+import com.easy.todolist.core.commom.systemCurrentMilliseconds
 import com.easy.todolist.data.task.DefaultTaskRepository
 import com.easy.todolist.data.task.TaskValidator
 import com.easy.todolist.model.Task
@@ -41,9 +42,9 @@ class TodoListViewModel(
                     id = -1,
                     title = "",
                     description = "",
-                    createAt = System.currentTimeMillis(),
+                    createAt = systemCurrentMilliseconds(),
                     accentColor = TaskCategory.values().random().color,
-                    deadline = System.currentTimeMillis(),
+                    deadline = systemCurrentMilliseconds(),
                     attachment = null
                 )
                 _state.update {

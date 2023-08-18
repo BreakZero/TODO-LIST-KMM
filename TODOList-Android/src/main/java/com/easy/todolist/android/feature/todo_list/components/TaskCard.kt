@@ -21,7 +21,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.easy.todolist.android.R
 import com.easy.todolist.android.common.DateTimeX
-import com.easy.todolist.android.enum.TaskCategory
+import com.easy.todolist.android.preview_data.defaultPreviewTask
 import com.easy.todolist.model.Task
 
 @Composable
@@ -50,7 +50,7 @@ fun TaskCardView(
             ) {
                 Text(
                     text = task.title,
-                    style = MaterialTheme.typography.titleMedium,
+                    style = MaterialTheme.typography.titleLarge,
                     color = MaterialTheme.colorScheme.onPrimary
                 )
                 if (task.inProgress()) {
@@ -80,16 +80,7 @@ fun TaskCardView(
 @Composable
 fun TaskCardPreview() {
     TaskCardView(
-        task =
-        Task(
-            id = -1,
-            title = "Task Title",
-            description = "Task Description",
-            createAt = System.currentTimeMillis(),
-            accentColor = TaskCategory.WORK.color,
-            attachment = null,
-            deadline = System.currentTimeMillis() + 12000
-        ),
+        task = defaultPreviewTask,
         onItemClick = {}
     )
 }

@@ -90,13 +90,13 @@ fun TaskDetailScreen(
                 ) {
                     Text(
                         modifier = Modifier.fillMaxWidth(),
-                        style = MaterialTheme.typography.titleLarge,
+                        style = MaterialTheme.typography.headlineMedium,
                         text = task.title
                     )
                     Text(
                         modifier = Modifier
                             .fillMaxWidth(),
-                        style = MaterialTheme.typography.bodyMedium,
+                        style = MaterialTheme.typography.bodyLarge,
                         text = task.description
                     )
                     task.attachment?.let { bytes ->
@@ -126,7 +126,9 @@ fun TaskDetailScreen(
             if (sheetUiState.isDateTimePickerOpen) {
                 DateTimePickerSheet(
                     modifier = Modifier.fillMaxWidth(),
-                    onEvent = onEvent)
+                    initDateMillis = task.deadline,
+                    onEvent = onEvent
+                )
             }
             if (sheetUiState.isDeleteActionOpen) {
                 DeleteActionSheet(onEvent = onEvent)

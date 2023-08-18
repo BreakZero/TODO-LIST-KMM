@@ -13,6 +13,7 @@ import com.easy.todolist.android.feature.detail.TaskDetailEvent
 @Composable
 fun DateTimePickerSheet(
     modifier: Modifier = Modifier,
+    initDateMillis: Long? = null,
     onEvent: (TaskDetailEvent) -> Unit
 ) {
     val bottomSheetState = rememberModalBottomSheetState(
@@ -27,6 +28,7 @@ fun DateTimePickerSheet(
     ) {
         DataTimePicker(
             modifier = Modifier.fillMaxWidth(),
+            initDateMillis = initDateMillis,
             onDateTimeSelected = {
                 onEvent(TaskDetailEvent.OnDeadlineChanged(it))
             }

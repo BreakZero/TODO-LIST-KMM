@@ -2,6 +2,7 @@ package com.easy.todolist.android.feature.sign_up
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.easy.todolist.core.commom.systemCurrentMilliseconds
 import com.easy.todolist.data.user.DefaultUserRepository
 import com.easy.todolist.model.User
 import kotlinx.coroutines.channels.Channel
@@ -60,7 +61,7 @@ class SignUpViewModel(
                             uid = UUID.randomUUID().toString(),
                             fullName = _state.value.fullName,
                             email = _state.value.email,
-                            createAt = System.currentTimeMillis()
+                            createAt = systemCurrentMilliseconds()
                         )
                     )
                     if (insertSuccessful) _eventChannel.send(SignUpEvent.OnSignUp)

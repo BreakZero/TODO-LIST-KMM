@@ -1,6 +1,7 @@
 package com.easy.todolist.data
 
 import com.easy.todolist.core.commom.DateTimeDecoder
+import com.easy.todolist.core.commom.systemCurrentMilliseconds
 import com.easy.todolist.core.platform.DateFormatHelper
 import kotlinx.cinterop.BetaInteropApi
 import kotlinx.cinterop.ExperimentalForeignApi
@@ -36,5 +37,9 @@ object CommonHelper : KoinComponent {
 
     fun dateFormatted(timestamp: Long): String {
         return dateFormatHelper.formattedDateTime(DateTimeDecoder.decodeToDateTime(timestamp))
+    }
+
+    fun currentMilliseconds(): Long {
+        return systemCurrentMilliseconds()
     }
 }

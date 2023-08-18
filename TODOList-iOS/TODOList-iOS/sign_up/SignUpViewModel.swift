@@ -56,7 +56,7 @@ extension SignUpScreen {
                     uid: UUID().uuidString,
                     fullName: self.fullName,
                     email: self.email,
-                    createAt: currentTimeInMilliSeconds()
+                    createAt: KoinManager.commonHelper.currentMilliseconds()
                 ),
                 completionHandler: { result, error in
                     print(result?.description ?? "")

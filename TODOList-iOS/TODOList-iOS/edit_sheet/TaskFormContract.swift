@@ -47,7 +47,7 @@ extension TaskFormSheet {
         
         init() {
             $deadline.map {
-                let result = KoinManager.commonHelper.dateFormatted(timestamp: $0.toMillis())
+                let result = KoinManager.commonHelper.dateFormatted(timestamp: $0.toEpochMillis())
                 return result
             }.assign(to: &$deadlineDescription)
         }
@@ -95,9 +95,9 @@ extension TaskFormSheet {
                 title: self.title,
                 description: self.description,
                 accentColor: getCategory(category: TaskCategory.allCases.randomElement() ?? TaskCategory.WORK),
-                deadline: self.deadline.toMillis(),
+                deadline: self.deadline.toEpochMillis(),
                 attachment: attachment,
-                createAt: currentTimeInMilliSeconds()
+                createAt: KoinManager.commonHelper.currentMilliseconds()
             )
             onTaskGenerated(task)
         }

@@ -13,6 +13,6 @@ suspend fun LocalTaskEntity.toExternalModel(imageStorage: ImageStorage): Task {
         accentColor = accentColor,
         deadline = DateTimeDecoder.encodeToLong(deadline),
         attachment = attachmentPath?.let { imageStorage.getImage(it) },
-        createAt = DateTimeDecoder.encodeToLong(deadline)
+        createAt = DateTimeDecoder.encodeToLong(createAt)
     )
 }

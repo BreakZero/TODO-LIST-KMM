@@ -1,6 +1,6 @@
 package com.easy.todolist.core.commom
 
-import com.easy.todolist.core.platform.DateFormatHelper
+import kotlinx.datetime.Clock
 import kotlinx.datetime.Instant
 import kotlinx.datetime.LocalDateTime
 import kotlinx.datetime.TimeZone
@@ -8,7 +8,7 @@ import kotlinx.datetime.toInstant
 import kotlinx.datetime.toLocalDateTime
 
 object DateTimeDecoder {
-    val defaultTimeZone = TimeZone.of("UTC+8")
+    val defaultTimeZone = TimeZone.currentSystemDefault()
 
     fun decodeToDateTime(timestamp: Long): LocalDateTime {
         val instant = Instant.fromEpochMilliseconds(timestamp)
@@ -18,4 +18,9 @@ object DateTimeDecoder {
     fun encodeToLong(dateTime: LocalDateTime): Long {
         return dateTime.toInstant(defaultTimeZone).toEpochMilliseconds()
     }
+}
+
+fun systemCurrentMilliseconds(): Long {
+    val currentMoment: Instant = Clock.System.now()
+    return currentMoment.toEpochMilliseconds()
 }

@@ -51,6 +51,9 @@ class TaskDetailViewModel(
 
             is TaskDetailEvent.OnDeadlineChanged -> {
                 editTask = editTask?.copy(deadline = event.deadline)
+                _sheetUiState.update {
+                    it.copy(isDateTimePickerOpen = false)
+                }
             }
 
             is TaskDetailEvent.OnAttachmentChanged -> {

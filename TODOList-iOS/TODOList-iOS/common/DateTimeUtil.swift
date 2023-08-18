@@ -8,14 +8,8 @@
 
 import Foundation
 
-
-func currentTimeInMilliSeconds() -> Int64 {
-    let since1970 = Date.now.timeIntervalSince1970
-    return Int64(since1970 * 1000)
-}
-
 extension Date {
-    func toMillis() -> Int64! {
+    func toEpochMillis() -> Int64! {
         return Int64(self.timeIntervalSince1970 * 1000)
     }
 }

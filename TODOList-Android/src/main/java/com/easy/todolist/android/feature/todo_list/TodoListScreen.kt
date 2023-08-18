@@ -115,7 +115,11 @@ fun TodoListScreen(
             )
         }
         if (uiState.isDatePickerOpen) {
-            TimeSheet(modifier = Modifier.fillMaxWidth(), onEvent = onEvent)
+            TimeSheet(
+                modifier = Modifier.fillMaxWidth(),
+                initDateMillis = newTask?.deadline,
+                onEvent = onEvent
+            )
         }
     }
 }
