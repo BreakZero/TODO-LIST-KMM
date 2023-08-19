@@ -32,7 +32,8 @@ fun DataTimePicker(
     val scrollState = rememberScrollState()
     Column(
         modifier = modifier
-            .verticalScroll(scrollState),
+            .verticalScroll(scrollState)
+            .padding(bottom = 12.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         DatePicker(state = datePickerState)
