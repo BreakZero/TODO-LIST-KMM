@@ -52,7 +52,7 @@ struct TodoListScreen: View {
                         }
                     )
                 })
-        }
+        }.accentColor(Color("primary"))
     }
 }
 

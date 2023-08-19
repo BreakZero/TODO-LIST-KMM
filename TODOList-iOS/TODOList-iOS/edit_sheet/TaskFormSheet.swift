@@ -59,11 +59,15 @@ struct TaskFormSheet: View {
                             .frame(width: geo.size.width * 0.6)
                             .frame(width: geo.size.width)
                     } else {
-                        Image(systemName: "star")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: geo.size.width * 0.6)
-                            .frame(width: geo.size.width, height: geo.size.height)
+                        VStack {
+                            Image(systemName: "photo.fill.on.rectangle.fill")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 100)
+                            Text("Add Attachment(Optional, limit 2M)")
+                                .foregroundStyle(.gray)
+                                .font(.caption)
+                        }.frame(width: geo.size.width, height: geo.size.height)
                     }
                 }
             }
@@ -76,7 +80,7 @@ struct TaskFormSheet: View {
                 Text(confirmButtonText).frame(maxWidth: .infinity)
                     .frame(height: 40)
             }).padding(.horizontal)
-                .buttonStyle(.borderedProminent)
+                .buttonStyle(.todo_default)
         }.onAppear {
             if taskId != nil {
                 formContract.fetch(taskId: taskId!)
@@ -87,28 +91,32 @@ struct TaskFormSheet: View {
                 set: {value in
                     formContract.clearError()
                 }
-            )).sheet(isPresented: Binding(
+            )
+        ).sheet(
+            isPresented: Binding(
                 get: {
                     formContract.showDatePicker
                 },
                 set: { value in
                     formContract.onShowDatePickerChanged(isShow: value)
                 }
-            ), content: {
-                VStack {
-                    DatePicker(
-                        "Deadline",
-                        selection: $formContract.deadline,
-                        displayedComponents: [.date, .hourAndMinute]
-                    ).datePickerStyle(.graphical)
-                    Button(action: {
-                        formContract.onShowDatePickerChanged(isShow: false)
-                    }, label: {
-                        Text("DONE").frame(maxWidth: .infinity)
-                            .frame(height: 40)
-                    }).padding(.all)
-                        .buttonStyle(.borderedProminent)
-                }
-            })
+            )
+        ) {
+            VStack {
+                DatePicker(
+                    "Deadline",
+                    selection: $formContract.deadline,
+                    displayedComponents: [.date, .hourAndMinute]
+                ).padding(.horizontal)
+                    .datePickerStyle(.graphical)
+                Button(action: {
+                    formContract.onShowDatePickerChanged(isShow: false)
+                }, label: {
+                    Text("DONE").frame(maxWidth: .infinity)
+                        .frame(height: 40)
+                }).padding(.all)
+                    .buttonStyle(.todo_default)
+            }
+        }
     }
 }

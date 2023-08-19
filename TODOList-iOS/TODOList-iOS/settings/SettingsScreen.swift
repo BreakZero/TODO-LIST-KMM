@@ -35,7 +35,7 @@ struct SettingsScreen: View {
                     .frame(maxWidth: .infinity)
                     .frame(height: 40)
             }).padding(.all)
-            .buttonStyle(.borderedProminent)
+                .buttonStyle(.todo_default)
         }
     }
 }
