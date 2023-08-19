@@ -15,7 +15,7 @@ struct TodoDefaultTextFieldStyle: TextFieldStyle {
             .padding(.all)
             .overlay {
                 RoundedRectangle(cornerRadius: 12)
-                    .stroke(Color("primary"), lineWidth: 2)
+                    .stroke(Color.appPrimary, lineWidth: 2)
             }
             .padding(.horizontal)
         //            .shadow(color: .gray, radius: 10)
@@ -30,7 +30,7 @@ struct TodoDefaultButtonStyle: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
             .padding(.vertical, 4)
-            .background(Color("primary"))
+            .background(Color.appPrimary)
             .foregroundStyle(.white)
             .clipShape(Capsule())
             .scaleEffect(configuration.isPressed ? 1.1 : 1)

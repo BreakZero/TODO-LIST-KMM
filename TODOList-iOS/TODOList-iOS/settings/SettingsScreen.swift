@@ -47,7 +47,7 @@ struct ProfileInfoItemView: View {
         HStack {
             Text(key)
             Spacer()
-            Text(value).foregroundColor(Color("primary"))
+            Text(value).foregroundColor(Color.appPrimary)
         }
     }
 }

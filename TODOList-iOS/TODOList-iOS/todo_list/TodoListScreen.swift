@@ -52,7 +52,7 @@ struct TodoListScreen: View {
                         }
                     )
                 })
-        }.accentColor(Color("primary"))
+        }
     }
 }
 
@@ -78,7 +78,7 @@ struct TaskItemView: View {
                 .foregroundColor(Color.white)
         }
         .padding(.all, 8)
-        .background(Color(hex: task.accentColor))
+        .background(Color.ofHex(hex: task.accentColor))
         .cornerRadius(12)
         .padding(.horizontal, 16)
         .padding(.vertical, 4)

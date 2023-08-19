@@ -22,7 +22,7 @@ struct FloatingActionButton: View {
                         .foregroundColor(.white)
                 }
                 .frame(width: 60, height: 60)
-                .background(Color("primary"))
+                .background(Color.appPrimary)
                 .cornerRadius(30)
                 .shadow(radius: 10)
                 .offset(x: -25, y: 10)

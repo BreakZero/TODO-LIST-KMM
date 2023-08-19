@@ -23,7 +23,7 @@ private func customNavBarAppearance() -> UINavigationBarAppearance {
 
     // Apply white color to all the nav bar buttons.
     let barButtonItemAppearance = UIBarButtonItemAppearance(style: .plain)
-    barButtonItemAppearance.normal.titleTextAttributes = [.foregroundColor: UIColor(named: "primary") ?? UIColor.white]
+    barButtonItemAppearance.normal.titleTextAttributes = [.foregroundColor: UIColor(.appPrimary)]
     barButtonItemAppearance.disabled.titleTextAttributes = [.foregroundColor: UIColor.lightText]
     barButtonItemAppearance.highlighted.titleTextAttributes = [.foregroundColor: UIColor.label]
     barButtonItemAppearance.focused.titleTextAttributes = [.foregroundColor: UIColor.white]
@@ -40,15 +40,15 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         _ application: UIApplication,
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil
     ) -> Bool {
-        let newNavBarAppearance = customNavBarAppearance()
-        
-        let appearance = UINavigationBar.appearance()
-        appearance.scrollEdgeAppearance = newNavBarAppearance
-        appearance.compactAppearance = newNavBarAppearance
-        appearance.standardAppearance = newNavBarAppearance
-        if #available(iOS 15.0, *) {
-            appearance.compactScrollEdgeAppearance = newNavBarAppearance
-        }
+//        let newNavBarAppearance = customNavBarAppearance()
+//        
+//        let appearance = UINavigationBar.appearance()
+//        appearance.scrollEdgeAppearance = newNavBarAppearance
+//        appearance.compactAppearance = newNavBarAppearance
+//        appearance.standardAppearance = newNavBarAppearance
+//        if #available(iOS 15.0, *) {
+//            appearance.compactScrollEdgeAppearance = newNavBarAppearance
+//        }
         
         return true
     }

@@ -20,14 +20,14 @@ struct AppTopbar<Destination>: View where Destination: View {
             Text("TODO LIST")
                 .font(.system(size: 24))
                 .bold()
-                .foregroundStyle(Color("secondary"))
+                .foregroundStyle(Color.appPrimary)
             Spacer()
             NavigationLink(
                 destination: self.destination,
                 label: {
                     Image("settings")
                         .renderingMode(.template)
-                        .foregroundColor(Color("tertiary"))
+                        .foregroundColor(.appOnSurface)
                 }
             )
         }.padding(.horizontal, 16.0)
