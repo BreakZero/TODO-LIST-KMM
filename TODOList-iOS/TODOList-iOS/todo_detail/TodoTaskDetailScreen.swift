@@ -41,7 +41,7 @@ struct TodoTaskDetailScreen: View {
                             .scaledToFit()
                             .frame(width: geo.size.width * 0.8)
                             .frame(width: geo.size.width)
-                    } 
+                    }
                 }
                 Spacer()
                 Text("Created at \(KoinManager.commonHelper.dateFormatted(timestamp: task.createAt))")
@@ -49,7 +49,7 @@ struct TodoTaskDetailScreen: View {
             }
         }.onAppear {
             viewModel.fetch(taskId: taskId)
-        }.toolbar(content: {
+        }.toolbar {
             ToolbarItemGroup(placement: .primaryAction) {
                 Button(action: {
                     viewModel.isShowEditor = true
@@ -62,23 +62,20 @@ struct TodoTaskDetailScreen: View {
                     Image(systemName: "trash")
                 })
             }
-        }).sheet(
-            isPresented: $viewModel.isShowEditor,
-            content: {
-                TaskFormSheet(
-                    taskId: taskId,
-                    confirmButtonText: "EDIT TASK",
-                    onConfirmed: { task in
-                        viewModel.updateTask(
-                            task: task,
-                            onCompeletion: {
-                                viewModel.isShowEditor = false
-                            }
-                        )
-                    }
-                )
-            }
-        ).actionSheet(isPresented: $viewModel.isShowDeleteActions) {
+        }.sheet(isPresented: $viewModel.isShowEditor) {
+            TaskFormSheet(
+                taskId: taskId,
+                confirmButtonText: "EDIT TASK",
+                onConfirmed: { task in
+                    viewModel.updateTask(
+                        task: task,
+                        onCompeletion: {
+                            viewModel.isShowEditor = false
+                        }
+                    )
+                }
+            ).presentationDetents([.fraction(0.8)])
+        }.actionSheet(isPresented: $viewModel.isShowDeleteActions) {
             ActionSheet(
                 title: Text("Delete Actions"),
                 buttons: [
@@ -86,13 +83,11 @@ struct TodoTaskDetailScreen: View {
                         viewModel.deleteTask(
                             id: self.taskId,
                             onCompeletion: {
-                                print(Thread.current.isMainThread)
                                 dismiss()
-                                print("dismiss called")
                             }
                         )
                     },
-                    .default(Text("Cancel")) {
+                    .cancel(Text("Cancel")) {
                         viewModel.isShowDeleteActions = false
                     }
                 ]

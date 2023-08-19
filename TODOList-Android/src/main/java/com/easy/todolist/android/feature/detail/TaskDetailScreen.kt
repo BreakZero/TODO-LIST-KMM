@@ -54,7 +54,11 @@ fun TaskDetailScreen(
                     IconButton(onClick = {
                         onEvent(TaskDetailEvent.PopBack)
                     }) {
-                        Icon(imageVector = Icons.Default.ArrowBackIosNew, contentDescription = null)
+                        Icon(
+                            imageVector = Icons.Default.ArrowBackIosNew,
+                            tint = MaterialTheme.colorScheme.secondary,
+                            contentDescription = null
+                        )
                     }
                 },
                 actions = {
@@ -62,12 +66,20 @@ fun TaskDetailScreen(
                         IconButton(onClick = {
                             onEvent(TaskDetailEvent.ShowEditSheet)
                         }) {
-                            Icon(imageVector = Icons.Default.Edit, contentDescription = null)
+                            Icon(
+                                imageVector = Icons.Default.Edit,
+                                contentDescription = null,
+                                tint = MaterialTheme.colorScheme.secondary
+                            )
                         }
                         IconButton(onClick = {
                             onEvent(TaskDetailEvent.ShowDeleteActions)
                         }) {
-                            Icon(imageVector = Icons.Default.Delete, contentDescription = null)
+                            Icon(
+                                imageVector = Icons.Default.Delete,
+                                contentDescription = null,
+                                tint = MaterialTheme.colorScheme.secondary
+                            )
                         }
                     }
                 }

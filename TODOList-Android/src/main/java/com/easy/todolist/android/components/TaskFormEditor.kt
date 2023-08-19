@@ -13,6 +13,7 @@ import androidx.compose.material.icons.filled.EditCalendar
 import androidx.compose.material3.Button
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -68,7 +69,10 @@ fun TaskFormEditor(
             },
             trailingIcon = {
                 IconButton(onClick = openDatePicker) {
-                    Icon(imageVector = Icons.Default.EditCalendar, contentDescription = null)
+                    Icon(
+                        imageVector = Icons.Default.EditCalendar, contentDescription = null,
+                        tint = MaterialTheme.colorScheme.secondary
+                    )
                 }
             }
         )

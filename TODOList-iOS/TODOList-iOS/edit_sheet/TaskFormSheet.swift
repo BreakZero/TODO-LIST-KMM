@@ -31,9 +31,13 @@ struct TaskFormSheet: View {
     
     var body: some View {
         VStack(
-            alignment: .leading
+            alignment: .center
         ) {
-            Spacer().frame(height: 32)
+            Image(systemName: "minus")
+                .resizable()
+                .scaledToFit()
+                .frame(height: 4)
+                .padding(.vertical, 8)
             TextField("Title", text: $formContract.title)
                 .textFieldStyle(.todo_default)
             TextField("Description", text: $formContract.description, axis: .vertical)

@@ -3,6 +3,7 @@ package com.easy.todolist.android.components
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AddAPhoto
@@ -14,6 +15,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.unit.dp
 import com.easy.todolist.android.common.rememberBitmapFromBytes
 import com.easy.todolist.model.Task
 
@@ -31,6 +33,8 @@ fun AttachmentPhoto(
             verticalArrangement = Arrangement.Center
         ) {
             Icon(
+                modifier = Modifier.size(100.dp),
+                tint = MaterialTheme.colorScheme.secondary,
                 imageVector = Icons.Default.AddAPhoto,
                 contentDescription = ""
             )

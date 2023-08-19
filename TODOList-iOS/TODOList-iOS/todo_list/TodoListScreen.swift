@@ -50,7 +50,7 @@ struct TodoListScreen: View {
                                 }
                             )
                         }
-                    )
+                    ).presentationDetents([.fraction(0.8)])
                 })
         }
     }
