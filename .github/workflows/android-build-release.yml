@@ -65,5 +65,7 @@ jobs:
           generate_release_notes: true
           prerelease: true
           files: |
-            app/build/outputs/apk/release/*.apk
-            app/build/outputs/bundle/release/*.aab
+            app/build/outputs/apk/prodRelease/*.apk
+            app/build/outputs/apk/stagingRelease/*.apk
+            app/build/outputs/bundle/prodRelease/*.aab
+            app/build/outputs/bundle/stagingRelease/*.aab
