@@ -10,6 +10,7 @@ jobs:
 
   release_build:
     runs-on: macos-12
+    if: startsWith(github.ref, 'refs/tags/')
     needs: StoreLocalFiles
 
     steps:
@@ -18,15 +19,19 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Cache Gradle and wrapper
-        uses: actions/cache@v2
+      - name: Generate cache key
+        run: ./scripts/checksum.sh . checksum.txt
+
+      - name: Gradle cache
+        uses: actions/cache@v3
         with:
           path: |
-            ~/.gradle/caches
-            ~/.gradle/wrapper
-          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*') }}
+            ~/.gradle/caches/modules-*
+            ~/.gradle/caches/jars-*
+            ~/.gradle/caches/build-cache-*
+          key: gradle-${{ hashFiles('checksum.txt') }}
 
-      - name:
+      - name: Setup Java
         uses: actions/setup-java@v3
         with:
           distribution: 'temurin'
