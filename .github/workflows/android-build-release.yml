@@ -19,6 +19,14 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Store Local Files
+        run: |
+          mkdir keystore
+          cd . > keystore/keystore.properties
+          cd . > keystore/todo_keystore.jks
+          echo ${{ secrets.SIGNING_STORE_PROPERTIES }} | base64 --decode > keystore/keystore.properties
+          echo ${{ secrets.SIGNING_KEY_STORE_BASE64 }} | base64 --decode > keystore/todo_keystore.jks
+
       - name: Generate cache key
         run: ./scripts/checksum.sh . checksum.txt
 
