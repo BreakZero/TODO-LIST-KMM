@@ -10,7 +10,7 @@ jobs:
 
   release_build:
     runs-on: macos-12
-    if: startsWith(github.ref, 'refs/tags/')
+#    if: startsWith(github.ref, 'refs/tags/')
     needs: StoreLocalFiles
 
     steps:
@@ -51,6 +51,9 @@ jobs:
       - name: Build Release bundle
         run: ./gradlew bundleRelease
 
+      - name: echo
+        run: pwd
+
 #      - name: Upload Release Build to Artifacts
 #        uses: actions/upload-artifact@v3
 #        with:
@@ -59,12 +62,12 @@ jobs:
 #            app/build/outputs/apk/release/
 #            app/build/outputs/bundle/release/
 
-      - name: Create Github Release
-        uses: softprops/action-gh-release@v1
-        with:
-          generate_release_notes: true
-          prerelease: true
-          files: |
-            app/build/outputs/apk/prod/release/TODOList-Android-prod-release.apk
-            app/build/outputs/bundle/prodRelease/TODOList-Android-prod-release.aab
-            app/build/outputs/bundle/stagingRelease/TODOList-Android-staging-release.aab
+#      - name: Create Github Release
+#        uses: softprops/action-gh-release@v1
+#        with:
+#          generate_release_notes: true
+#          prerelease: true
+#          files: |
+#            app/build/outputs/apk/prod/release/TODOList-Android-prod-release.apk
+#            app/build/outputs/bundle/prodRelease/TODOList-Android-prod-release.aab
+#            app/build/outputs/bundle/stagingRelease/TODOList-Android-staging-release.aab
