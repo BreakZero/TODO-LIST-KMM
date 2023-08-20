@@ -1,3 +1,7 @@
+import java.io.FileInputStream
+import java.io.InputStreamReader
+import java.util.Properties
+
 plugins {
     id("easy.android.application")
     id("easy.android.application.compose")
@@ -7,8 +11,42 @@ plugins {
 
 android {
     namespace = "com.easy.todolist.android"
+    val keyProperties = keyStoreProperties()
+    signingConfigs {
+        create("release") {
+            storeFile = rootProject.file(keyProperties.getProperty("storeFile"))
+            storePassword = keyProperties.getProperty("storePassword")
+            keyAlias = keyProperties.getProperty("keyAlias")
+            keyPassword = keyProperties.getProperty("keyPassword")
+        }
+    }
+    buildTypes {
+        debug {
+            applicationIdSuffix = ".debug"
+        }
+        release {
+            isMinifyEnabled = true
+            signingConfig = signingConfigs.getByName("release")
+        }
+    }
     defaultConfig {
         applicationId = "com.easy.todolist.android"
+    }
+}
+
+fun keyStoreProperties(): Properties {
+    val properties = Properties()
+    val keyProperties = File("./keystore", "keystore.properties")
+
+    if (keyProperties.isFile) {
+        InputStreamReader(FileInputStream(keyProperties), Charsets.UTF_8).use { reader ->
+            properties.load(reader)
+        }
+    }
+    return properties.also {
+        it.forEach { key, value ->
+            println("key: $key, value: $value")
+        }
     }
 }
 

@@ -47,3 +47,6 @@ captures/
 locals/*
 TODOList-iOS/Pods/*
 TODOList-iOS/TODOList-iOS.xcworkspace/*
+
+# keystore files
+/keystore/*
