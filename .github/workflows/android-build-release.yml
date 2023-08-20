@@ -4,6 +4,8 @@ on:
     branches: main
     tags:
       - v*
+permissions:
+  contents: write
 jobs:
   StoreLocalFiles:
     uses: BreakZero/TODO-LIST-KMM/.github/workflows/local-file-prepare.yml@main
