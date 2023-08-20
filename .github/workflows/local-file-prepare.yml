@@ -3,34 +3,35 @@ on:
   workflow_call:
 
 jobs:
-  runs-on: macos-12
-  steps:
-    - name: Check out
-      uses: actions/checkout@v3
-      with:
-        fetch-depth: 0
-    - name: Store Local Files
-      run: |
-        mkdir keystore
-        cd . > keystore/keystore.properties
-        cd . > keystore/todo_keystore.jks
-        echo ${{ secrets.SIGNING_STORE_PROPERTIES }} | base64 --decode > keystore/keystore.properties
-        echo ${{ secrets.SIGNING_KEY_STORE_BASE64 }} | base64 --decode > keystore/todo_keystore.jks
+  StoreLocalFiles:
+    runs-on: macos-12
+    steps:
+      - name: Check out
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: Store Local Files
+        run: |
+          mkdir keystore
+          cd . > keystore/keystore.properties
+          cd . > keystore/todo_keystore.jks
+          echo ${{ secrets.SIGNING_STORE_PROPERTIES }} | base64 --decode > keystore/keystore.properties
+          echo ${{ secrets.SIGNING_KEY_STORE_BASE64 }} | base64 --decode > keystore/todo_keystore.jks
 
-    - name: Generate cache key
-      run: ./scripts/checksum.sh . checksum.txt
+      - name: Generate cache key
+        run: ./scripts/checksum.sh . checksum.txt
 
-    - name: Gradle cache
-      uses: actions/cache@v3
-      with:
-        path: |
-          ~/.gradle/caches/modules-*
-          ~/.gradle/caches/jars-*
-          ~/.gradle/caches/build-cache-*
-        key: gradle-${{ hashFiles('checksum.txt') }}
+      - name: Gradle cache
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/.gradle/caches/modules-*
+            ~/.gradle/caches/jars-*
+            ~/.gradle/caches/build-cache-*
+          key: gradle-${{ hashFiles('checksum.txt') }}
 
-    - name: Setup Java
-      uses: actions/setup-java@v3
-      with:
-        distribution: 'temurin'
-        java-version: '17'
+      - name: Setup Java
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '17'
