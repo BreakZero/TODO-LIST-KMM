@@ -51,13 +51,13 @@ jobs:
       - name: Build Release bundle
         run: ./gradlew bundleRelease
 
-      - name: Upload Release Build to Artifacts
-        uses: actions/upload-artifact@v3
-        with:
-          name: release-artifacts
-          paths: |
-            app/build/outputs/apk/release/
-            app/build/outputs/bundle/release/
+#      - name: Upload Release Build to Artifacts
+#        uses: actions/upload-artifact@v3
+#        with:
+#          name: release-artifacts
+#          paths: |
+#            app/build/outputs/apk/release/
+#            app/build/outputs/bundle/release/
 
       - name: Create Github Release
         uses: softprops/action-gh-release@v1
