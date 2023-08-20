@@ -1,3 +1,5 @@
+[![Android Release Build](https://github.com/BreakZero/TODO-LIST-KMM/actions/workflows/android-build-release.yml/badge.svg)](https://github.com/BreakZero/TODO-LIST-KMM/actions/workflows/android-build-release.yml)
+
 ### Starting
 iOS already support localization, so you need to import localization file first when the first time you set up. the file is `Localizable.xcstrings` in TODOList-iOS.
 
