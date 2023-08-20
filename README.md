@@ -4,15 +4,15 @@
 ### For iOS
 > iOS already support localization, so you need to import localization file first when you set up. the file is `Localizable.xcstrings` in TODOList-iOS.
 ### For Android
-Cause gradle add keystore to signing app that using into DevOps, there are two options pass build progress.
-> - 1. make a directory named `keystore` and add `keystore.jks` and `keystore.properties`, properties content like below(update the value that you set):
+> Cause gradle add keystore to signing app that using into DevOps, there are two options pass build progress.
+- make a directory named `keystore` and add `keystore.jks` and `keystore.properties`, properties content like below(update the value that you set):
 ```properties
 storePassword=***
 keyPassword=***
 keyAlias=***
 storeFile=keystore/keystore.jks
 ```
-> - 2. delete the signingConfigs block in the Android app build.gradle.kts
+- delete the signingConfigs block in the Android app build.gradle.kts
 
 ## iOS Screens vs Android Screens
 | iOS Screen                                                                                     | Android Screes                                                                                     |
