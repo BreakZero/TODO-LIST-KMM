@@ -65,7 +65,6 @@ jobs:
           generate_release_notes: true
           prerelease: true
           files: |
-            app/build/outputs/apk/prodRelease/*.apk
-            app/build/outputs/apk/stagingRelease/*.apk
-            app/build/outputs/bundle/prodRelease/*.aab
-            app/build/outputs/bundle/stagingRelease/*.aab
+            app/build/outputs/apk/prod/release/TODOList-Android-prod-release.apk
+            app/build/outputs/bundle/prodRelease/TODOList-Android-prod-release.aab
+            app/build/outputs/bundle/stagingRelease/TODOList-Android-staging-release.aab

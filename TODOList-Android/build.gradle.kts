@@ -44,11 +44,7 @@ fun keyStoreProperties(): Properties {
             properties.load(reader)
         }
     }
-    return properties.also {
-        it.forEach { key, value ->
-            println("key: $key, value: $value")
-        }
-    }
+    return properties
 }
 
 dependencies {
