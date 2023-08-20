@@ -10,8 +10,8 @@ jobs:
 
   release_build:
     runs-on: macos-12
-#    if: startsWith(github.ref, 'refs/tags/')
-    needs: StoreLocalFiles
+    if: startsWith(github.ref, 'refs/tags/')
+    needs: StoreLocaglFiles
 
     steps:
       - name: Check out repository
