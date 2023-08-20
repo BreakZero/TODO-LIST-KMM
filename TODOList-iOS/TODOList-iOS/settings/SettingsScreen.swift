@@ -53,8 +53,6 @@ struct ProfileInfoItemView: View {
     }
 }
 
-struct SettingsScreen_Preview: PreviewProvider {
-    static var previews: some View {
-        SettingsScreen()
-    }
-}
+#Preview(body: {
+    SettingsScreen()
+})

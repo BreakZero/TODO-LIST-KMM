@@ -57,7 +57,7 @@ extension TodoTaskDetailScreen {
                             onCompeletion()
                         }
                     } else {
-                        //
+                        // ignore 
                     }
             })
         }

@@ -37,7 +37,7 @@ android {
 
 fun keyStoreProperties(): Properties {
     val properties = Properties()
-    val keyProperties = File("./keystore", "keystore.properties")
+    val keyProperties = rootProject.file("keystore/keystore.properties")
 
     if (keyProperties.isFile) {
         InputStreamReader(FileInputStream(keyProperties), Charsets.UTF_8).use { reader ->
