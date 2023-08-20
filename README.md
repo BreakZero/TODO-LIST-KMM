@@ -1,3 +1,6 @@
+### Starting
+iOS already support localization, so you need to import localization file first when the first time you set up. file name is `[Localizable.xcstrings](TODOList-iOS%2FLocalizable.xcstrings)`.
+
 ### iOS Screens vs Android Screens
 | iOS Screen                                                                                     | Android Screes                                                                                     |
 |------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------|
