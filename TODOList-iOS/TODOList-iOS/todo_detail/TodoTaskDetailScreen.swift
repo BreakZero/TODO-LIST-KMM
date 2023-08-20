@@ -77,7 +77,7 @@ struct TodoTaskDetailScreen: View {
             ).presentationDetents([.fraction(0.8)])
         }.actionSheet(isPresented: $viewModel.isShowDeleteActions) {
             ActionSheet(
-                title: Text("detail_create_at"),
+                title: Text("text_delete_actions"),
                 buttons: [
                     .default(Text("text_delete")) {
                         viewModel.deleteTask(

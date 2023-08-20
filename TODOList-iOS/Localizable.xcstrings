@@ -17,16 +17,6 @@
         }
       }
     },
-    "detail_create_at" : {
-      "localizations" : {
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "创建于"
-          }
-        }
-      }
-    },
     "detail_create_at %@" : {
       "extractionState" : "manual",
       "localizations" : {
