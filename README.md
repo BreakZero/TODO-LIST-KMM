@@ -1,20 +1,20 @@
 [![Android Release Build](https://github.com/BreakZero/TODO-LIST-KMM/actions/workflows/android-build-release.yml/badge.svg)](https://github.com/BreakZero/TODO-LIST-KMM/actions/workflows/android-build-release.yml)
 
-### Starting
-- For iOS
-iOS already support localization, so you need to import localization file first when you set up. the file is `Localizable.xcstrings` in TODOList-iOS.
-- For Android
+## Starting
+### For iOS
+> iOS already support localization, so you need to import localization file first when you set up. the file is `Localizable.xcstrings` in TODOList-iOS.
+### For Android
 Cause gradle add keystore to signing app that using into DevOps, there are two options pass build progress.
-> 1. make a directory named `keystore` and add `keystore.jks` and `keystore.properties`, properties content like below(update the value that you set):
+> - 1. make a directory named `keystore` and add `keystore.jks` and `keystore.properties`, properties content like below(update the value that you set):
 ```properties
 storePassword=***
 keyPassword=***
 keyAlias=***
 storeFile=keystore/keystore.jks
 ```
-> 2. delete the signingConfigs block in the Android app build.gradle.kts
+> - 2. delete the signingConfigs block in the Android app build.gradle.kts
 
-### iOS Screens vs Android Screens
+## iOS Screens vs Android Screens
 | iOS Screen                                                                                     | Android Screes                                                                                     |
 |------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------|
 | ![Settings](https://github.com/BreakZero/TODO-LIST-KMM/blob/main/images/ios_settings.PNG)      | ![Settings](https://github.com/BreakZero/TODO-LIST-KMM/blob/main/images/android_settings.jpg)      |
