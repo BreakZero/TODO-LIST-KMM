@@ -17,7 +17,7 @@ struct AppTopbar<Destination>: View where Destination: View {
     
     var body: some View {
         HStack {
-            Text("TODO LIST")
+            Text("app_name")
                 .font(.system(size: 24))
                 .bold()
                 .foregroundStyle(Color.appPrimary)

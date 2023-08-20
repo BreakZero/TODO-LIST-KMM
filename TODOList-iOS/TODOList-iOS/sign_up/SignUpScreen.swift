@@ -24,7 +24,7 @@ struct SignUpScreen: View {
             Spacer()
             Image("logo")
             Spacer()
-            TextField("Email", text: Binding(
+            TextField("sign_in_up_email", text: Binding(
                 get: {viewModel.email},
                 set: {viewModel.onEmailChanged(email: $0)})
             ).focused($focusedField, equals: .email)
@@ -34,7 +34,7 @@ struct SignUpScreen: View {
                 })
                 .textFieldStyle(.todo_default)
             
-            TextField("Full Name", text: Binding(
+            TextField("sign_in_up_full_name", text: Binding(
                 get: {viewModel.fullName},
                 set: {viewModel.onFullNameChanged(fullName: $0)})
             ).focused($focusedField, equals: .fullName)
@@ -43,7 +43,7 @@ struct SignUpScreen: View {
                     focusedField = .password
                 }
                 .textFieldStyle(.todo_default)
-            TextField("Password", text: Binding(
+            TextField("sign_in_up_password", text: Binding(
                 get: {viewModel.password},
                 set: {viewModel.onPasswordChanged(password: $0)})
             ).focused($focusedField, equals: .password)
@@ -52,7 +52,7 @@ struct SignUpScreen: View {
                     focusedField = .confirmPassword
                 }
                 .textFieldStyle(.todo_default)
-            TextField("Confirm Password", text: Binding(
+            TextField("sign_in_up_confirm_password", text: Binding(
                 get: {viewModel.confirmPassword},
                 set: {viewModel.onConfirmPasswordChanged(password: $0)})
             ).focused($focusedField, equals: .confirmPassword)
@@ -61,7 +61,8 @@ struct SignUpScreen: View {
             Button(action: {
                 viewModel.signUp()
             }, label: {
-                Text("SIGN IN")
+                Text("sign_in_up_up")
+                    .textCase(.uppercase)
                     .frame(maxWidth: .infinity)
                     .frame(height: 40)
             }).padding(.all)

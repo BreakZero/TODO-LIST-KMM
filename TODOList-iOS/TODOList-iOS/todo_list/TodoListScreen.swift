@@ -41,7 +41,7 @@ struct TodoListScreen: View {
                     }),
                 content: {
                     TaskFormSheet(
-                        confirmButtonText: "ADD TASK",
+                        confirmButtonText: String(localized: "edit_add_task"),
                         onConfirmed: { task in
                             viewModel.insertTask(
                                 task: task,

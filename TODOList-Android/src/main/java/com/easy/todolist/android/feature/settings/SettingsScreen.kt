@@ -20,6 +20,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.easy.todolist.android.R
@@ -60,17 +61,17 @@ fun SettingsScreen(
             }
             ProfileInformation(
                 modifier = Modifier.height(48.dp),
-                label = "Full Name",
+                label = stringResource(id = R.string.settings_full_name),
                 value = user.fullName
             )
             ProfileInformation(
                 modifier = Modifier.height(48.dp),
-                label = "Email",
+                label = stringResource(id = R.string.settings_email),
                 value = user.email
             )
             ProfileInformation(
                 modifier = Modifier.height(48.dp),
-                label = "Password",
+                label = stringResource(id = R.string.settings_password),
                 value = "******"
             )
             Spacer(modifier = Modifier.height(24.dp))
@@ -82,7 +83,7 @@ fun SettingsScreen(
                     onEvent(SettingsEvent.Logout)
                 }
             ) {
-                Text("LOG OUT")
+                Text(stringResource(id = R.string.settings_logout).uppercase())
             }
             Spacer(modifier = Modifier.height(32.dp))
         }

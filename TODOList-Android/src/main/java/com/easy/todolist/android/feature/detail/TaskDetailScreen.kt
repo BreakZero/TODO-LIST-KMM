@@ -24,8 +24,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import com.easy.todolist.android.R
 import com.easy.todolist.android.common.DateTimeX
 import com.easy.todolist.android.common.ImagePicker
 import com.easy.todolist.android.feature.detail.components.DateTimePickerSheet
@@ -129,7 +131,10 @@ fun TaskDetailScreen(
                 Text(
                     modifier = Modifier.fillMaxWidth(),
                     style = MaterialTheme.typography.bodySmall.copy(textAlign = TextAlign.Center),
-                    text = "Created at ${DateTimeX.formattedDate(task.createAt)}"
+                    text = stringResource(
+                        id = R.string.detail_create_at,
+                        DateTimeX.formattedDate(task.createAt)
+                    )
                 )
             }
             if (sheetUiState.isEditSheetOpen && editTask != null) {

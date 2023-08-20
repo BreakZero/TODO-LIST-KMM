@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.2" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 http://docs.oasis-open.org/xliff/v1.2/os/xliff-core-1.2-strict.xsd">
+  <file original="Localizable.xcstrings" source-language="en" target-language="zh-Hans" datatype="plaintext">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="15.0" build-num="15A5209g"/>
+    </header>
+    <body>
+      <trans-unit id="app_name" xml:space="preserve">
+        <source>TODO LIST</source>
+        <target state="translated">TODO LIST</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="detail_create_at" xml:space="preserve">
+        <source>detail_create_at</source>
+        <target state="translated">创建于</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="detail_create_at %@" xml:space="preserve">
+        <source>Created at %@</source>
+        <target state="translated">创建于 %@</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="edit_add_task" xml:space="preserve">
+        <source>Add task</source>
+        <target state="translated">新增任务</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="edit_attachment_tips" xml:space="preserve">
+        <source>Add Attachment(Optional, limit 2M)</source>
+        <target state="translated">添加附件(2M大小限制)</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="edit_deadline" xml:space="preserve">
+        <source>Deadline (Optional)</source>
+        <target state="translated">截止时间(可选)</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="edit_description" xml:space="preserve">
+        <source>Description</source>
+        <target state="translated">任务描述</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="edit_edit_task" xml:space="preserve">
+        <source>Edit task</source>
+        <target state="translated">编辑任务</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="edit_title" xml:space="preserve">
+        <source>Title</source>
+        <target state="translated">标题</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="settings_change_password" xml:space="preserve">
+        <source>Change Password</source>
+        <target state="translated">修改密码</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="settings_email" xml:space="preserve">
+        <source>Email</source>
+        <target state="translated">邮箱</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="settings_full_name" xml:space="preserve">
+        <source>Full Name</source>
+        <target state="translated">昵称</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="settings_logout" xml:space="preserve">
+        <source>Log out</source>
+        <target state="translated">登出</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="settings_password" xml:space="preserve">
+        <source>Password</source>
+        <target state="translated">密码</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="sign_in_up_confirm_password" xml:space="preserve">
+        <source>Confirm Password</source>
+        <target state="translated">确认密码</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="sign_in_up_do_not_have_account" xml:space="preserve">
+        <source>Don\'t have an account?</source>
+        <target state="translated">还没有帐号？</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="sign_in_up_email" xml:space="preserve">
+        <source>Email</source>
+        <target state="translated">邮箱</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="sign_in_up_full_name" xml:space="preserve">
+        <source>Full Name</source>
+        <target state="translated">昵称</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="sign_in_up_have_account" xml:space="preserve">
+        <source>Have an account?</source>
+        <target state="translated">已有帐号？</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="sign_in_up_in" xml:space="preserve">
+        <source>Sign in</source>
+        <target state="translated">登入</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="sign_in_up_password" xml:space="preserve">
+        <source>Password</source>
+        <target state="translated">密码</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="sign_in_up_up" xml:space="preserve">
+        <source>Sign up</source>
+        <target state="translated">注册</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="text_cancel" xml:space="preserve">
+        <source>Cancel</source>
+        <target state="translated">取消</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="text_confirm" xml:space="preserve">
+        <source>Confirm</source>
+        <target state="translated">确认</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="text_delete" xml:space="preserve">
+        <source>Delete</source>
+        <target state="translated">删除</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="text_delete_actions" xml:space="preserve">
+        <source>Delete Actions</source>
+        <target state="translated">删除操作</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="text_done" xml:space="preserve">
+        <source>Done</source>
+        <target state="translated">完成</target>
+        <note/>
+      </trans-unit>
+    </body>
+  </file>
+  <file original="TODOList-iOS/en.lproj/InfoPlist.strings" datatype="plaintext" source-language="en" target-language="zh-Hans">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="15.0" build-num="15A5209g"/>
+    </header>
+    <body>
+      <trans-unit id="CFBundleName" xml:space="preserve">
+        <source>TODOList-iOS</source>
+        <note>Bundle name</note>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

@@ -13,7 +13,9 @@ import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import com.easy.todolist.android.R
 import com.easy.todolist.android.feature.detail.TaskDetailEvent
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -39,7 +41,7 @@ fun DeleteActionSheet(
                     onEvent(TaskDetailEvent.OnDelete)
                 }
             ) {
-                Text(text = "Delete")
+                Text(text = stringResource(id = R.string.text_delete))
             }
             Button(
                 modifier = Modifier
@@ -54,7 +56,7 @@ fun DeleteActionSheet(
                     onEvent(TaskDetailEvent.HideDeleteActions)
                 }
             ) {
-                Text(text = "Cancel")
+                Text(text = stringResource(id = R.string.text_cancel))
             }
             Spacer(modifier = Modifier.height(12.dp))
         }

@@ -6,6 +6,8 @@ import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
+import com.easy.todolist.android.R
 import com.easy.todolist.android.components.TaskFormEditor
 import com.easy.todolist.android.feature.detail.TaskDetailEvent
 import com.easy.todolist.model.Task
@@ -30,7 +32,7 @@ fun EditTaskSheet(
         TaskFormEditor(
             modifier = Modifier.fillMaxWidth(),
             task = task,
-            confirmButtonText = "Edit Task",
+            confirmButtonText = stringResource(id = R.string.edit_edit_task),
             onTitleChanged = {
                 onEvent(TaskDetailEvent.OnTitleChanged(it))
             },

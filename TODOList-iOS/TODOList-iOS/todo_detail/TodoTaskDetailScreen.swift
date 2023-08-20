@@ -44,7 +44,7 @@ struct TodoTaskDetailScreen: View {
                     }
                 }
                 Spacer()
-                Text("Created at \(KoinManager.commonHelper.dateFormatted(timestamp: task.createAt))")
+                Text("detail_create_at \(KoinManager.commonHelper.dateFormatted(timestamp: task.createAt))")
                     .font(.caption)
             }
         }.onAppear {
@@ -65,7 +65,7 @@ struct TodoTaskDetailScreen: View {
         }.sheet(isPresented: $viewModel.isShowEditor) {
             TaskFormSheet(
                 taskId: taskId,
-                confirmButtonText: "EDIT TASK",
+                confirmButtonText: String(localized: "edit_edit_task"),
                 onConfirmed: { task in
                     viewModel.updateTask(
                         task: task,
@@ -77,9 +77,9 @@ struct TodoTaskDetailScreen: View {
             ).presentationDetents([.fraction(0.8)])
         }.actionSheet(isPresented: $viewModel.isShowDeleteActions) {
             ActionSheet(
-                title: Text("Delete Actions"),
+                title: Text("detail_create_at"),
                 buttons: [
-                    .default(Text("Delete")) {
+                    .default(Text("text_delete")) {
                         viewModel.deleteTask(
                             id: self.taskId,
                             onCompeletion: {
@@ -87,7 +87,7 @@ struct TodoTaskDetailScreen: View {
                             }
                         )
                     },
-                    .cancel(Text("Cancel")) {
+                    .cancel(Text("text_cancel")) {
                         viewModel.isShowDeleteActions = false
                     }
                 ]

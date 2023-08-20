@@ -18,8 +18,10 @@ import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.easy.todolist.android.R
 import com.easy.todolist.android.common.DateTimeX
 import com.easy.todolist.android.preview_data.defaultPreviewTask
 import com.easy.todolist.model.Task
@@ -44,7 +46,7 @@ fun TaskFormEditor(
             value = task?.title.orEmpty(),
             onValueChange = onTitleChanged,
             placeholder = {
-                Text(text = "Title")
+                Text(text = stringResource(id = R.string.edit_title))
             }
         )
         Spacer(modifier = Modifier.height(8.dp))
@@ -55,7 +57,7 @@ fun TaskFormEditor(
             value = task?.description.orEmpty(),
             onValueChange = onDescriptionChanged,
             placeholder = {
-                Text(text = "Description")
+                Text(text = stringResource(id = R.string.edit_description))
             }
         )
         Spacer(modifier = Modifier.height(8.dp))
@@ -65,7 +67,7 @@ fun TaskFormEditor(
             onValueChange = {},
             readOnly = true,
             placeholder = {
-                Text(text = "Deadline (Optional)")
+                Text(text = stringResource(id = R.string.edit_deadline))
             },
             trailingIcon = {
                 IconButton(onClick = openDatePicker) {
@@ -102,7 +104,6 @@ fun TaskFormEditor(
 @Composable
 @Preview(showBackground = true)
 private fun TaskFormEditor_Preview() {
-    val timestamp = ""
     TaskFormEditor(
         modifier = Modifier.fillMaxWidth(),
         task = defaultPreviewTask,

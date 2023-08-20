@@ -51,9 +51,7 @@ class DefaultTaskRepository constructor(
     }
 
     suspend fun upsertTask(task: Task) = withContext(dispatcher) {
-        println("edited task: $task")
         val localTask = queries.findTaskById(task.id).executeAsOneOrNull()
-        println("local task: ${localTask.toString()}")
         val bytes = localTask?.attachmentPath?.let {
             imageStorage.getImage(it)
         }

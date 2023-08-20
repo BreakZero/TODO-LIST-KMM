@@ -38,13 +38,13 @@ struct TaskFormSheet: View {
                 .scaledToFit()
                 .frame(height: 4)
                 .padding(.vertical, 8)
-            TextField("Title", text: $formContract.title)
+            TextField("edit_title", text: $formContract.title)
                 .textFieldStyle(.todo_default)
-            TextField("Description", text: $formContract.description, axis: .vertical)
+            TextField("edit_description", text: $formContract.description, axis: .vertical)
                 .lineLimit(3...)
                 .textFieldStyle(.todo_default)
                 .multilineTextAlignment(.leading)
-            TextField("Deadline", text: $formContract.deadlineDescription)
+            TextField("edit_deadline", text: $formContract.deadlineDescription)
                 .textFieldStyle(.todo_default)
                 .disabled(true)
                 .overlay(alignment: .trailing) {
@@ -68,7 +68,7 @@ struct TaskFormSheet: View {
                                 .resizable()
                                 .scaledToFit()
                                 .frame(width: 100)
-                            Text("Add Attachment(Optional, limit 2M)")
+                            Text("edit_attachment_tips")
                                 .foregroundStyle(.gray)
                                 .font(.caption)
                         }.frame(width: geo.size.width, height: geo.size.height)
@@ -78,10 +78,11 @@ struct TaskFormSheet: View {
             Button(action: {
                 // generated task for upstream
                 formContract.onConfirmed(onTaskGenerated: { task in
-                     onConfirmed(task)
+                    onConfirmed(task)
                 })
             }, label: {
                 Text(confirmButtonText).frame(maxWidth: .infinity)
+                    .textCase(.uppercase)
                     .frame(height: 40)
             }).padding(.horizontal)
                 .buttonStyle(.todo_default)
@@ -108,7 +109,7 @@ struct TaskFormSheet: View {
         ) {
             VStack {
                 DatePicker(
-                    "Deadline",
+                    "edit_deadline",
                     selection: $formContract.deadline,
                     displayedComponents: [.date, .hourAndMinute]
                 ).padding(.horizontal)
@@ -116,11 +117,11 @@ struct TaskFormSheet: View {
                 Button(action: {
                     formContract.onShowDatePickerChanged(isShow: false)
                 }, label: {
-                    Text("DONE").frame(maxWidth: .infinity)
+                    Text("text_done").frame(maxWidth: .infinity)
                         .frame(height: 40)
                 }).padding(.all)
                     .buttonStyle(.todo_default)
-            }
+            }.presentationDetents([.fraction(0.7)])
         }
     }
 }

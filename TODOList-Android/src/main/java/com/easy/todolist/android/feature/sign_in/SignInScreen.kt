@@ -18,6 +18,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.buildAnnotatedString
@@ -56,7 +57,7 @@ fun SignInScreen(
                 imeAction = ImeAction.Next
             ),
             placeholder = {
-                Text(text = "Email")
+                Text(text = stringResource(id = R.string.sign_in_up_email))
             }
         )
         Spacer(modifier = Modifier.height(12.dp))
@@ -73,7 +74,7 @@ fun SignInScreen(
                 imeAction = ImeAction.Done
             ),
             placeholder = {
-                Text(text = "Password")
+                Text(text = stringResource(id = R.string.sign_in_up_password))
             }
         )
         Spacer(modifier = Modifier.height(24.dp))
@@ -86,17 +87,15 @@ fun SignInScreen(
                 onEvent(SignInEvent.OnSignIn)
             }
         ) {
-            Text(text = "SIGN IN")
+            Text(text = stringResource(id = R.string.sign_in_up_in).uppercase())
         }
         val annotatedString = buildAnnotatedString {
-            append("Don't have an account? ")
+            append(stringResource(id = R.string.sign_in_up_have_account))
+            append(" ")
             withStyle(
-                SpanStyle(
-                    color = MaterialTheme.colorScheme.primary,
-
-                    )
+                SpanStyle(color = MaterialTheme.colorScheme.primary)
             ) {
-                append("Sign up")
+                append(stringResource(id = R.string.sign_in_up_up))
             }
         }
         ClickableText(

@@ -1,5 +1,32 @@
 <resources>
     <string name="app_name">TODO LIST</string>
 
-    <string name="tips_attachment_tips">Add Attachment(Optional, limit 2M)</string>
+    <string name="text_confirm">Confirm</string>
+    <string name="text_done">Done</string>
+    <string name="text_cancel">Cancel</string>
+    <string name="text_delete">Delete</string>
+    <string name="text_delete_actions">Delete Actions</string>
+    <string name="detail_create_at">Created at %1$s</string>
+
+    <string name="settings_full_name">Full Name</string>
+    <string name="settings_email">Email</string>
+    <string name="settings_password">Password</string>
+    <string name="settings_change_password">Change Password</string>
+    <string name="settings_logout">log out</string>
+
+    <string name="sign_in_up_email">Email</string>
+    <string name="sign_in_up_full_name">Full Name</string>
+    <string name="sign_in_up_password">Password</string>
+    <string name="sign_in_up_confirm_password">Confirm Password</string>
+    <string name="sign_in_up_in">Sign in</string>
+    <string name="sign_in_up_up">Sign up</string>
+    <string name="sign_in_up_have_account">Have an account?</string>
+    <string name="sign_in_up_do_not_have_account">Don\'t have an account?</string>
+
+    <string name="edit_title">Title</string>
+    <string name="edit_description">Description</string>
+    <string name="edit_deadline">Deadline (Optional)</string>
+    <string name="edit_attachment_tips">Add Attachment(Optional, limit 2M)</string>
+    <string name="edit_add_task">Add task</string>
+    <string name="edit_edit_task">Edit task</string>
 </resources>
