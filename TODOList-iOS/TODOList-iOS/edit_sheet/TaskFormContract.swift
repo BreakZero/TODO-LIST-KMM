@@ -38,7 +38,7 @@ extension TaskFormSheet {
                     attachment = KotlinByteArray.from(data: data)
                     selectedImage = uiImage
                 } catch {
-                    print(error)
+                    debugPrint(error)
                 }
             }
         }
@@ -54,11 +54,9 @@ extension TaskFormSheet {
         
         func fetch(taskId: Int64) {
             self.taskId = taskId
-            print("task id: \(taskId)")
             KoinManager.helper.findTaskById(
                 id: taskId,
                 onEach: { task in
-                    print("find the task: \(task.description_)")
                     self.title = task.title
                     self.description = task.description_
                     self.deadline = KoinManager.commonHelper.timestampToDate(timestamp: task.deadline)
@@ -80,7 +78,6 @@ extension TaskFormSheet {
         func onConfirmed(
             onTaskGenerated: @escaping (ModelTask) -> Void
         ) {
-            print("title: \(title), desc: \(description), deadline: \(deadlineDescription)")
             if self.title.isEmpty {
                 self.error = Error.TitleEmpty
                 return

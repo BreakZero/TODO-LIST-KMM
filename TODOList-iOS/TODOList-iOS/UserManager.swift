@@ -28,8 +28,8 @@ class UserManager: NSObject, ObservableObject {
     
     func insertUser(user: ModelUser) {
         KoinManager.helper.insertOrUpdateUser(user: user, completionHandler: { result, error in
-            print("inser result: \(String(describing: result?.boolValue))")
-            print("inser error: \(String(describing: error?.localizedDescription))")
+            debugPrint("inser result: \(String(describing: result?.boolValue))")
+            debugPrint("inser error: \(String(describing: error?.localizedDescription))")
         })
     }
 }

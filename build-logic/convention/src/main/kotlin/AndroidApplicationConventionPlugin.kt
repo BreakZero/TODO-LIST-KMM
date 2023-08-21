@@ -16,6 +16,8 @@
 
 import com.android.build.api.dsl.ApplicationExtension
 import com.android.build.api.variant.ApplicationAndroidComponentsExtension
+import com.android.build.gradle.AbstractAppExtension
+import com.android.build.gradle.internal.api.BaseVariantOutputImpl
 import com.easy.configs.configureFlavors
 import com.easy.configs.configureKotlinAndroid
 import com.easy.configs.configurePrintApksTask
@@ -36,31 +38,27 @@ class AndroidApplicationConventionPlugin : Plugin<Project> {
             }
 
             extensions.configure<ApplicationExtension> {
-                defaultConfig.versionCode = AndroidBuildConfig.versionCode
-                defaultConfig.versionName = AndroidBuildConfig.versionName
+                defaultConfig {
+                    versionCode = AndroidBuildConfig.versionCode
+                    versionName = AndroidBuildConfig.versionName
+                    targetSdk = AndroidBuildConfig.targetSdkVersion
+                }
                 configureKotlinAndroid(this)
-                defaultConfig.targetSdk = AndroidBuildConfig.targetSdkVersion
                 configureFlavors(this)
             }
+
+            // rename output file
+            /*extensions.configure<AbstractAppExtension> {
+                applicationVariants.all {
+                    this.outputs.all {
+                        val outputFileName = "${applicationId}-v${versionName}(${this.versionCode})-${name}.${outputFile.extension}"
+                        (this as BaseVariantOutputImpl).outputFileName = outputFileName
+                    }
+                }
+            }*/
             extensions.configure<ApplicationAndroidComponentsExtension> {
                 configurePrintApksTask(this)
             }
         }
     }
-
-}
-
-/**
- * get keystore information
- */
-fun keyStoreProperties(): Properties {
-    val properties = Properties()
-    val keyProperties = File("./keystore", "keystore.properties")
-
-    if (keyProperties.isFile) {
-        InputStreamReader(FileInputStream(keyProperties), Charsets.UTF_8).use { reader ->
-            properties.load(reader)
-        }
-    }
-    return properties
 }

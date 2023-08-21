@@ -59,7 +59,7 @@ extension SignUpScreen {
                     createAt: KoinManager.commonHelper.currentMilliseconds()
                 ),
                 completionHandler: { result, error in
-                    print(result?.description ?? "")
+                    debugPrint(result?.description ?? "")
                 }
             )
         }
