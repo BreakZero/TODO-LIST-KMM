@@ -6,8 +6,11 @@ import com.easy.configs.libs
 import org.gradle.api.JavaVersion
 import org.gradle.api.Plugin
 import org.gradle.api.Project
+import org.gradle.api.plugins.ExtensionAware
 import org.gradle.kotlin.dsl.configure
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
+import org.jetbrains.kotlin.gradle.plugin.cocoapods.CocoapodsExtension
+import org.jetbrains.kotlin.gradle.plugin.mpp.BitcodeEmbeddingMode
 
 class MultiplatformLibraryConventionPlugin : Plugin<Project> {
     override fun apply(target: Project) {
@@ -32,8 +35,9 @@ class MultiplatformLibraryConventionPlugin : Plugin<Project> {
             extensions.configure<LibraryAndroidComponentsExtension> {
                 configurePrintApksTask(this)
             }
+
             extensions.configure<KotlinMultiplatformExtension> {
-//                jvmToolchain(17)
+//              jvmToolchain(17)
                 androidTarget {
                     compilations.all {
                         kotlinOptions {
@@ -70,21 +74,21 @@ class MultiplatformLibraryConventionPlugin : Plugin<Project> {
                     iosSimulatorArm64Test.dependsOn(this)
                 }
 
-//        configure<CocoapodsExtension> {
-//          summary = "Some description for the Sub Module"
-//          homepage = "Link to the Shared Module homepage"
-//          version = "1.0.0"
-//          ios.deploymentTarget = "14.1"
-//        }
+                (this as ExtensionAware).extensions.configure<CocoapodsExtension> {
+                    summary = "TODO LIST KMM submodule"
+                    homepage = "https://github.com/BreakZero/TODO-LIST-KMM"
+                    authors = "Dougie"
+                    version = "1.0"
+                    ios.deploymentTarget = "16.0"
+                    framework {
+                        baseName = project.name
+                        isStatic = project.name == "data"
+                        if (!isStatic) {
+                            embedBitcode(BitcodeEmbeddingMode.BITCODE)
+                        }
+                    }
+                }
             }
-
-//            configurations.configureEach {
-//                resolutionStrategy {
-//                    force(libs.findLibrary("junit4").get())
-//                    // Temporary workaround for https://issuetracker.google.com/174733673
-//                    force("org.objenesis:objenesis:2.6")
-//                }
-//            }
         }
     }
 }

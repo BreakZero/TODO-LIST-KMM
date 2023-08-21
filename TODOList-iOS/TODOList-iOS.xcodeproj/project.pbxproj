@@ -3,14 +3,13 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		058557BB273AAA24004C7B11 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 058557BA273AAA24004C7B11 /* Assets.xcassets */; };
 		058557D9273AAEEB004C7B11 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 058557D8273AAEEB004C7B11 /* Preview Assets.xcassets */; };
 		2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2152FB032600AC8F00CF470E /* iOSApp.swift */; };
-		2D78EE499DBEB195BF572734 /* Pods_TODOList_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26E2A7C9E7BD547FAF4C64E9 /* Pods_TODOList_iOS.framework */; };
 		3C04A34A2A8239A100DAD24C /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C04A3492A8239A100DAD24C /* UserManager.swift */; };
 		3C04A34E2A82474100DAD24C /* TodoListScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C04A34D2A82474100DAD24C /* TodoListScreen.swift */; };
 		3C04A3502A82478900DAD24C /* SignUpScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C04A34F2A82478900DAD24C /* SignUpScreen.swift */; };
@@ -25,6 +24,7 @@
 		3C24A9E82A87205100E1B6E3 /* BytesExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C24A9E72A87205100E1B6E3 /* BytesExtension.swift */; };
 		3C24A9EA2A87CDC800E1B6E3 /* TodoTaskDetailScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C24A9E92A87CDC800E1B6E3 /* TodoTaskDetailScreen.swift */; };
 		3C24A9EC2A87CDD300E1B6E3 /* TodoTaskDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C24A9EB2A87CDD300E1B6E3 /* TodoTaskDetailViewModel.swift */; };
+		3C6FE8722A93501D00CC88DB /* Pods_TODOList_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26E2A7C9E7BD547FAF4C64E9 /* Pods_TODOList_iOS.framework */; };
 		3C72E6A52A839F6900532991 /* DefaultStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C72E6A42A839F6900532991 /* DefaultStyles.swift */; };
 		3C9D13F42A84E7DB00D5FC91 /* DateTimeUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9D13F32A84E7DB00D5FC91 /* DateTimeUtil.swift */; };
 		3C9D13F62A84ED1E00D5FC91 /* ViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9D13F52A84ED1E00D5FC91 /* ViewExtension.swift */; };
@@ -73,7 +73,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2D78EE499DBEB195BF572734 /* Pods_TODOList_iOS.framework in Frameworks */,
+				3C6FE8722A93501D00CC88DB /* Pods_TODOList_iOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -231,6 +231,7 @@
 				7555FF77242A565900829871 /* Sources */,
 				7555FF79242A565900829871 /* Resources */,
 				E8853B53960E0AEE7EF12DCE /* Frameworks */,
+				C10DDBEA84D1524C0F67FEA3 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -309,6 +310,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C10DDBEA84D1524C0F67FEA3 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TODOList-iOS/Pods-TODOList-iOS-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TODOList-iOS/Pods-TODOList-iOS-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TODOList-iOS/Pods-TODOList-iOS-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -457,6 +475,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
