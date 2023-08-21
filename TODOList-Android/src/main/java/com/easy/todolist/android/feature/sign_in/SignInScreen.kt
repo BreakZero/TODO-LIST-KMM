@@ -89,23 +89,28 @@ fun SignInScreen(
         ) {
             Text(text = stringResource(id = R.string.sign_in_up_in).uppercase())
         }
+        val signUpText = stringResource(id = R.string.sign_in_up_up)
         val annotatedString = buildAnnotatedString {
             append(stringResource(id = R.string.sign_in_up_have_account))
             append(" ")
             withStyle(
                 SpanStyle(color = MaterialTheme.colorScheme.primary)
             ) {
-                append(stringResource(id = R.string.sign_in_up_up))
+                pushStringAnnotation(tag = signUpText, annotation = signUpText)
+                append(signUpText)
             }
         }
         ClickableText(
             modifier = Modifier.fillMaxWidth(),
             text = annotatedString,
             style = TextStyle(textAlign = TextAlign.Center),
-            onClick = {
-                if (it >= 23) {
-                    onEvent(SignInEvent.SignUpClicked)
-                }
+            onClick = { offset ->
+                annotatedString.getStringAnnotations(offset, offset)
+                    .firstOrNull()?.let { span ->
+                        if (span.item == signUpText) {
+                            onEvent(SignInEvent.SignUpClicked)
+                        }
+                    }
             }
         )
         Spacer(modifier = Modifier.height(32.dp))
