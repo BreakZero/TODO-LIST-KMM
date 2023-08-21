@@ -13,7 +13,8 @@ keyAlias=***
 storeFile=keystore/keystore.jks
 ```
 - delete the signingConfigs block in the Android app build.gradle.kts
-
+## UI
+UI refer from [To-Do-List-App-(Community)](https://www.figma.com/file/NYvOIUglHiUZjHz2RYp9Nh/Learn-UIUX-%3A-To-Do-List-App-(Community)?type=design&node-id=0-1&mode=design)
 ## iOS Screens vs Android Screens
 | iOS Screen                                                                                     | Android Screes                                                                                     |
 |------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------|
