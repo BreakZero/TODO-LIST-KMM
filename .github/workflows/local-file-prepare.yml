@@ -1,16 +1,16 @@
-name: Decode And Store Local File
+name: Import Keystore
 on:
   workflow_call:
 
 jobs:
   StoreLocalFiles:
-    runs-on: macos-12
+    runs-on: macos-latest
     steps:
       - name: Check out
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
-      - name: Store Local Files
+      - name: Decode & Store Keystore
         run: |
           mkdir keystore
           cd . > keystore/keystore.properties
@@ -33,5 +33,5 @@ jobs:
       - name: Setup Java
         uses: actions/setup-java@v3
         with:
-          distribution: 'temurin'
-          java-version: '17'
+          distribution: "temurin"
+          java-version: "17"

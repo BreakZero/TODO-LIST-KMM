@@ -1,14 +1,14 @@
 Pod::Spec.new do |spec|
     spec.name                     = 'data'
     spec.version                  = '1.0'
-    spec.homepage                 = 'Link to the Shared Module homepage'
+    spec.homepage                 = 'https://github.com/BreakZero/TODO-LIST-KMM'
     spec.source                   = { :http=> ''}
-    spec.authors                  = ''
+    spec.authors                  = 'Dougie'
     spec.license                  = ''
-    spec.summary                  = 'Some description for the Shared Module'
+    spec.summary                  = 'TODO LIST KMM submodule'
     spec.vendored_frameworks      = 'build/cocoapods/framework/data.framework'
     spec.libraries                = 'c++'
-    spec.ios.deployment_target = '14.1'
+    spec.ios.deployment_target = '16.0'
                 
                 
     spec.pod_target_xcconfig = {
