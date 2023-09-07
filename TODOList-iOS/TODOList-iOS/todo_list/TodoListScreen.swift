@@ -51,7 +51,9 @@ struct TodoListScreen: View {
                             )
                         }
                     ).presentationDetents([.fraction(0.8)])
-                })
+                }).onDisappear {
+                    viewModel.onCleaned()
+                }
         }
     }
 }

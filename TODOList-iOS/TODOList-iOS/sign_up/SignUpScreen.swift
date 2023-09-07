@@ -68,6 +68,9 @@ struct SignUpScreen: View {
             }).padding(.all)
                 .buttonStyle(.todo_default)
         }.errorAlert(error: $viewModel.error)
+            .onDisappear {
+                viewModel.onCleaned()
+            }
     }
 }
 

@@ -18,6 +18,8 @@ extension SignUpScreen {
         @Published private(set) var confirmPassword: String = ""
         @Published var error: Swift.Error? = nil
         
+        private var insertUserTask: Task<Void, Never>? = nil
+        
         func onEmailChanged(email: String) {
             self.email = email
         }
@@ -51,17 +53,25 @@ extension SignUpScreen {
                 error = Error.PasswordNotMatch
                 return
             }
-            KoinManager.helper.insertOrUpdateUser(
-                user: ModelUser(
-                    uid: UUID().uuidString,
-                    fullName: self.fullName,
-                    email: self.email,
-                    createAt: KoinManager.commonHelper.currentMilliseconds()
-                ),
-                completionHandler: { result, error in
-                    debugPrint(result?.description ?? "")
+            insertUserTask = Task {
+                do {
+                    _ = try await suspend(KoinManager.userRepository.insertOrUpdateUser(
+                        user: ModelUser(
+                            uid: UUID().uuidString,
+                            fullName: self.fullName,
+                            email: self.email,
+                            createAt: KoinManager.commonHelper.currentMilliseconds()
+                        )
+                    ))
+                } catch {
+                    debugPrint("We had an error: \(error)")
                 }
-            )
+            }
+        }
+        
+        func onCleaned() {
+            insertUserTask?.cancel()
+            insertUserTask = nil
         }
         
         enum Error: LocalizedError {

@@ -11,25 +11,19 @@ import data
 
 class UserManager: NSObject, ObservableObject {
     @Published var loggedUser: ModelUser? = nil
+    private let userRepository = KoinManager.userRepository
     
     static let shared = UserManager()
     
     override init() {
         IOSHelperKt.doInitKoin()
         super.init()
-        KoinManager.helper.checkUser(
+        userRepository.checkUser(
             onEach: {  user in
                 self.loggedUser = user
             },
             onComplete: {},
             onThrow: { error in }
         )
-    }
-    
-    func insertUser(user: ModelUser) {
-        KoinManager.helper.insertOrUpdateUser(user: user, completionHandler: { result, error in
-            debugPrint("inser result: \(String(describing: result?.boolValue))")
-            debugPrint("inser error: \(String(describing: error?.localizedDescription))")
-        })
     }
 }

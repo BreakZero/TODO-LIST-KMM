@@ -15,12 +15,14 @@ extension TodoListScreen {
         @Published private(set) var tasks: [ModelTask] = []
         @Published private(set) var showAddTaskSheet: Bool = false
         
+        private var insertTask: Task<Void, Never>? = nil
+        
         func onShowAddTaskSheetChanged(isShow: Bool) {
             self.showAddTaskSheet = isShow
         }
         
         init() {
-            KoinManager.helper.loadTasks(
+            KoinManager.taskRepository.loadTasks(
                 onEach: { tasks in
                     self.tasks = tasks
                 },
@@ -33,16 +35,19 @@ extension TodoListScreen {
             task: ModelTask,
             onCompletion: @escaping () -> Void
         ) {
-            KoinManager.helper.insertTask(
-                task: task,
-                completionHandler: { error in
-                    if error == nil {
-                        onCompletion()
-                    } else {
-//                        self.error = Error.InsertSomethingWrong
-                    }
+            insertTask = Task {
+                do {
+                    _ = try await suspend(KoinManager.taskRepository.insertTask(task: task))
+                    onCompletion()
+                } catch {
+                    debugPrint("we get an error \(error)")
                 }
-            )
+            }
+        }
+        
+        func onCleaned() {
+            insertTask?.cancel()
+            insertTask = nil
         }
     }
 }

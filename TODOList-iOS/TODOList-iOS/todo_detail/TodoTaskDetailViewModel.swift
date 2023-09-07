@@ -17,8 +17,10 @@ extension TodoTaskDetailScreen {
         @Published var isShowEditor: Bool = false
         @Published var isShowDeleteActions: Bool = false
         
+        private var tasks: [Task<Void, Never>] = []
+        
         func fetch(taskId: Int64) {
-            KoinManager.helper.findTaskById(
+            KoinManager.taskRepository.findTaskById(
                 id: taskId,
                 onEach: { task in
                     self.task = task
@@ -32,34 +34,37 @@ extension TodoTaskDetailScreen {
             task: ModelTask,
             onCompeletion: @escaping () -> Void
         ) {
-            KoinManager.helper.updateTask(
-                task: task,
-                completionHandler: { error in
-                    if error == nil {
-                        onCompeletion()
-                    } else {
-                        //
-                    }
+            let task = Task {
+                do {
+                    print(task.description_)
+                    _ = try await suspend(KoinManager.taskRepository.updateTask(task: task))
+                    onCompeletion()
+                } catch  {
+                    print("we get an error: \(error)")
                 }
-            )
+            }
+            tasks.append(task)
         }
         
         func deleteTask(
             id: Int64,
             onCompeletion: @escaping () -> Void
         ) {
-            KoinManager.helper.deleteById(
-                id: id,
-                completionHandler: {error in
-                    if error == nil {
-                        // back to main thread to popup destination
-                        DispatchQueue.main.async {
-                            onCompeletion()
-                        }
-                    } else {
-                        // ignore 
-                    }
-            })
+            let task = Task {
+                do {
+                    _ = try await suspend(KoinManager.taskRepository.deleteById(id: id))
+                    onCompeletion()
+                } catch {
+                    debugPrint("get an error \(error)")
+                }
+            }
+            tasks.append(task)
+        }
+        
+        func onCleaned() {
+            print("===== onclean")
+            tasks.forEach({ $0.cancel() })
+            tasks = []
         }
     }
 }

@@ -1,4 +1,4 @@
-package com.easy.todolist.data
+package com.easy.todolist.core.common
 
 import com.easy.todolist.core.commom.DateTimeDecoder
 import com.easy.todolist.core.commom.systemCurrentMilliseconds
@@ -15,7 +15,10 @@ import platform.Foundation.NSData
 import platform.Foundation.NSDate
 import platform.Foundation.create
 import platform.UIKit.UIImage
+import kotlin.experimental.ExperimentalObjCName
 
+@OptIn(ExperimentalObjCName::class)
+@ObjCName(swiftName = "CommonHelper")
 object CommonHelper : KoinComponent {
     private val dateFormatHelper: DateFormatHelper by inject()
 

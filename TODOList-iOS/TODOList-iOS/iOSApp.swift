@@ -12,7 +12,8 @@ struct iOSApp: App {
 	}
 }
 
-class KoinManager {
-    static let helper = TodoHelper()
+final class KoinManager {
+    static let userRepository = UserRepository()
+    static let taskRepository = TaskRepository()
     static let commonHelper = CommonHelper()
 }

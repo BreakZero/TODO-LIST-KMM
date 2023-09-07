@@ -92,6 +92,8 @@ struct TodoTaskDetailScreen: View {
                     }
                 ]
             )
+        }.onDisappear {
+            viewModel.onCleaned()
         }
     }
 }

@@ -54,7 +54,7 @@ extension TaskFormSheet {
         
         func fetch(taskId: Int64) {
             self.taskId = taskId
-            KoinManager.helper.findTaskById(
+            KoinManager.taskRepository.findTaskById(
                 id: taskId,
                 onEach: { task in
                     self.title = task.title

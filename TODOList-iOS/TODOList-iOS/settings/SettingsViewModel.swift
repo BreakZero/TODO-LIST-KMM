@@ -15,7 +15,7 @@ extension SettingsScreen {
         @Published private(set) var user: ModelUser? = nil
         
         init() {
-            KoinManager.helper.checkUser(
+            KoinManager.userRepository.checkUser(
                 onEach: {user in
                     self.user = user
                 },

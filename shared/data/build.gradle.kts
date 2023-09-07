@@ -3,12 +3,17 @@ plugins {
 }
 
 kotlin {
+    cocoapods {
+        framework {
+            export(project(":shared:core"))
+        }
+    }
     sourceSets {
         getByName("commonMain") {
             dependencies {
                 implementation(project(":shared:model"))
                 implementation(project(":shared:database"))
-                implementation(project(":shared:core"))
+                api(project(":shared:core"))
             }
         }
     }
