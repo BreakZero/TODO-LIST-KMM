@@ -74,8 +74,7 @@ struct SignUpScreen: View {
     }
 }
 
-struct SignUp_Preview: PreviewProvider {
-    static var previews: some View {
-        SignUpScreen()
-    }
+
+#Preview {
+    Button("SwiftUI") {}
 }

@@ -62,7 +62,6 @@ extension TodoTaskDetailScreen {
         }
         
         func onCleaned() {
-            print("===== onclean")
             tasks.forEach({ $0.cancel() })
             tasks = []
         }

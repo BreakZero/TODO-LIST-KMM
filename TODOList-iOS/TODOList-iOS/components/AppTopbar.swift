@@ -33,3 +33,7 @@ struct AppTopbar<Destination>: View where Destination: View {
         }.padding(.horizontal, 16.0)
     }
 }
+
+#Preview {
+    AppTopbar(desination: {})
+}
